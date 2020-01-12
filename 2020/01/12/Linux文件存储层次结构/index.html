@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="想要说Linux，就得说说操作系统 什么是操作系统呢？ 操作系统：管理底层的硬件，使得硬件能够协调工作，并为上层用户提供服务 最常见的操作系统就是windows了，那他和Linux又有什么区别呢 windows（收费）：个人电脑    基于图形化界面    单用户 Linux（免费）：服务器    基于命令行    多用户（允许多个用户同时登录工作，并且相互不影响，网络远程登录） windows">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-12T04:09:33.669Z">
+<meta property="og:updated_time" content="2020-01-12T04:12:24.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux文件存储层次结构">
 <meta name="twitter:description" content="想要说Linux，就得说说操作系统 什么是操作系统呢？ 操作系统：管理底层的硬件，使得硬件能够协调工作，并为上层用户提供服务 最常见的操作系统就是windows了，那他和Linux又有什么区别呢 windows（收费）：个人电脑    基于图形化界面    单用户 Linux（免费）：服务器    基于命令行    多用户（允许多个用户同时登录工作，并且相互不影响，网络远程登录） windows">
@@ -361,16 +361,8 @@
 <p>windows ：C盘    D盘    E盘…</p>
 <p>Linux：所有的文件都是从根目录（‘/’）开始存储</p>
 <p>根目录下面通常包含这几个目录文件：</p>
-<p>/bin    /etc    /mnt    /home    /root    /boot    /proc    /usr    /dev…</p>
-<p>/bin：命令对应的可执行文件</p>
-<p>/etc：系统的配置目录   –&gt;系统或者其他软件的配置文件</p>
-<p>/mnt：临时挂载点</p>
-<p>/boot：系统启动是所需要的核心镜像文件</p>
-<p>/proc：虚拟目录，以进程为单位存储内存的映射（统计信息）</p>
-<p>/usr：Unix System Resource 第三方软件的一些资源或者文档</p>
-<p>/dev：设备接口文件</p>
-<p>/root：root用户的家目录</p>
-<p>/home：普通用户的家目录         user1的家目录：/home/user1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/bin	/etc	/mnt	/home	/root	/boot	/proc	/usr	/dev...</span><br><span class="line">/bin：命令对应的可执行文件</span><br><span class="line">/etc：系统的配置目录   --&gt;系统或者其他软件的配置文件</span><br><span class="line">/mnt：临时挂载点</span><br><span class="line">/boot：系统启动是所需要的核心镜像文件</span><br><span class="line">/proc：虚拟目录，以进程为单位存储内存的映射（统计信息）</span><br><span class="line">/usr：Unix System Resource 第三方软件的一些资源或者文档</span><br><span class="line">/dev：设备接口文件</span><br><span class="line">/root：root用户的家目录</span><br><span class="line">/home：普通用户的家目录 		user1的家目录：/home/user1</span><br></pre></td></tr></table></figure>
+
 <p>这个时候就要了解路径了</p>
 <p>路经分为绝对路径和相对路径</p>
 <p>绝对路径：从根目录开始指定路径</p>
