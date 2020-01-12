@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c		stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–">
+<meta name="description" content="首先显示文件的基本属性 例如：l rwxrwxrwx.    1 root    root    8    12月 24 22:27    ypdomainname 从左到右：文件类型 权限 链接数 属主 组用户 大小 最后修改时间 文件名 链接数：硬链接文件（源文件的别名） ​                目录文件：包含的一级子目录的个数 12345671.修改属主root	chown new">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件基本操作命令">
-<meta property="og:url" content="https://sap-pill.github.io/2020/01/12/文件基本操作命令/index.html">
+<meta property="og:title" content="修改文件属性&amp;压缩&amp;查找&amp;gcc安装">
+<meta property="og:url" content="https://sap-pill.github.io/2020/01/12/修改文件属性-压缩-查找-gcc安装/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c		stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–">
+<meta property="og:description" content="首先显示文件的基本属性 例如：l rwxrwxrwx.    1 root    root    8    12月 24 22:27    ypdomainname 从左到右：文件类型 权限 链接数 属主 组用户 大小 最后修改时间 文件名 链接数：硬链接文件（源文件的别名） ​                目录文件：包含的一级子目录的个数 12345671.修改属主root	chown new">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-12T07:24:14.930Z">
+<meta property="og:updated_time" content="2020-01-12T08:04:18.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件基本操作命令">
-<meta name="twitter:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c		stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–">
+<meta name="twitter:title" content="修改文件属性&amp;压缩&amp;查找&amp;gcc安装">
+<meta name="twitter:description" content="首先显示文件的基本属性 例如：l rwxrwxrwx.    1 root    root    8    12月 24 22:27    ypdomainname 从左到右：文件类型 权限 链接数 属主 组用户 大小 最后修改时间 文件名 链接数：硬链接文件（源文件的别名） ​                目录文件：包含的一级子目录的个数 12345671.修改属主root	chown new">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sap-pill.github.io/2020/01/12/文件基本操作命令/">
+  <link rel="canonical" href="https://sap-pill.github.io/2020/01/12/修改文件属性-压缩-查找-gcc安装/">
 
 
 
 
 
-  <title>文件基本操作命令 | onlooker</title>
+  <title>修改文件属性&压缩&查找&gcc安装 | onlooker</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/01/12/文件基本操作命令/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/01/12/修改文件属性-压缩-查找-gcc安装/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">文件基本操作命令</h1>
+          <h1 class="post-title" itemprop="name headline">修改文件属性&压缩&查找&gcc安装</h1>
         
 
         <div class="post-meta">
@@ -292,7 +292,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-12T13:19:06+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-12T14:37:07+08:00">
                 2020-01-12
               </time>
             
@@ -352,42 +352,27 @@
       
 
       
-        <p>Linux对于用户的管理方式：分组的概念</p>
-<p>分组：像一个文件的访问用户分成三类</p>
-<p>​            1.所属者</p>
-<p>​            2.同组用户</p>
-<p>​            3.其他用户</p>
-<p>一个用户所属的组：1.主组    2.附加组</p>
-<p>如果stu用户创建一个文本文件 main.c</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.c		stu		group1</span><br><span class="line">		属主		组用户</span><br></pre></td></tr></table></figure>
+        <p>首先显示文件的基本属性</p>
+<p>例如：l rwxrwxrwx.    1 root    root    8    12月 24 22:27    ypdomainname</p>
+<p>从左到右：文件类型 权限 链接数 属主 组用户 大小 最后修改时间 文件名</p>
+<p>链接数：硬链接文件（源文件的别名）</p>
+<p>​                目录文件：包含的一级子目录的个数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>修改属主root	chown newuser filename</span><br><span class="line"><span class="number">2.</span>修改属组root	chgrp newgroup filename</span><br><span class="line"><span class="number">3.</span>修改权限	chmod	a/u/g/o	+/-/=	r/w/x/rw/wx/rwx filename</span><br><span class="line">		r	w	x			<span class="number">0</span><span class="number">-7</span>的数字</span><br><span class="line">		<span class="number">1</span>	<span class="number">0</span>	<span class="number">0</span>	<span class="number">4</span>		chmod nnn filename</span><br><span class="line">		<span class="number">0</span>	<span class="number">1</span>	<span class="number">0</span>	<span class="number">2</span></span><br><span class="line">		<span class="number">0</span>	<span class="number">0</span>	<span class="number">1</span>	<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
-<p>r(读)    w(写)    x(可执行权限–》普通文件     可进入权限–》目录文件)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">所属者		同组用户		其他用户</span><br><span class="line">rw-		r--		r--</span><br><span class="line">rwx		r-x		r-x</span><br><span class="line">rwx		rwx		r-x</span><br><span class="line">rwx		r-x		r-x</span><br><span class="line">rwx		rwx		r-x</span><br></pre></td></tr></table></figure>
+<p>文件压缩与解压</p>
+<p>windows    第三方软件    </p>
+<p>Linux     tar    gzip</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">第一种方式：</span><br><span class="line">打包：tar cf  xxx.tar filelist</span><br><span class="line">压缩：gzip xxx.tar     --&gt;xxx.tar.gz</span><br><span class="line"></span><br><span class="line">解压：gzip -d xxx.tar.gz</span><br><span class="line">解包：tar xf xxx.tar</span><br><span class="line"></span><br><span class="line">tar:</span><br><span class="line">	c	创建包文件</span><br><span class="line">	x	释放包文件内容</span><br><span class="line">	f	指定目标为文件而不是设备</span><br><span class="line">	t 	仅查看包中的内容，而不是释放</span><br><span class="line">	v	显示详细过程</span><br></pre></td></tr></table></figure>
 
-<p>文件类型：Linux上一切皆文件    </p>
-<p>Linux上不以文件的后缀名来区分文件类型</p>
-<p>普通文件： -（属性）</p>
-<p>目录文件：d        文件夹</p>
-<p>管道文件：p        应用在进程间通讯—》在两个进程间传递数据</p>
-<p>链接文件：l        符号链接，快捷方式</p>
-<p>(硬链接：是文件的一个别名，添加一个硬链接文件，则链接数+1，链接数对于目录文件，他第一级子目录的个数)</p>
-<p>设备文件： 块设备（b）字符设备（c）套接字（s）</p>
-<p>文件操作命令</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">			普通文件				目录文件</span><br><span class="line">创建			touch				mkdir</span><br><span class="line">删除			<span class="function">rm  				<span class="title">rmdir</span><span class="params">(仅删除空目录)</span> </span></span><br><span class="line">							rm -r(删除非空目录,-r强制删除，递归删除)</span><br><span class="line">拷贝			cp				cp -r</span><br><span class="line">				源文件路径+文件名 拷贝的目的地的路径</span><br><span class="line">剪切/重命名		mv				mv</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二种方式：</span><br><span class="line">GNU版本后</span><br><span class="line">	压缩：tar zcf xxx.tgz filelist</span><br><span class="line">	解压：tar zxf xxx.tgz</span><br></pre></td></tr></table></figure>
 
-<p>C/C++语言的编译链接工具的使用</p>
-<p>文本的编辑：vi    vim</p>
-<p>​                        vim filename——命令模式</p>
-<p>三种操作模式：</p>
-<p>命令行模式-》插入模式（编辑模式）   a i o O </p>
-<p>插入模式（编辑模式）-》命令行模式    ESC</p>
-<p>命令行模式-》末行模式    :    /    ？</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a:从当前光标之后开始插入</span><br><span class="line"></span><br><span class="line">i:从当前光标位置开始插入</span><br><span class="line"></span><br><span class="line">o:下一行开始插入</span><br><span class="line"></span><br><span class="line">O:上一行开始插入</span><br><span class="line"></span><br><span class="line">cc:删除整行开始插入</span><br><span class="line"></span><br><span class="line">C:删除光标到行末的内容开始插入</span><br></pre></td></tr></table></figure>
+<p>文件查找：find     路径    选项</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">选项:	</span><br><span class="line">-name  	文件名</span><br><span class="line">-perm	权限</span><br><span class="line">-user	属主</span><br><span class="line">-group	组用户</span><br><span class="line">-size n</span><br><span class="line">-mtime -n +n  -n是n天以内	+n是<span class="number">2</span>天之前</span><br><span class="line">-type	文件类型</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">末行模式下的常用操作：</span><br><span class="line">	:q	退出</span><br><span class="line">	:w	保存</span><br><span class="line">	:w newfile	另存为</span><br><span class="line">	:wq	保存后退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line">   	:num  光标跳到n行</span><br><span class="line">	:set nu	显示行号</span><br><span class="line">	: set noun	取消显示行号</span><br><span class="line">	/string 搜索 上到下</span><br><span class="line">	？string 搜索 下到上</span><br><span class="line">	:1, $s/oldstring/newstring  （替换从每一行开始的第一个string）</span><br><span class="line">	:1, $s/oldstring/newstring/g （全文替换）</span><br></pre></td></tr></table></figure>
+<p>Linux编译工具gcc的安装</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>先切换到root用户:</span><br><span class="line">	su root</span><br><span class="line"><span class="number">2.</span>在/mnt下创建一个新的目录:</span><br><span class="line">	cd /mnt	mkdir dvd</span><br><span class="line"><span class="number">3.</span>挂载镜像:</span><br><span class="line">	mount /dev/cdrom		mount /mnt/dvd</span><br><span class="line"><span class="number">4.</span>修改yum的配置文件:</span><br><span class="line">	cd /etc/yum.repos.d	vim yum.repo</span><br><span class="line"><span class="number">5.</span>验证挂载和配置文件是否正确:</span><br><span class="line">	yum search gcc</span><br><span class="line"><span class="number">6.</span>安装:</span><br><span class="line">	yum install gcc-c++.i686 -y</span><br><span class="line"><span class="number">7.</span>验证是否安装成功</span><br><span class="line">	which gcc		-&gt;/usr/bin/gcc</span><br><span class="line">	which g+   		-&gt;/usr/bin/g++</span><br><span class="line">    	which gdb		-&gt;/usr/bin/gdb</span><br><span class="line"><span class="number">8.</span>退出root用户:</span><br><span class="line">	<span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">命令模式下的常用操作：</span><br><span class="line">对光标的控制</span><br><span class="line">	shift + <span class="number">6</span>将光标移到当前行的行头</span><br><span class="line">	shift + <span class="number">4</span>将光标移到当前行的行尾</span><br><span class="line">	shift + g移动到文件尾行</span><br><span class="line">	gg 移到第一行</span><br><span class="line">	num + shift +g 移动到num行</span><br><span class="line">	shift + h/l/m 头 底 中间 （当前屏幕）</span><br><span class="line">	ctrl + f/b 向下翻页/向上翻页</span><br><span class="line">	批处理：</span><br><span class="line">		dd 删除一行</span><br><span class="line">		num + dd 删除num行，从光标开始数</span><br><span class="line">		d shift + g 删除当前光标到文件尾的内容</span><br><span class="line">		d gg 删除当前光标到文件头的内容</span><br><span class="line">		u 撤销上次操作</span><br><span class="line">		shift + c 删除当前光标到当前行尾的内容，并进入插入模式</span><br><span class="line">		cc 删除当前行并进入插入模式</span><br><span class="line">		r 替换一个字符</span><br><span class="line">		shift + r 进入替换模式</span><br><span class="line">		c + w 替换一个单词</span><br><span class="line">		yy 拷贝一行</span><br><span class="line">		num + yy 拷贝num行</span><br><span class="line">		p 粘贴</span><br></pre></td></tr></table></figure>
-
+<p>​    </p>
 
       
     </div>
@@ -418,8 +403,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/12/Linux文件存储层次结构/" rel="next" title="Linux文件存储层次结构">
-                <i class="fa fa-chevron-left"></i> Linux文件存储层次结构
+              <a href="/2020/01/12/文件基本操作命令/" rel="next" title="文件基本操作命令">
+                <i class="fa fa-chevron-left"></i> 文件基本操作命令
               </a>
             
           </div>
@@ -427,10 +412,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/12/修改文件属性-压缩-查找-gcc安装/" rel="prev" title="修改文件属性&压缩&查找&gcc安装">
-                修改文件属性&压缩&查找&gcc安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
