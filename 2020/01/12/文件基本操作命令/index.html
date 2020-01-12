@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Linux,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="活的像个旁观者，会轻松很多">
-<meta name="keywords" content="ACM,C++,Linux">
-<meta property="og:type" content="website">
-<meta property="og:title" content="onlooker">
-<meta property="og:url" content="https://sap-pill.github.io/page/2/index.html">
+<meta name="description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c	stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–》">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件基本操作命令">
+<meta property="og:url" content="https://sap-pill.github.io/2020/01/12/文件基本操作命令/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="活的像个旁观者，会轻松很多">
+<meta property="og:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c	stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–》">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-12T06:04:01.855Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="onlooker">
-<meta name="twitter:description" content="活的像个旁观者，会轻松很多">
+<meta name="twitter:title" content="文件基本操作命令">
+<meta name="twitter:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c	stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–》">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sap-pill.github.io/page/2/">
+  <link rel="canonical" href="https://sap-pill.github.io/2020/01/12/文件基本操作命令/">
 
 
 
 
 
-  <title>onlooker</title>
+  <title>文件基本操作命令 | onlooker</title>
   
 
 
@@ -154,8 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/01/01/C中标准库的字符串函数/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/01/12/文件基本操作命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -280,9 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/01/C中标准库的字符串函数/" itemprop="url">C中标准库的字符串函数</a></h1>
+          <h1 class="post-title" itemprop="name headline">文件基本操作命令</h1>
         
 
         <div class="post-meta">
@@ -294,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-01T14:51:38+08:00">
-                2020-01-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-12T13:19:06+08:00">
+                2020-01-12
               </time>
             
 
@@ -317,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM模板/" itemprop="url" rel="index">
-                    <span itemprop="name">ACM模板</span>
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
                   </a>
                 </span>
 
@@ -354,19 +352,47 @@
       
 
       
-        
-          
-          对于字符串数组的一些操作
-1234567891011121314151617181920int strlen(const char *str)返回str字符串中字符的个数sscanf(const char *a,const char *format,...)从字符串a读取变量，比如 sscanf(s
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/01/01/C中标准库的字符串函数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <p>Linux对于用户的管理方式：分组的概念</p>
+<p>分组：像一个文件的访问用户分成三类</p>
+<p>​            1.所属者</p>
+<p>​            2.同组用户</p>
+<p>​            3.其他用户</p>
+<p>一个用户所属的组：1.主组    2.附加组</p>
+<p>如果stu用户创建一个文本文件 main.c</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.c	stu		group1</span><br><span class="line">		属主		组用户</span><br></pre></td></tr></table></figure>
+
+<p>r(读)    w(写)    x(可执行权限–》普通文件     可进入权限–》目录文件)</p>
+<p>所属者    同组用户    其他用户</p>
+<p>rw-            r–                r–</p>
+<p>rwx            r-x               r-x</p>
+<p>rwx            rwx            r-x</p>
+<p>rwx            r-x                r-x</p>
+<p>rwx            rwx            r-x</p>
+<p>文件类型：Linux上一切皆文件    </p>
+<p>Linux上不以文件的后缀名来区分文件类型</p>
+<p>普通文件： -（属性）</p>
+<p>目录文件：d        文件夹</p>
+<p>管道文件：p        应用在进程间通讯—》在两个进程间传递数据</p>
+<p>链接文件：l        符号链接，快捷方式</p>
+<p>(硬链接：是文件的一个别名，添加一个硬链接文件，则链接数+1，链接数对于目录文件，他第一级子目录的个数)</p>
+<p>设备文件： 块设备（b）字符设备（c）套接字（s）</p>
+<p>文件操作命令</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">			普通文件			目录文件</span><br><span class="line">创建			touch				mkdir</span><br><span class="line">删除			<span class="function">rm  				<span class="title">rmdir</span><span class="params">(仅删除空目录)</span> </span></span><br><span class="line">								 rm -r(删除非空目录,-r强制删除，递归删除)</span><br><span class="line">拷贝			cp					cp -r</span><br><span class="line">				源文件路径+文件名 拷贝的目的地的路径</span><br><span class="line">剪切/重命名		mv					mv</span><br></pre></td></tr></table></figure>
+
+<p>C/C++语言的编译链接工具的使用</p>
+<p>文本的编辑：vi    vim</p>
+<p>​                        vim filename——命令模式</p>
+<p>三种操作模式：</p>
+<p>命令行模式-》插入模式（编辑模式）   a i o O </p>
+<p>插入模式（编辑模式）-》命令行模式    ESC</p>
+<p>命令行模式-》末行模式    :    /    ？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a:从当前光标之后开始插入</span><br><span class="line"></span><br><span class="line">i:从当前光标位置开始插入</span><br><span class="line"></span><br><span class="line">o:下一行开始插入</span><br><span class="line"></span><br><span class="line">O:上一行开始插入</span><br><span class="line"></span><br><span class="line">cc:删除整行开始插入</span><br><span class="line"></span><br><span class="line">C:删除光标到行末的内容开始插入</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">末行模式下的常用操作：</span><br><span class="line">	:q	退出</span><br><span class="line">	:w	保存</span><br><span class="line">    :w newfile	另存为</span><br><span class="line">	:wq	保存后退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line">    :num  光标跳到n行</span><br><span class="line">	:set nu	显示行号</span><br><span class="line">	: set noun	取消显示行号</span><br><span class="line">	/string 搜索 上到下</span><br><span class="line">	？string 搜索 下到上</span><br><span class="line">	:1, $s/oldstring/newstring  （替换从每一行开始的第一个string）</span><br><span class="line">	:1, $s/oldstring/newstring/g （全文替换）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">命令模式下的常用操作：</span><br><span class="line">对光标的控制</span><br><span class="line">	shift + <span class="number">6</span>将光标移到当前行的行头</span><br><span class="line">	shift + <span class="number">4</span>将光标移到当前行的行尾</span><br><span class="line">	shift + g移动到文件尾行</span><br><span class="line">	gg 移到第一行</span><br><span class="line">	num + shift +g 移动到num行</span><br><span class="line">	shift + h/l/m 头 底 中间 （当前屏幕）</span><br><span class="line">	ctrl + f/b 向下翻页/向上翻页</span><br><span class="line">	批处理：</span><br><span class="line">		dd 删除一行</span><br><span class="line">		num + dd 删除num行，从光标开始数</span><br><span class="line">		d shift + g 删除当前光标到文件尾的内容</span><br><span class="line">		d gg 删除当前光标到文件头的内容</span><br><span class="line">		u 撤销上次操作</span><br><span class="line">		shift + c 删除当前光标到当前行尾的内容，并进入插入模式</span><br><span class="line">		cc 删除当前行并进入插入模式</span><br><span class="line">		r 替换一个字符</span><br><span class="line">		shift + r 进入替换模式</span><br><span class="line">		c + w 替换一个单词</span><br><span class="line">		yy 拷贝一行</span><br><span class="line">		num + yy 拷贝num行</span><br><span class="line">		p 粘贴</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -381,317 +407,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2019/12/31/容器vector/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王祎豪">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="onlooker">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/31/容器vector/" itemprop="url">容器vector</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-31T10:50:52+08:00">
-                2019-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">C++学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          容器vector和空间配置器实现一个C++ STL里面的简单向量容器类vector
-vector 向量容器 2倍扩容的数组    VS-vector 1.5倍    gcc-vector  2倍
-vector简单实现
-12345678910111213141516171819202122232425
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/31/容器vector/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/12/Linux文件存储层次结构/" rel="next" title="Linux文件存储层次结构">
+                <i class="fa fa-chevron-left"></i> Linux文件存储层次结构
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2019/12/29/头文件及快读快输/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王祎豪">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/touxiang.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="onlooker">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/12/29/头文件及快读快输/" itemprop="url">头文件及快读快输</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-29T16:30:32+08:00">
-                2019-12-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM模板/" itemprop="url" rel="index">
-                    <span itemprop="name">ACM模板</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          头文件+快速读入+快速输出头文件一般平时训练可能用的是万能头文件
-1#include&lt;bits/stdc++.h&gt;
-
-万一比赛热身赛时，发现不能使用万能头文件，那就得自备头文件了
-123456789101112131415161718192021#include&lt;algorithm
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/12/29/头文件及快读快输/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -701,14 +446,11 @@ vector简单实现
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -716,6 +458,10 @@ vector简单实现
 
 
           
+
+  
+
+
 
         </div>
         
@@ -939,6 +685,10 @@ vector简单实现
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
