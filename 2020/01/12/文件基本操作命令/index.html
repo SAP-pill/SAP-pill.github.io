@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c	stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–》">
+<meta name="description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c		stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件基本操作命令">
 <meta property="og:url" content="https://sap-pill.github.io/2020/01/12/文件基本操作命令/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c	stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–》">
+<meta property="og:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c		stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-12T06:04:01.855Z">
+<meta property="og:updated_time" content="2020-01-12T06:11:04.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件基本操作命令">
-<meta name="twitter:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c	stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–》">
+<meta name="twitter:description" content="Linux对于用户的管理方式：分组的概念 分组：像一个文件的访问用户分成三类 ​            1.所属者 ​            2.同组用户 ​            3.其他用户 一个用户所属的组：1.主组    2.附加组 如果stu用户创建一个文本文件 main.c 12main.c		stu		group1		属主		组用户  r(读)    w(写)    x(可执行权限–">
 
 
 
@@ -359,7 +359,7 @@
 <p>​            3.其他用户</p>
 <p>一个用户所属的组：1.主组    2.附加组</p>
 <p>如果stu用户创建一个文本文件 main.c</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.c	stu		group1</span><br><span class="line">		属主		组用户</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">main.c		stu		group1</span><br><span class="line">		属主		组用户</span><br></pre></td></tr></table></figure>
 
 <p>r(读)    w(写)    x(可执行权限–》普通文件     可进入权限–》目录文件)</p>
 <p>所属者    同组用户    其他用户</p>
@@ -377,7 +377,7 @@
 <p>(硬链接：是文件的一个别名，添加一个硬链接文件，则链接数+1，链接数对于目录文件，他第一级子目录的个数)</p>
 <p>设备文件： 块设备（b）字符设备（c）套接字（s）</p>
 <p>文件操作命令</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">			普通文件			目录文件</span><br><span class="line">创建			touch				mkdir</span><br><span class="line">删除			<span class="function">rm  				<span class="title">rmdir</span><span class="params">(仅删除空目录)</span> </span></span><br><span class="line">								 rm -r(删除非空目录,-r强制删除，递归删除)</span><br><span class="line">拷贝			cp					cp -r</span><br><span class="line">				源文件路径+文件名 拷贝的目的地的路径</span><br><span class="line">剪切/重命名		mv					mv</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">			普通文件				目录文件</span><br><span class="line">创建			touch				mkdir</span><br><span class="line">删除			<span class="function">rm  				<span class="title">rmdir</span><span class="params">(仅删除空目录)</span> </span></span><br><span class="line">							rm -r(删除非空目录,-r强制删除，递归删除)</span><br><span class="line">拷贝			cp				cp -r</span><br><span class="line">				源文件路径+文件名 拷贝的目的地的路径</span><br><span class="line">剪切/重命名		mv				mv</span><br></pre></td></tr></table></figure>
 
 <p>C/C++语言的编译链接工具的使用</p>
 <p>文本的编辑：vi    vim</p>
@@ -388,7 +388,7 @@
 <p>命令行模式-》末行模式    :    /    ？</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a:从当前光标之后开始插入</span><br><span class="line"></span><br><span class="line">i:从当前光标位置开始插入</span><br><span class="line"></span><br><span class="line">o:下一行开始插入</span><br><span class="line"></span><br><span class="line">O:上一行开始插入</span><br><span class="line"></span><br><span class="line">cc:删除整行开始插入</span><br><span class="line"></span><br><span class="line">C:删除光标到行末的内容开始插入</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">末行模式下的常用操作：</span><br><span class="line">	:q	退出</span><br><span class="line">	:w	保存</span><br><span class="line">    :w newfile	另存为</span><br><span class="line">	:wq	保存后退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line">    :num  光标跳到n行</span><br><span class="line">	:set nu	显示行号</span><br><span class="line">	: set noun	取消显示行号</span><br><span class="line">	/string 搜索 上到下</span><br><span class="line">	？string 搜索 下到上</span><br><span class="line">	:1, $s/oldstring/newstring  （替换从每一行开始的第一个string）</span><br><span class="line">	:1, $s/oldstring/newstring/g （全文替换）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">末行模式下的常用操作：</span><br><span class="line">	:q	退出</span><br><span class="line">	:w	保存</span><br><span class="line">	:w newfile	另存为</span><br><span class="line">	:wq	保存后退出</span><br><span class="line">	:q!	强制退出</span><br><span class="line">   	:num  光标跳到n行</span><br><span class="line">	:set nu	显示行号</span><br><span class="line">	: set noun	取消显示行号</span><br><span class="line">	/string 搜索 上到下</span><br><span class="line">	？string 搜索 下到上</span><br><span class="line">	:1, $s/oldstring/newstring  （替换从每一行开始的第一个string）</span><br><span class="line">	:1, $s/oldstring/newstring/g （全文替换）</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">命令模式下的常用操作：</span><br><span class="line">对光标的控制</span><br><span class="line">	shift + <span class="number">6</span>将光标移到当前行的行头</span><br><span class="line">	shift + <span class="number">4</span>将光标移到当前行的行尾</span><br><span class="line">	shift + g移动到文件尾行</span><br><span class="line">	gg 移到第一行</span><br><span class="line">	num + shift +g 移动到num行</span><br><span class="line">	shift + h/l/m 头 底 中间 （当前屏幕）</span><br><span class="line">	ctrl + f/b 向下翻页/向上翻页</span><br><span class="line">	批处理：</span><br><span class="line">		dd 删除一行</span><br><span class="line">		num + dd 删除num行，从光标开始数</span><br><span class="line">		d shift + g 删除当前光标到文件尾的内容</span><br><span class="line">		d gg 删除当前光标到文件头的内容</span><br><span class="line">		u 撤销上次操作</span><br><span class="line">		shift + c 删除当前光标到当前行尾的内容，并进入插入模式</span><br><span class="line">		cc 删除当前行并进入插入模式</span><br><span class="line">		r 替换一个字符</span><br><span class="line">		shift + r 进入替换模式</span><br><span class="line">		c + w 替换一个单词</span><br><span class="line">		yy 拷贝一行</span><br><span class="line">		num + yy 拷贝num行</span><br><span class="line">		p 粘贴</span><br></pre></td></tr></table></figure>
 
