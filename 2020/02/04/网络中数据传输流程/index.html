@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Linux,">
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="活的像个旁观者，会轻松很多">
-<meta name="keywords" content="ACM,C++,Linux">
+<meta name="description" content="网络是一个很复杂的拓扑结构。 如下图：主机A至主机B有两条路径。  如果主机A想发送一个“hello”这个单词给主机B： 主机A的操作： 1.应用层：首先给hello加一个应用层协议的头部结构（控制信息），交付给传输层。 2.传输层：再给其头部加一个协议信息（TCP/UDP），交付给网络层。 3.网络层：再给头部加一个IP协议，交付给数据链路层。 4.数据链路层：添加帧头帧尾，控制这段数据，交付给">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络中数据传输流程">
 <meta property="og:url" content="https://sap-pill.github.io/2020/02/04/网络中数据传输流程/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="活的像个旁观者，会轻松很多">
+<meta property="og:description" content="网络是一个很复杂的拓扑结构。 如下图：主机A至主机B有两条路径。  如果主机A想发送一个“hello”这个单词给主机B： 主机A的操作： 1.应用层：首先给hello加一个应用层协议的头部结构（控制信息），交付给传输层。 2.传输层：再给其头部加一个协议信息（TCP/UDP），交付给网络层。 3.网络层：再给头部加一个IP协议，交付给数据链路层。 4.数据链路层：添加帧头帧尾，控制这段数据，交付给">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-04T11:23:51.706Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/04/网络中数据传输流程/1.jpg">
+<meta property="og:updated_time" content="2020-02-04T11:42:19.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络中数据传输流程">
-<meta name="twitter:description" content="活的像个旁观者，会轻松很多">
+<meta name="twitter:description" content="网络是一个很复杂的拓扑结构。 如下图：主机A至主机B有两条路径。  如果主机A想发送一个“hello”这个单词给主机B： 主机A的操作： 1.应用层：首先给hello加一个应用层协议的头部结构（控制信息），交付给传输层。 2.传输层：再给其头部加一个协议信息（TCP/UDP），交付给网络层。 3.网络层：再给头部加一个IP协议，交付给数据链路层。 4.数据链路层：添加帧头帧尾，控制这段数据，交付给">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/02/04/网络中数据传输流程/1.jpg">
 
 
 
@@ -303,6 +305,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -330,7 +354,19 @@
       
 
       
-        
+        <p>网络是一个很复杂的拓扑结构。</p>
+<p>如下图：主机A至主机B有两条路径。</p>
+<p><img src="/2020/02/04/网络中数据传输流程/1.jpg" alt></p>
+<p>如果主机A想发送一个“hello”这个单词给主机B：</p>
+<p>主机A的操作：</p>
+<p>1.应用层：首先给hello加一个应用层协议的头部结构（控制信息），交付给传输层。</p>
+<p>2.传输层：再给其头部加一个协议信息（TCP/UDP），交付给网络层。</p>
+<p>3.网络层：再给头部加一个IP协议，交付给数据链路层。</p>
+<p>4.数据链路层：添加帧头帧尾，控制这段数据，交付给物理层。</p>
+<p>5.物理层：去除帧头帧尾发送给最近的路由器。</p>
+<p>路由器每转发一次都要更换一次帧头帧尾。</p>
+<p>主机B收到后：按照上述步骤反着来就可以了。</p>
+
       
     </div>
     
@@ -344,6 +380,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
       
 
       
