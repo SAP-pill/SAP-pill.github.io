@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Linux,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="活的像个旁观者，会轻松很多">
-<meta name="keywords" content="ACM,C++,Linux">
+<meta name="description" content="传输层：TCP协议 UDP协议 TCP：面向连接    可靠地    字节流服务 UDP：无连接    不可靠的    数据报服务 在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。 TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：int socket();2.命名创建的socket套接字：int bind();	服务器的地址信息：s">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP编程流程">
 <meta property="og:url" content="https://sap-pill.github.io/2020/02/06/TCP编程流程/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="活的像个旁观者，会轻松很多">
+<meta property="og:description" content="传输层：TCP协议 UDP协议 TCP：面向连接    可靠地    字节流服务 UDP：无连接    不可靠的    数据报服务 在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。 TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：int socket();2.命名创建的socket套接字：int bind();	服务器的地址信息：s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-06T07:56:07.062Z">
+<meta property="og:updated_time" content="2020-02-06T08:52:07.399Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP编程流程">
-<meta name="twitter:description" content="活的像个旁观者，会轻松很多">
+<meta name="twitter:description" content="传输层：TCP协议 UDP协议 TCP：面向连接    可靠地    字节流服务 UDP：无连接    不可靠的    数据报服务 在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。 TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：int socket();2.命名创建的socket套接字：int bind();	服务器的地址信息：s">
 
 
 
@@ -303,6 +303,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -330,7 +352,17 @@
       
 
       
-        
+        <p>传输层：TCP协议 UDP协议</p>
+<p>TCP：面向连接    可靠地    字节流服务</p>
+<p>UDP：无连接    不可靠的    数据报服务</p>
+<p>在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。</p>
+<h1 id="TCP服务器端的编程流程"><a href="#TCP服务器端的编程流程" class="headerlink" title="TCP服务器端的编程流程"></a>TCP服务器端的编程流程</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建用于监听的socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">2.</span>命名创建的socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">()</span></span>;</span><br><span class="line">	服务器的地址信息：<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>;</span></span><br><span class="line">					IP地址+端口号</span><br><span class="line"><span class="number">3.</span>创建监听队列：<span class="function"><span class="keyword">int</span> <span class="title">listen</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">4.</span>获取一个客户端连接，返回连接socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">accept</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">5.</span><span class="function"><span class="keyword">int</span> <span class="title">recv</span><span class="params">()</span></span>;接受数据</span><br><span class="line"><span class="number">6.</span><span class="function"><span class="keyword">int</span> <span class="title">send</span><span class="params">()</span></span>;发送数据</span><br><span class="line"><span class="number">7.</span><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">()</span></span>;关闭连接</span><br></pre></td></tr></table></figure>
+
+<h1 id="TCP客户端的编程流程"><a href="#TCP客户端的编程流程" class="headerlink" title="TCP客户端的编程流程"></a>TCP客户端的编程流程</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建用于和服务器通信的socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">2.</span>与服务器连接：<span class="function"><span class="keyword">int</span> <span class="title">connect</span><span class="params">()</span></span>;成功返回<span class="number">0</span>，失败返回<span class="number">-1</span></span><br><span class="line"><span class="number">3.</span>若连接失败，客户端的程序应该退出。</span><br><span class="line"><span class="number">4.</span>若连接成功，<span class="function"><span class="keyword">int</span> <span class="title">send</span><span class="params">()</span></span>;发送数据</span><br><span class="line"><span class="number">5.</span><span class="function"><span class="keyword">int</span> <span class="title">recv</span><span class="params">()</span></span>;接受数据</span><br><span class="line"><span class="number">6.</span><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">()</span></span>;关闭连接</span><br></pre></td></tr></table></figure>
+
+<p>example：</p>
+<p>如果客户端和服务端程序连接已经完成，进行数据通信。客户端调用send()发送“hello”，send()的功能只是将”hello“放到客户端的TCP发送缓冲区，再根据内核的协议控制，通过网络传输到服务器端的TCP接受缓冲区，服务器端的recv()再从TCP接受缓冲区中读取数据。</p>
+
       
     </div>
     
@@ -344,6 +376,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
       
 
       
@@ -414,8 +452,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -477,6 +524,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP服务器端的编程流程"><span class="nav-number">1.</span> <span class="nav-text">TCP服务器端的编程流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP客户端的编程流程"><span class="nav-number">2.</span> <span class="nav-text">TCP客户端的编程流程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
