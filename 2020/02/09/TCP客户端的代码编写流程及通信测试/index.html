@@ -91,7 +91,7 @@
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/09/TCP客户端的代码编写流程及通信测试/2.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/09/TCP客户端的代码编写流程及通信测试/3.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/09/TCP客户端的代码编写流程及通信测试/4.jpg">
-<meta property="og:updated_time" content="2020-02-09T03:46:09.319Z">
+<meta property="og:updated_time" content="2020-02-09T03:47:47.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP客户端的代码编写流程及通信测试">
 <meta name="twitter:description" content="首先看下  1.创建套接字12int sockfd=socket(AF_INET,SOCK_STREAM,0);wassert(sockfd!=-1);  2.与服务器连接 123456789101112//定义地址信息struct sockaddr_in ser_addr;//初始化地址信息memset(&amp;amp;ser_addr,0,sizeof(ser_addr));//给地址族ser_ad">
@@ -376,7 +376,7 @@
 <p><img src="/2020/02/09/TCP客户端的代码编写流程及通信测试/4.jpg" alt></p>
 <p>服务端可以接受到客户端发送的信息，通信成功。</p>
 <h4 id="TCP服务器会阻塞两次"><a href="#TCP服务器会阻塞两次" class="headerlink" title="TCP服务器会阻塞两次"></a>TCP服务器会阻塞两次</h4><p>1.在accept阻塞，是因为没有客户端连接，在等待客户端连接。</p>
-<p>2.在recv阻塞，没有获取到数据。</p>
+<p>2.在recv阻塞，客户端连接上后，但没有发送数据。</p>
 
       
     </div>
