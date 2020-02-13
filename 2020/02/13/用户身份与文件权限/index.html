@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="用户身份与能力UID（User IDentification）：用户的身份证号码。  管理员UID为0：系统的管理员用户。 系统用户UID为1~999：默认服务程序会有独立的系统用户负责运行，进而有效控制被破坏范围。 普通用户UID从1000开始：有管理员创建的用于日常工作的用户。  useradd命令创建新的用户 useradd命令中的用户参数及其作用   groupadd命令创建用户组">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户身份与文件权限">
+<meta property="og:url" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/index.html">
+<meta property="og:site_name" content="onlooker">
+<meta property="og:description" content="用户身份与能力UID（User IDentification）：用户的身份证号码。  管理员UID为0：系统的管理员用户。 系统用户UID为1~999：默认服务程序会有独立的系统用户负责运行，进而有效控制被破坏范围。 普通用户UID从1000开始：有管理员创建的用于日常工作的用户。  useradd命令创建新的用户 useradd命令中的用户参数及其作用   groupadd命令创建用户组">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/2.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/3.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/4.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/5.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/6.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/7.jpg">
+<meta property="og:updated_time" content="2020-02-13T08:46:09.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户身份与文件权限">
+<meta name="twitter:description" content="用户身份与能力UID（User IDentification）：用户的身份证号码。  管理员UID为0：系统的管理员用户。 系统用户UID为1~999：默认服务程序会有独立的系统用户负责运行，进而有效控制被破坏范围。 普通用户UID从1000开始：有管理员创建的用于日常工作的用户。  useradd命令创建新的用户 useradd命令中的用户参数及其作用   groupadd命令创建用户组">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/">
+
+
+
+
+
+  <title>用户身份与文件权限 | onlooker</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">onlooker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">退役了！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用户身份与文件权限</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T15:35:36+08:00">
+                2020-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="用户身份与能力"><a href="#用户身份与能力" class="headerlink" title="用户身份与能力"></a>用户身份与能力</h1><p>UID（User IDentification）：用户的身份证号码。</p>
+<ul>
+<li>管理员UID为0：系统的管理员用户。</li>
+<li>系统用户UID为1~999：默认服务程序会有独立的系统用户负责运行，进而有效控制被破坏范围。</li>
+<li>普通用户UID从1000开始：有管理员创建的用于日常工作的用户。</li>
+</ul>
+<h3 id="useradd命令"><a href="#useradd命令" class="headerlink" title="useradd命令"></a>useradd命令</h3><p>创建新的用户</p>
+<p>useradd命令中的用户参数及其作用</p>
+<p><img src="/2020/02/13/用户身份与文件权限/1.jpg" alt></p>
+<p><img src="/2020/02/13/用户身份与文件权限/2.jpg" alt></p>
+<h3 id="groupadd命令"><a href="#groupadd命令" class="headerlink" title="groupadd命令"></a>groupadd命令</h3><p>创建用户组     格式”groupadd [选项] 群组名”</p>
+<h3 id="usermod命令"><a href="#usermod命令" class="headerlink" title="usermod命令"></a>usermod命令</h3><p>用于修改用户的属性    格式”usermod [选项] 用户名”</p>
+<h3 id="passwd命令"><a href="#passwd命令" class="headerlink" title="passwd命令"></a>passwd命令</h3><p>用于修改用户密码、过期时间、认证信息。</p>
+<p>普通用户只能修改自己的密码，root管理员可以修改其他所有人密码。</p>
+<p>格式”passwd [选项] 用户名”</p>
+<h3 id="userdel命令"><a href="#userdel命令" class="headerlink" title="userdel命令"></a>userdel命令</h3><p>删除用户    格式”userdel [选项] 用户名”</p>
+<h1 id="文件权限与归属"><a href="#文件权限与归属" class="headerlink" title="文件权限与归属"></a>文件权限与归属</h1><p><a href="https://sap-pill.github.io/2020/01/12/文件基本操作命令/#more">分组的概念</a></p>
+<h1 id="文件的特殊权限"><a href="#文件的特殊权限" class="headerlink" title="文件的特殊权限"></a>文件的特殊权限</h1><h3 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h3><p>SUID 是一种对二进制程序进行设置的特殊权限，可以让二进制程序的执行者临时拥有属主的权限（仅对拥有执行权限的二进制程序有效）。</p>
+<p>查看 passwd 命令属性时发现所有者的权限由rwx 变成了rws，其中x 改变成s 就意味着该文件被赋予了SUID 权限。</p>
+<p>如果原本的权限是rw-，那么被赋予特殊权限后将变成大写的S。</p>
+<p><img src="/2020/02/13/用户身份与文件权限/3.jpg" alt></p>
+<h3 id="SGID"><a href="#SGID" class="headerlink" title="SGID"></a>SGID</h3><p>主要实现两种功能：</p>
+<ul>
+<li>让执行者临时拥有属组的权限（对拥有执行权限的二进制程序进行设置）；</li>
+<li>在某个目录中创建的文件自动继承该目录的用户组（只可以对目录进行设置）。</li>
+</ul>
+<p><a href="https://sap-pill.github.io/2020/01/12/修改文件属性-压缩-查找-gcc安装/#more">文件权限修改</a></p>
+<h3 id="SBIT"><a href="#SBIT" class="headerlink" title="SBIT"></a>SBIT</h3><p>SBIT（Sticky bit）特殊权限位，对某个共享目录文件夹来说，其中某个文件的修改权限只能被其所有者执行。</p>
+<p>当目录被设置SBIT 特殊权限位后，文件的其他人权限部分的x 执行权限就会被替换成t 或者T，原本有x 执行权限则会写成t，原本没有x 执行权限则会被写成T。</p>
+<h1 id="文件的隐藏属性"><a href="#文件的隐藏属性" class="headerlink" title="文件的隐藏属性"></a>文件的隐藏属性</h1><h3 id="chattr命令"><a href="#chattr命令" class="headerlink" title="chattr命令"></a>chattr命令</h3><p>用于设置文件的隐藏权限    格式”chattr [参数] 文件”</p>
+<p><img src="/2020/02/13/用户身份与文件权限/4.jpg" alt></p>
+<p><img src="/2020/02/13/用户身份与文件权限/5.jpg" alt></p>
+<h3 id="lsattr命令"><a href="#lsattr命令" class="headerlink" title="lsattr命令"></a>lsattr命令</h3><p>显示文件的隐藏权限    格式”lsattr [参数] 文件”</p>
+<p><img src="/2020/02/13/用户身份与文件权限/6.jpg" alt></p>
+<h1 id="su命令与sudo服务"><a href="#su命令与sudo服务" class="headerlink" title="su命令与sudo服务"></a>su命令与sudo服务</h1><p>su 命令可以解决切换用户身份的需求，使得当前用户在不退出登录的情况下，顺畅地切换到其他用户。</p>
+<p>sudo 命令用于给普通用户提供额外的权限来完成原本root 管理员才能完成的任务，格式为”sudo [参数] 命令名称”。</p>
+<p>sudo服务中的可用参数以及作用</p>
+<p><img src="/2020/02/13/用户身份与文件权限/7.jpg" alt></p>
+<p>功能：</p>
+<ul>
+<li>限制用户执行指定的命令</li>
+<li>记录用户执行的每一条命令</li>
+<li>配置文件（/etc/sudoers）提供集中的用户管理、权限与主机等参数</li>
+<li>验证密码的后 5 分钟内（默认值）无须再让用户再次验证密码</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/13/TCP协议详解———面向连接/" rel="next" title="TCP协议详解">
+                <i class="fa fa-chevron-left"></i> TCP协议详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="王祎豪">
+            
+              <p class="site-author-name" itemprop="name">王祎豪</p>
+              <p class="site-description motion-element" itemprop="description">活的像个旁观者，会轻松很多</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用户身份与能力"><span class="nav-number">1.</span> <span class="nav-text">用户身份与能力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useradd命令"><span class="nav-number">1.0.1.</span> <span class="nav-text">useradd命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#groupadd命令"><span class="nav-number">1.0.2.</span> <span class="nav-text">groupadd命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#usermod命令"><span class="nav-number">1.0.3.</span> <span class="nav-text">usermod命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#passwd命令"><span class="nav-number">1.0.4.</span> <span class="nav-text">passwd命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#userdel命令"><span class="nav-number">1.0.5.</span> <span class="nav-text">userdel命令</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#文件权限与归属"><span class="nav-number">2.</span> <span class="nav-text">文件权限与归属</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件的特殊权限"><span class="nav-number">3.</span> <span class="nav-text">文件的特殊权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SUID"><span class="nav-number">3.0.1.</span> <span class="nav-text">SUID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SGID"><span class="nav-number">3.0.2.</span> <span class="nav-text">SGID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SBIT"><span class="nav-number">3.0.3.</span> <span class="nav-text">SBIT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件的隐藏属性"><span class="nav-number">4.</span> <span class="nav-text">文件的隐藏属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#chattr命令"><span class="nav-number">4.0.1.</span> <span class="nav-text">chattr命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lsattr命令"><span class="nav-number">4.0.2.</span> <span class="nav-text">lsattr命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#su命令与sudo服务"><span class="nav-number">5.</span> <span class="nav-text">su命令与sudo服务</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王祎豪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
