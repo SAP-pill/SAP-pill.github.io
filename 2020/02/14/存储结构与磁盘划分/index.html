@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Linux,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一切从’/‘开始文件存储层次结构 物理设备的命名规则Linux系统中一切皆文件，硬件设备也不例外。 常见的硬件设备及其文件名称  文件系统与数据资料常见的文件系统  Ext3：是一款日志文件系统，能够在系统异常宕机时避免文件系统资料丢失，并能自动修复数据的不一致与错误。然而，当硬盘容量较大时，所需的修复时间也会很长，而且也不能百分之百地保证资料不会丢失。它会把整个磁盘的每个写入动作的细节都预先记录">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="存储结构与磁盘划分">
+<meta property="og:url" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/index.html">
+<meta property="og:site_name" content="onlooker">
+<meta property="og:description" content="一切从’/‘开始文件存储层次结构 物理设备的命名规则Linux系统中一切皆文件，硬件设备也不例外。 常见的硬件设备及其文件名称  文件系统与数据资料常见的文件系统  Ext3：是一款日志文件系统，能够在系统异常宕机时避免文件系统资料丢失，并能自动修复数据的不一致与错误。然而，当硬盘容量较大时，所需的修复时间也会很长，而且也不能百分之百地保证资料不会丢失。它会把整个磁盘的每个写入动作的细节都预先记录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/2,jpg.png">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/3.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/4.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/5.jpg">
+<meta property="og:updated_time" content="2020-02-14T14:13:45.361Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="存储结构与磁盘划分">
+<meta name="twitter:description" content="一切从’/‘开始文件存储层次结构 物理设备的命名规则Linux系统中一切皆文件，硬件设备也不例外。 常见的硬件设备及其文件名称  文件系统与数据资料常见的文件系统  Ext3：是一款日志文件系统，能够在系统异常宕机时避免文件系统资料丢失，并能自动修复数据的不一致与错误。然而，当硬盘容量较大时，所需的修复时间也会很长，而且也不能百分之百地保证资料不会丢失。它会把整个磁盘的每个写入动作的细节都预先记录">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/">
+
+
+
+
+
+  <title>存储结构与磁盘划分 | onlooker</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">onlooker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">退役了！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/14/存储结构与磁盘划分/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">存储结构与磁盘划分</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-14T21:18:45+08:00">
+                2020-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一切从’-‘开始"><a href="#一切从’-‘开始" class="headerlink" title="一切从’/‘开始"></a>一切从’/‘开始</h1><p><a href="https://sap-pill.github.io/2020/01/12/Linux文件存储层次结构/#more">文件存储层次结构</a></p>
+<h1 id="物理设备的命名规则"><a href="#物理设备的命名规则" class="headerlink" title="物理设备的命名规则"></a>物理设备的命名规则</h1><p>Linux系统中一切皆文件，硬件设备也不例外。</p>
+<p>常见的硬件设备及其文件名称</p>
+<p><img src="/2020/02/14/存储结构与磁盘划分/1.jpg" alt></p>
+<h1 id="文件系统与数据资料"><a href="#文件系统与数据资料" class="headerlink" title="文件系统与数据资料"></a>文件系统与数据资料</h1><p>常见的文件系统</p>
+<ul>
+<li>Ext3：是一款日志文件系统，能够在系统异常宕机时避免文件系统资料丢失，并能自动修复数据的不一致与错误。然而，当硬盘容量较大时，所需的修复时间也会很长，而且也不能百分之百地保证资料不会丢失。它会把整个磁盘的每个写入动作的细节都预先记录下来，以便在发生异常宕机后能回溯追踪到被中断的部分，然后尝试进行修复。</li>
+<li>Ext4：Ext3 的改进版本，作为RHEL 6 系统中的默认文件管理系统，它支持的存储容量高达1EB（1EB=1,073,741,824GB），且能够有无限多的子目录。另外，Ext4 文件系统能够批量分配block 块，从而极大地提高了读写效率。</li>
+<li>XFS：是一种高性能的日志文件系统，而且是RHEL 7 中默认的文件管理系统，它的优势在发生意外宕机后尤其明显，即可以快速地恢复可能被破坏的文件，而且强大的日志功能只用花费极低的计算和存储性能。并且它最大可支持的存储容量为18EB，这几乎满足了所有需求。</li>
+</ul>
+<p>Linux系统内有一个名为“super block”的硬盘，记录着整个文件系统的信息，不过只是把每个文件的权限与属性记录在inode，而且每个文件独占一个独立的inode，大小默认128字节记录如下：</p>
+<ul>
+<li><p>该文件的访问权限（read、write、execute）</p>
+</li>
+<li><p>该文件的所有者与所属组（owner、group）</p>
+</li>
+<li><p>该文件的大小（size）</p>
+</li>
+<li><p>该文件的创建或内容修改时间（ctime）</p>
+</li>
+<li><p>该文件的最后一次访问时间（atime）</p>
+</li>
+<li><p>该文件的修改时间（mtime）</p>
+</li>
+<li><p>文件的特殊权限（SUID、SGID、SBIT）</p>
+</li>
+<li><p>该文件的真实数据地址（point）</p>
+</li>
+</ul>
+<h1 id="挂载硬件设备"><a href="#挂载硬件设备" class="headerlink" title="挂载硬件设备"></a>挂载硬件设备</h1><h3 id="mount命令"><a href="#mount命令" class="headerlink" title="mount命令"></a>mount命令</h3><p>用于挂载文件系统，格式为”mount 文件系统 挂载目录”。</p>
+<p>mount命令中的参数以及作用</p>
+<p><img src="/2020/02/14/存储结构与磁盘划分/2,jpg.png" alt></p>
+<p>for example</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sdb2 backup</span><br></pre></td></tr></table></figure>
+
+<p>但是重启之后就需要从新挂载，想要永久的挂载，就要把挂载信息填入/etc/fstab文件中，按照“设备文件 挂载目录 格式类型 权限选项 自检 优先级”的方式。</p>
+<p><img src="/2020/02/14/存储结构与磁盘划分/3.jpg" alt></p>
+<h3 id="umount命令"><a href="#umount命令" class="headerlink" title="umount命令"></a>umount命令</h3><p>用于撤销已经挂载的设备文件，格式为”umount 挂载点/设备文件”。</p>
+<p>for example</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /dev/sdb2</span><br></pre></td></tr></table></figure>
+
+<h1 id="管理硬盘设备"><a href="#管理硬盘设备" class="headerlink" title="管理硬盘设备"></a>管理硬盘设备</h1><h3 id="fdisk命令"><a href="#fdisk命令" class="headerlink" title="fdisk命令"></a>fdisk命令</h3><p>用于管理磁盘分区，格式为”fdisk 磁盘名称”。</p>
+<p><img src="/2020/02/14/存储结构与磁盘划分/4.jpg" alt></p>
+<h3 id="du命令"><a href="#du命令" class="headerlink" title="du命令"></a>du命令</h3><p>用于查看文件数据占用量的du命令，格式为”du 选项 文件”</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh <span class="comment">/*</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="磁盘容量配额"><a href="#磁盘容量配额" class="headerlink" title="磁盘容量配额"></a>磁盘容量配额</h1><ul>
+<li>软限制：当达到软限制时会提示用户，但仍允许用户在限定的额度内继续使用。</li>
+<li>硬限制：当达到硬限制时会提示用户，且强制终止用户的操作。</li>
+</ul>
+<h3 id="xfs-quota命令"><a href="#xfs-quota命令" class="headerlink" title="xfs_quota命令"></a>xfs_quota命令</h3><p>专门针对XFS文件系统来管理quote磁盘容量配额服务而设计的命令，格式为”quote 参数 配额 文件系统”。</p>
+<p>for example:硬盘使用量的软限制和硬限制分别为3MB和6MB，创建文件数量的软限制和硬限制分别为3 个和6 个。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xfs_quota -x -c 'limit bsoft=3m bhard=6m isoft=3 ihard=6</span><br><span class="line">tom' /boot</span><br></pre></td></tr></table></figure>
+
+<h3 id="edquote命令"><a href="#edquote命令" class="headerlink" title="edquote命令"></a>edquote命令</h3><p>用于编辑用户的quote配额限制，格式为”edquote 参数 用户”。其中，-u<br>参数表示要针对哪个用户进行设置；-g 参数表示要针对哪个用户组进行设置。edquota 命令会调用Vi 或Vim 编辑器来让root 管理员修改要限制的具体细节。</p>
+<h1 id="软硬方式链接"><a href="#软硬方式链接" class="headerlink" title="软硬方式链接"></a>软硬方式链接</h1><ul>
+<li>硬链接（hard link）：可以将它理解为一个“指向原始文件inode 的指针”，系统不为它分配独立的inode 和文件。所以，硬链接文件与原始文件其实是同一个文件，只是名字不同。我们每添加一个硬链接，该文件的inode 连接数就会增加1；而且只有当该文件的inode 连接数为0 时，才算彻底将它删除。换言之，由于硬链接实际上是指向原文件inode 的指针，因此即便原始文件被删除，依然可以通过硬链接文件来访问。需要注意的是，由于技术的局限性，我们不能跨分区对目录文件进行链接。</li>
+<li>软链接（也称为符号链接[symbolic link]）：仅仅包含所链接文件的路径名，因此能链接目录文件，也可以跨越文件系统进行链接。但是，当原始文件被删除后，链接文件也将失效，从这一点上来说与Windows 系统中的“快捷方式”具有一样的性质。</li>
+</ul>
+<h3 id="ln命令"><a href="#ln命令" class="headerlink" title="ln命令"></a>ln命令</h3><p>用于创建链接文件，格式为”ln 选项 目标”。</p>
+<p><img src="/2020/02/14/存储结构与磁盘划分/5.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/13/用户身份与文件权限/" rel="next" title="用户身份与文件权限">
+                <i class="fa fa-chevron-left"></i> 用户身份与文件权限
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="王祎豪">
+            
+              <p class="site-author-name" itemprop="name">王祎豪</p>
+              <p class="site-description motion-element" itemprop="description">活的像个旁观者，会轻松很多</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一切从’-‘开始"><span class="nav-number">1.</span> <span class="nav-text">一切从’/‘开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#物理设备的命名规则"><span class="nav-number">2.</span> <span class="nav-text">物理设备的命名规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件系统与数据资料"><span class="nav-number">3.</span> <span class="nav-text">文件系统与数据资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#挂载硬件设备"><span class="nav-number">4.</span> <span class="nav-text">挂载硬件设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mount命令"><span class="nav-number">4.0.1.</span> <span class="nav-text">mount命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#umount命令"><span class="nav-number">4.0.2.</span> <span class="nav-text">umount命令</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#管理硬盘设备"><span class="nav-number">5.</span> <span class="nav-text">管理硬盘设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fdisk命令"><span class="nav-number">5.0.1.</span> <span class="nav-text">fdisk命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#du命令"><span class="nav-number">5.0.2.</span> <span class="nav-text">du命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘容量配额"><span class="nav-number">6.</span> <span class="nav-text">磁盘容量配额</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xfs-quota命令"><span class="nav-number">6.0.1.</span> <span class="nav-text">xfs_quota命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#edquote命令"><span class="nav-number">6.0.2.</span> <span class="nav-text">edquote命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#软硬方式链接"><span class="nav-number">7.</span> <span class="nav-text">软硬方式链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ln命令"><span class="nav-number">7.0.1.</span> <span class="nav-text">ln命令</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王祎豪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
