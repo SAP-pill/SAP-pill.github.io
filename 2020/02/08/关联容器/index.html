@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="无序关联容器（链式哈希表）写完没保存，全没了，心态崩了.jpg 哈希表（散列表）：如果一组数据，通过一种映射方式，能够找到该数据存储的位置，那么支持这种映射关系存储数据的数据结构（表）。 哈希表：除留余数法=》哈希函数/散列函数 怎么解决哈希冲突？1.线性探测法2.链地址法（拉链法）=》链式哈希表 无序关联容器 如果桶里面的链表太长，定位到哈希桶以后，还得在链表的搜索上耗费时间。 （1）所选择的哈">
+<meta name="description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许ke">
 <meta name="keywords" content="C++,容器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关联容器">
 <meta property="og:url" content="https://sap-pill.github.io/2020/02/08/关联容器/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="无序关联容器（链式哈希表）写完没保存，全没了，心态崩了.jpg 哈希表（散列表）：如果一组数据，通过一种映射方式，能够找到该数据存储的位置，那么支持这种映射关系存储数据的数据结构（表）。 哈希表：除留余数法=》哈希函数/散列函数 怎么解决哈希冲突？1.线性探测法2.链地址法（拉链法）=》链式哈希表 无序关联容器 如果桶里面的链表太长，定位到哈希桶以后，还得在链表的搜索上耗费时间。 （1）所选择的哈">
+<meta property="og:description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许ke">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/08/关联容器/1.jpg">
-<meta property="og:updated_time" content="2020-02-15T04:17:32.719Z">
+<meta property="og:updated_time" content="2020-02-15T07:58:12.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联容器">
-<meta name="twitter:description" content="无序关联容器（链式哈希表）写完没保存，全没了，心态崩了.jpg 哈希表（散列表）：如果一组数据，通过一种映射方式，能够找到该数据存储的位置，那么支持这种映射关系存储数据的数据结构（表）。 哈希表：除留余数法=》哈希函数/散列函数 怎么解决哈希冲突？1.线性探测法2.链地址法（拉链法）=》链式哈希表 无序关联容器 如果桶里面的链表太长，定位到哈希桶以后，还得在链表的搜索上耗费时间。 （1）所选择的哈">
+<meta name="twitter:description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许ke">
 <meta name="twitter:image" content="https://sap-pill.github.io/2020/02/08/关联容器/1.jpg">
 
 
@@ -354,7 +354,25 @@
       
 
       
-        <h1 id="无序关联容器（链式哈希表）"><a href="#无序关联容器（链式哈希表）" class="headerlink" title="无序关联容器（链式哈希表）"></a>无序关联容器（链式哈希表）</h1><p>写完没保存，全没了，心态崩了.jpg</p>
+        <h1 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h1><h2 id="无序的关联容器（链式哈希表）O-1"><a href="#无序的关联容器（链式哈希表）O-1" class="headerlink" title="无序的关联容器（链式哈希表）O(1)"></a>无序的关联容器（链式哈希表）O(1)</h2><ul>
+<li>unordered_set : 无序集合  只存储key，不允许key重复的<ul>
+<li>unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20</li>
+<li>unordered_map : 无序映射表  存储key-value，不允许key重复</li>
+<li>unordered_multimap：无序多重映射表  存储key-value，允许key重复</li>
+</ul>
+</li>
+</ul>
+<h2 id="有序的关联容器（红黑树）O-logn"><a href="#有序的关联容器（红黑树）O-logn" class="headerlink" title="有序的关联容器（红黑树）O(logn)"></a>有序的关联容器（红黑树）O(logn)</h2><ul>
+<li><p>set : 无序集合  只存储key，不允许key重复的</p>
+<ul>
+<li>multiset ： 无序多重集合  只存储key，允许key重复 20 20</li>
+<li>map : 无序映射表  存储key-value，不允许key重复</li>
+<li>multimap：无序多重映射表  存储key-value，允许key重复</li>
+</ul>
+<p>使用场景判断：基本上使用的都是无序的关联容器，只有在对key值的有序性有要求的应用场景，才需要用到有序的关联容器</p>
+</li>
+</ul>
+<p>写完没保存，全没了，心态崩了.jpg</p>
 <p>哈希表（散列表）：如果一组数据，通过一种映射方式，能够找到该数据存储的位置，那么支持这种映射关系存储数据的数据结构（表）。</p>
 <p>哈希表：除留余数法=》哈希函数/散列函数</p>
 <h3 id="怎么解决哈希冲突？"><a href="#怎么解决哈希冲突？" class="headerlink" title="怎么解决哈希冲突？"></a>怎么解决哈希冲突？</h3><h4 id="1-线性探测法"><a href="#1-线性探测法" class="headerlink" title="1.线性探测法"></a>1.线性探测法</h4><h4 id="2-链地址法（拉链法）-》链式哈希表-无序关联容器"><a href="#2-链地址法（拉链法）-》链式哈希表-无序关联容器" class="headerlink" title="2.链地址法（拉链法）=》链式哈希表 无序关联容器"></a>2.链地址法（拉链法）=》链式哈希表 无序关联容器</h4><p><img src="/2020/02/08/关联容器/1.jpg" alt></p>
@@ -544,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#无序关联容器（链式哈希表）"><span class="nav-number">1.</span> <span class="nav-text">无序关联容器（链式哈希表）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么解决哈希冲突？"><span class="nav-number">1.0.1.</span> <span class="nav-text">怎么解决哈希冲突？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-线性探测法"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">1.线性探测法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-链地址法（拉链法）-》链式哈希表-无序关联容器"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">2.链地址法（拉链法）=》链式哈希表 无序关联容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哈希表扩容以后，原来哈希表中的元素需要重新扩容吗？"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">哈希表扩容以后，原来哈希表中的元素需要重新扩容吗？</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关联容器"><span class="nav-number">1.</span> <span class="nav-text">关联容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#无序的关联容器（链式哈希表）O-1"><span class="nav-number">1.1.</span> <span class="nav-text">无序的关联容器（链式哈希表）O(1)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有序的关联容器（红黑树）O-logn"><span class="nav-number">1.2.</span> <span class="nav-text">有序的关联容器（红黑树）O(logn)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么解决哈希冲突？"><span class="nav-number">1.2.1.</span> <span class="nav-text">怎么解决哈希冲突？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-线性探测法"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1.线性探测法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-链地址法（拉链法）-》链式哈希表-无序关联容器"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2.链地址法（拉链法）=》链式哈希表 无序关联容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哈希表扩容以后，原来哈希表中的元素需要重新扩容吗？"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">哈希表扩容以后，原来哈希表中的元素需要重新扩容吗？</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
