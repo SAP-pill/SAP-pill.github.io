@@ -90,7 +90,8 @@
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/1.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/2.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/3.jpg">
-<meta property="og:updated_time" content="2020-02-13T08:47:12.258Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/4.jpg">
+<meta property="og:updated_time" content="2020-02-15T02:46:18.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP协议详解">
 <meta name="twitter:description" content="TCP协议的特点：面向连接    可靠地    字节流服务 面向连接在传输数据之前必须建立连接 —&amp;gt;三次握手 在传输数据之前必须断开连接 —&amp;gt;四次挥手   TIME_WAIT状态存在的意义： 1.处理迟来的数据报，直接将其丢弃，防止对后续启动进程造成影响。 2.可靠的终止TCP连接，防止最后发送的ACK被丢弃。 TCP字节流服务 从应用层：1.发送端send的次数和接收端recv的次数">
@@ -371,6 +372,12 @@
 <p>2.接收端recv的次数和接受到的TCP报文段的个数没有必然的联系</p>
 <h3 id="从数据："><a href="#从数据：" class="headerlink" title="从数据："></a>从数据：</h3><p>1.发送的数据时没有明显的界限的。</p>
 <p>TCP数据的粘包问题？</p>
+<h1 id="可靠性传输"><a href="#可靠性传输" class="headerlink" title="可靠性传输"></a>可靠性传输</h1><p>TCP协议头部结构</p>
+<p><img src="/2020/02/13/TCP协议详解———面向连接/4.jpg" alt></p>
+<p>TCP的可靠性传输：</p>
+<p>1.数据能够到达对方    应答确认    超时重传    滑动窗口    拥塞控制</p>
+<p>2.到达的数据不重复、不乱序    32位序号</p>
+<p>3.到达的数据不失真    16位校验和</p>
 
       
     </div>
@@ -547,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向连接"><span class="nav-number">1.</span> <span class="nav-text">面向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP字节流服务"><span class="nav-number">2.</span> <span class="nav-text">TCP字节流服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从应用层："><span class="nav-number">2.0.1.</span> <span class="nav-text">从应用层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从内核："><span class="nav-number">2.0.2.</span> <span class="nav-text">从内核：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从数据："><span class="nav-number">2.0.3.</span> <span class="nav-text">从数据：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向连接"><span class="nav-number">1.</span> <span class="nav-text">面向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP字节流服务"><span class="nav-number">2.</span> <span class="nav-text">TCP字节流服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从应用层："><span class="nav-number">2.0.1.</span> <span class="nav-text">从应用层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从内核："><span class="nav-number">2.0.2.</span> <span class="nav-text">从内核：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从数据："><span class="nav-number">2.0.3.</span> <span class="nav-text">从数据：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#可靠性传输"><span class="nav-number">3.</span> <span class="nav-text">可靠性传输</span></a></li></div>
             
 
           </div>
