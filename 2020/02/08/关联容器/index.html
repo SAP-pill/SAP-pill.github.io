@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许ke">
+<meta name="description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许key重复  有">
 <meta name="keywords" content="C++,容器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关联容器">
 <meta property="og:url" content="https://sap-pill.github.io/2020/02/08/关联容器/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许ke">
+<meta property="og:description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许key重复  有">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/08/关联容器/1.jpg">
-<meta property="og:updated_time" content="2020-02-15T07:58:12.809Z">
+<meta property="og:updated_time" content="2020-02-15T08:09:59.075Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关联容器">
-<meta name="twitter:description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许ke">
+<meta name="twitter:description" content="关联容器无序的关联容器（链式哈希表）O(1) unordered_set : 无序集合  只存储key，不允许key重复的 unordered_multiset ： 无序多重集合  只存储key，允许key重复 unordered_map : 无序映射表  存储key-value，不允许key重复 unordered_multimap：无序多重映射表  存储key-value，允许key重复  有">
 <meta name="twitter:image" content="https://sap-pill.github.io/2020/02/08/关联容器/1.jpg">
 
 
@@ -355,23 +355,18 @@
 
       
         <h1 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h1><h2 id="无序的关联容器（链式哈希表）O-1"><a href="#无序的关联容器（链式哈希表）O-1" class="headerlink" title="无序的关联容器（链式哈希表）O(1)"></a>无序的关联容器（链式哈希表）O(1)</h2><ul>
-<li>unordered_set : 无序集合  只存储key，不允许key重复的<ul>
-<li>unordered_multiset ： 无序多重集合  只存储key，允许key重复 20 20</li>
+<li>unordered_set : 无序集合  只存储key，不允许key重复的</li>
+<li>unordered_multiset ： 无序多重集合  只存储key，允许key重复</li>
 <li>unordered_map : 无序映射表  存储key-value，不允许key重复</li>
 <li>unordered_multimap：无序多重映射表  存储key-value，允许key重复</li>
 </ul>
-</li>
-</ul>
 <h2 id="有序的关联容器（红黑树）O-logn"><a href="#有序的关联容器（红黑树）O-logn" class="headerlink" title="有序的关联容器（红黑树）O(logn)"></a>有序的关联容器（红黑树）O(logn)</h2><ul>
-<li><p>set : 无序集合  只存储key，不允许key重复的</p>
-<ul>
-<li>multiset ： 无序多重集合  只存储key，允许key重复 20 20</li>
+<li>set : 无序集合  只存储key，不允许key重复的</li>
+<li>multiset ： 无序多重集合  只存储key，允许key重复</li>
 <li>map : 无序映射表  存储key-value，不允许key重复</li>
-<li>multimap：无序多重映射表  存储key-value，允许key重复</li>
+<li>multimap：无序多重映射表  存储key-value，允许key重</li>
 </ul>
 <p>使用场景判断：基本上使用的都是无序的关联容器，只有在对key值的有序性有要求的应用场景，才需要用到有序的关联容器</p>
-</li>
-</ul>
 <p>写完没保存，全没了，心态崩了.jpg</p>
 <p>哈希表（散列表）：如果一组数据，通过一种映射方式，能够找到该数据存储的位置，那么支持这种映射关系存储数据的数据结构（表）。</p>
 <p>哈希表：除留余数法=》哈希函数/散列函数</p>
@@ -507,7 +502,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +524,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
