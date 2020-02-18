@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/5.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/6.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/7.jpg">
-<meta property="og:updated_time" content="2020-02-18T02:17:33.290Z">
+<meta property="og:updated_time" content="2020-02-18T03:11:07.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP协议详解">
 <meta name="twitter:description" content="TCP协议的特点：面向连接    可靠地    字节流服务 面向连接在传输数据之前必须建立连接 —&amp;gt;三次握手 在传输数据之前必须断开连接 —&amp;gt;四次挥手   TIME_WAIT状态存在的意义： 1.处理迟来的数据报，直接将其丢弃，防止对后续启动进程造成影响。 2.可靠的终止TCP连接，防止最后发送的ACK被丢弃。 TCP字节流服务 从应用层：1.发送端send的次数和接收端recv的次数">
@@ -375,6 +375,10 @@
 <p>2.接收端recv的次数和接受到的TCP报文段的个数没有必然的联系</p>
 <h3 id="从数据："><a href="#从数据：" class="headerlink" title="从数据："></a>从数据：</h3><p>1.发送的数据时没有明显的界限的。</p>
 <p>TCP数据的粘包问题？</p>
+<p>a.当连续发送数据时，由于tcp协议的nagle算法，会将较小的内容拼接成大的内容，一次性发送到服务器端，因此造成粘包</p>
+<p>在两次send()之间使用recv()来阻止连续发送的情况发生。</p>
+<p>b.当发送内容较大时，由于服务器端的recv（buffer_size）方法中的buffer_size较小，不能一次性完全接收全部内容，因此在下一次请求到达时，接收的内容依然是上一次没有完全接收完的内容，因此造成粘包现象。</p>
+<p>由于产生粘包的原因是接收方的无边界接收，因此发送端可以在发送数据之前向接收端告知发送内容的大小即可。</p>
 <h1 id="可靠性传输"><a href="#可靠性传输" class="headerlink" title="可靠性传输"></a>可靠性传输</h1><p>TCP协议头部结构</p>
 <p><img src="/2020/02/13/TCP协议详解———面向连接/4.jpg" alt></p>
 <p>TCP的可靠性传输：</p>
