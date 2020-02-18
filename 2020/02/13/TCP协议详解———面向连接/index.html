@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux,">
+  <meta name="keywords" content="Linux,TCP,">
 
 
 
@@ -80,7 +80,7 @@
 
 
 <meta name="description" content="TCP协议的特点：面向连接    可靠地    字节流服务 面向连接在传输数据之前必须建立连接 —&amp;gt;三次握手 在传输数据之前必须断开连接 —&amp;gt;四次挥手   TIME_WAIT状态存在的意义： 1.处理迟来的数据报，直接将其丢弃，防止对后续启动进程造成影响。 2.可靠的终止TCP连接，防止最后发送的ACK被丢弃。 TCP字节流服务 从应用层：1.发送端send的次数和接收端recv的次数">
-<meta name="keywords" content="Linux">
+<meta name="keywords" content="Linux,TCP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TCP协议详解">
 <meta property="og:url" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/index.html">
@@ -91,7 +91,10 @@
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/2.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/3.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/4.jpg">
-<meta property="og:updated_time" content="2020-02-15T02:46:18.689Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/5.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/6.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/7.jpg">
+<meta property="og:updated_time" content="2020-02-18T02:08:22.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TCP协议详解">
 <meta name="twitter:description" content="TCP协议的特点：面向连接    可靠地    字节流服务 面向连接在传输数据之前必须建立连接 —&amp;gt;三次握手 在传输数据之前必须断开连接 —&amp;gt;四次挥手   TIME_WAIT状态存在的意义： 1.处理迟来的数据报，直接将其丢弃，防止对后续启动进程造成影响。 2.可靠的终止TCP连接，防止最后发送的ACK被丢弃。 TCP字节流服务 从应用层：1.发送端send的次数和接收端recv的次数">
@@ -378,6 +381,24 @@
 <p>1.数据能够到达对方    应答确认    超时重传    滑动窗口    拥塞控制</p>
 <p>2.到达的数据不重复、不乱序    32位序号</p>
 <p>3.到达的数据不失真    16位校验和</p>
+<h1 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h1><p>保证发送方发送数据的速率与接收方接受数据的速率相匹配</p>
+<h3 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h3><p>TCP头部结构中16位的窗口大小–&gt;接受通告窗口：他由接收方填充，来通告发送方当前接收方的接受缓冲区中还能容纳的数据大小。决定了发送方的数据的窗口大小。接受通告窗口会随着接收方的应用程序的数据处理动态变化。</p>
+<h3 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h3><p>发送方首先根据接受通告窗口决定本端的能够发送的数据窗口，这个窗口的位置会随着收到接收方的确认报文段不断地向后移动，并且窗口的大小也会随着接受通告窗口的值，大小也会不断变化。</p>
+<p><img src="/2020/02/13/TCP协议详解———面向连接/5.jpg" alt></p>
+<h3 id="窗口为0，如果出现这种情况怎么办？"><a href="#窗口为0，如果出现这种情况怎么办？" class="headerlink" title="窗口为0，如果出现这种情况怎么办？"></a>窗口为0，如果出现这种情况怎么办？</h3><p>如果发送方得知接受窗口为0后，便不在发送，会定期发送窗口探寻，直到定时器结束。</p>
+<h3 id="糊涂窗口综合征"><a href="#糊涂窗口综合征" class="headerlink" title="糊涂窗口综合征"></a>糊涂窗口综合征</h3><p>糊涂窗口综合症是指当发送端应用进程产生数据很慢、或接收端应用进程处理接收缓冲区数据很慢，或二者兼而有之；就会使应用进程间传送的报文段很小，特别是有效载荷很小； 极端情况下，有效载荷可能只有1个字节；传输开销有40字节(20字节的IP头+20字节的TCP头) 这种现象。</p>
+<p>如果是发送方为产生数据很慢的服务，比如一次产生一个字节，一次发送一个字节，为了防止发送端的TCP逐个字节的发送数据，发明了Nagle算法。</p>
+<h3 id="Nagle算法"><a href="#Nagle算法" class="headerlink" title="Nagle算法"></a>Nagle算法</h3><p>基本定义：任意时刻，最多只能有一个未被确认的小段。在未收到该小段的ACK之前不能发送其他的数据。</p>
+<p>小段是小于指定发送尺寸大小的数据块，未被确认是指没有收到对方发送的ACK。</p>
+<h1 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h1><p>控制发送方发送数据的速率与网络环境相匹配</p>
+<h4 id="滑动窗口和拥塞控制都是为了数据在网络传输过程中减小丢包率。"><a href="#滑动窗口和拥塞控制都是为了数据在网络传输过程中减小丢包率。" class="headerlink" title="滑动窗口和拥塞控制都是为了数据在网络传输过程中减小丢包率。"></a>滑动窗口和拥塞控制都是为了数据在网络传输过程中减小丢包率。</h4><ul>
+<li>慢启动：刚开始传输时，以一个很小的值发送，来看下网络环境，然后慢慢增加报文段的大小（乘二的方式增加报文段大小），直到达到慢启动门限的大小。</li>
+<li>拥塞避免：然后进入拥塞避免阶段，这时候就不是以乘二的大小来增加报文段的大小了。直到收到3个重复的确认（看最后一个图），</li>
+<li>快速重传：立即传输丢失的报文段。</li>
+<li>快速恢复：将报文段大小降到当前大小的一半，然后又开始进入拥塞避免的阶段，这是一个循环的的过程。</li>
+</ul>
+<p><img src="/2020/02/13/TCP协议详解———面向连接/6.jpg" alt></p>
+<p><img src="/2020/02/13/TCP协议详解———面向连接/7.jpg" alt></p>
 
       
     </div>
@@ -396,6 +417,8 @@
         <div class="post-tags">
           
             <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/TCP/" rel="tag"># TCP</a>
           
         </div>
       
@@ -521,7 +544,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -554,7 +577,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向连接"><span class="nav-number">1.</span> <span class="nav-text">面向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP字节流服务"><span class="nav-number">2.</span> <span class="nav-text">TCP字节流服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从应用层："><span class="nav-number">2.0.1.</span> <span class="nav-text">从应用层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从内核："><span class="nav-number">2.0.2.</span> <span class="nav-text">从内核：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从数据："><span class="nav-number">2.0.3.</span> <span class="nav-text">从数据：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#可靠性传输"><span class="nav-number">3.</span> <span class="nav-text">可靠性传输</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向连接"><span class="nav-number">1.</span> <span class="nav-text">面向连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP字节流服务"><span class="nav-number">2.</span> <span class="nav-text">TCP字节流服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从应用层："><span class="nav-number">2.0.1.</span> <span class="nav-text">从应用层：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从内核："><span class="nav-number">2.0.2.</span> <span class="nav-text">从内核：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从数据："><span class="nav-number">2.0.3.</span> <span class="nav-text">从数据：</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#可靠性传输"><span class="nav-number">3.</span> <span class="nav-text">可靠性传输</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#滑动窗口"><span class="nav-number">4.</span> <span class="nav-text">滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口"><span class="nav-number">4.0.1.</span> <span class="nav-text">窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滑动"><span class="nav-number">4.0.2.</span> <span class="nav-text">滑动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口为0，如果出现这种情况怎么办？"><span class="nav-number">4.0.3.</span> <span class="nav-text">窗口为0，如果出现这种情况怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#糊涂窗口综合征"><span class="nav-number">4.0.4.</span> <span class="nav-text">糊涂窗口综合征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nagle算法"><span class="nav-number">4.0.5.</span> <span class="nav-text">Nagle算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拥塞控制"><span class="nav-number">5.</span> <span class="nav-text">拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#滑动窗口和拥塞控制都是为了数据在网络传输过程中减小丢包率。"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">滑动窗口和拥塞控制都是为了数据在网络传输过程中减小丢包率。</span></a></li></ol></li></div>
             
 
           </div>
