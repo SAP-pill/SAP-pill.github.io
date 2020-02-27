@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/13/用户身份与文件权限/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/09/无序关联容器的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/13/用户身份与文件权限/" itemprop="url">用户身份与文件权限</a></h1>
+                <a class="post-title-link" href="/2020/02/09/无序关联容器的使用/" itemprop="url">无序关联容器的使用</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T15:35:36+08:00">
-                2020-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-09T16:58:58+08:00">
+                2020-02-09
               </time>
             
 
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux学习</span>
+                  <a href="/categories/C-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">C++学习</span>
                   </a>
                 </span>
 
@@ -356,17 +356,11 @@
       
         
           
-          用户身份与能力UID（User IDentification）：用户的身份证号码。
-
-管理员UID为0：系统的管理员用户。
-系统用户UID为1~999：默认服务程序会有独立的系统用户负责运行，进而有效控制被破坏范围。
-普通用户UID从1000开始：有管理员创建的用于日常工作的用户。
-
-useradd
+          unordered_set123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;unordered_map&gt;    //map映射表 存储的key
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/13/用户身份与文件权限/#more" rel="contents">
+            <a class="btn" href="/2020/02/09/无序关联容器的使用/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -417,7 +411,7 @@ useradd
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/13/TCP协议详解———面向连接/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/09/TCP客户端的代码编写流程及通信测试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -436,7 +430,7 @@ useradd
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/13/TCP协议详解———面向连接/" itemprop="url">TCP协议详解</a></h1>
+                <a class="post-title-link" href="/2020/02/09/TCP客户端的代码编写流程及通信测试/" itemprop="url">TCP客户端的代码编写流程及通信测试</a></h1>
         
 
         <div class="post-meta">
@@ -448,8 +442,8 @@ useradd
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-13T11:16:20+08:00">
-                2020-02-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-09T11:26:24+08:00">
+                2020-02-09
               </time>
             
 
@@ -510,18 +504,16 @@ useradd
       
         
           
-          TCP协议的特点：面向连接    可靠地    字节流服务
-面向连接在传输数据之前必须建立连接 —&gt;三次握手
-在传输数据之前必须断开连接 —&gt;四次挥手
+          首先看下
 
+1.创建套接字12int sockfd=socket(AF_INET,SOCK_STREAM,0);wassert(sockfd!=-1);
 
-TIME_WAIT状态存在的意义：
-1.处理迟来的数据报，直接将其丢弃，防止对后续启动进程造成影响。
-2.可靠的终止TCP连接，防止
+2.与服务器连接
+123456789101112//定义地址信息struct sockaddr_in ser_addr;//初始化地址信息mem
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/13/TCP协议详解———面向连接/#more" rel="contents">
+            <a class="btn" href="/2020/02/09/TCP客户端的代码编写流程及通信测试/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -572,7 +564,7 @@ TIME_WAIT状态存在的意义：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/12/Vim编辑器与Shell命令脚本/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/08/TCP服务端代码编写/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -591,7 +583,7 @@ TIME_WAIT状态存在的意义：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/12/Vim编辑器与Shell命令脚本/" itemprop="url">Vim编辑器与Shell命令脚本</a></h1>
+                <a class="post-title-link" href="/2020/02/08/TCP服务端代码编写/" itemprop="url">TCP服务端代码编写</a></h1>
         
 
         <div class="post-meta">
@@ -603,8 +595,8 @@ TIME_WAIT状态存在的意义：
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-12T10:01:41+08:00">
-                2020-02-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T15:06:20+08:00">
+                2020-02-08
               </time>
             
 
@@ -665,20 +657,319 @@ TIME_WAIT状态存在的意义：
       
         
           
-          Vim文本编辑器Vim编辑器有三种模式
+          首先看一下
 
-命令模式：控制光标移动，可对文本进行复制、粘贴、删除和查找等操作。
-插入模式：正常的文本录入。
-末行模式：保存或退出文档，以及设置编辑环境。
+1.创建socket套接字
+12int sockfd=socket(AF_INET,SOCK_STREAM,0);assert(sockfd!=-1);//断言是否成功
 
-Vim基本命令操作
-如果经常写代码，强推spacevim,安装十分简单，把你的Vim变成IDE。
-一行命令
-1cu
+2.对创建的套接字进行命名
+bind方法失败的原因？
+1.使用的IP地址不正确–》一定是服务器程序运行的主机的IP
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/12/Vim编辑器与Shell命令脚本/#more" rel="contents">
+            <a class="btn" href="/2020/02/08/TCP服务端代码编写/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/08/关联容器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/08/关联容器/" itemprop="url">关联容器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T10:33:49+08:00">
+                2020-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">C++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          关联容器无序的关联容器（链式哈希表）O(1)
+unordered_set : 无序集合  只存储key，不允许key重复的
+unordered_multiset ： 无序多重集合  只存储key，允许key重复
+unordered_map : 无序映射表  存储key-value，不允许key重复
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/08/关联容器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/08/vector-and-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/08/vector-and-list/" itemprop="url">顺序容器（vector and list）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T09:49:50+08:00">
+                2020-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">C++学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          向量容器vectorvector:向量容器，一个内存2倍扩容的数组，默认构造的容器都是空的 0-1-2-4…
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/08/vector-and-list/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -720,7 +1011,7 @@ Vim基本命令操作
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 

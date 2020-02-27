@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/11/管道符and重定向and环境变量/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/06/TCP编程流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -282,7 +282,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/11/管道符and重定向and环境变量/" itemprop="url">管道符and重定向and环境变量</a></h1>
+                <a class="post-title-link" href="/2020/02/06/TCP编程流程/" itemprop="url">TCP编程流程</a></h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T16:16:16+08:00">
-                2020-02-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T15:56:07+08:00">
+                2020-02-06
               </time>
             
 
@@ -356,16 +356,15 @@
       
         
           
-          输入输出重定向输入重定向：把文件导入到命令中；
-输出重定向：把原本打印在屏幕上的信息写入指定文件中。
-
-标准输入重定向（STDIN，文件描述符为0）：默认从键盘输入，也可以从其他文件或者命令中输入。
-标准输出重定向（STDOUT，文件描述符为1）：默认输出到屏幕。
-错误输出重定向（STDERR，文件
+          传输层：TCP协议 UDP协议
+TCP：面向连接    可靠地    字节流服务
+UDP：无连接    不可靠的    数据报服务
+在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。
+TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：in
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/11/管道符and重定向and环境变量/#more" rel="contents">
+            <a class="btn" href="/2020/02/06/TCP编程流程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -416,7 +415,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/11/UDP服务器和客户端的代码编写及测试/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/06/网络字节序和socket地址结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -435,7 +434,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/11/UDP服务器和客户端的代码编写及测试/" itemprop="url">UDP服务器和客户端的代码编写及测试</a></h1>
+                <a class="post-title-link" href="/2020/02/06/网络字节序和socket地址结构/" itemprop="url">网络字节序和socket地址结构</a></h1>
         
 
         <div class="post-meta">
@@ -447,8 +446,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T11:44:30+08:00">
-                2020-02-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T15:00:27+08:00">
+                2020-02-06
               </time>
             
 
@@ -509,15 +508,11 @@
       
         
           
-          首先看下
-
-1.创建socket套接字12int sockfd=socket(AF_INET,SOCK_DGRAM,0);assert(sockfd!=-1);
-
-2.使用bind方法命令socket套接字123456struct sockaddr_in ser_addr;ser_addr.sin_
+          主机字节序和网络字节序​        主机字节序分为大端字节序和小段字节序，不同的主机采用的字节序列可能不同。大端字节序是指一个整数的高位字节存储在内存的低地址处，低位字节存储在内存的高地址处。小段字节序是指整数的高位字节存储在内存的高地址处，而低位字节则存储在内存的低地址处。在两台使用不用字节序
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/11/UDP服务器和客户端的代码编写及测试/#more" rel="contents">
+            <a class="btn" href="/2020/02/06/网络字节序和socket地址结构/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -568,7 +563,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/11/UDP编程流程/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/04/网络中数据传输流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -587,7 +582,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/02/11/UDP编程流程/" itemprop="url">UDP编程流程</a></h1>
+                <a class="post-title-link" href="/2020/02/04/网络中数据传输流程/" itemprop="url">网络中数据传输流程</a></h1>
         
 
         <div class="post-meta">
@@ -599,8 +594,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-11T10:50:25+08:00">
-                2020-02-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T19:23:51+08:00">
+                2020-02-04
               </time>
             
 
@@ -661,12 +656,324 @@
       
         
           
-          UDP的特点：无连接的，不可靠的，数据报服务
-UDP的服务器端1234561.创建socket套接字 int socket();2.使用bind方法命令socket套接字	将服务器端的地址信息与socket套接字进行绑定3.接受数据：int recvfrom(); //开始循环4.发送数据：int 
+          网络是一个很复杂的拓扑结构。
+如下图：主机A至主机B有两条路径。
+
+如果主机A想发送一个“hello”这个单词给主机B：
+主机A的操作：
+1.应用层：首先给hello加一个应用层协议的头部结构（控制信息），交付给传输层。
+2.传输层：再给其头部加一个协议信息（TCP/UDP），交付给网络层。
+3.网
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/02/11/UDP编程流程/#more" rel="contents">
+            <a class="btn" href="/2020/02/04/网络中数据传输流程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/04/网络分层模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/04/网络分层模型/" itemprop="url">网络分层模型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T18:35:46+08:00">
+                2020-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          网络分层模型分层模型是在每一台主机上都存在的
+OSI七层模型：理论上的模型。
+TCP/IP四层模型：实际应用中的模型。
+
+应用层：为用户的应用程序提供服务。
+传输层：再两个主机之间提供端到端的通信。只关注通信的起始端和目的端，而不关注通信中的数据报的传输过程。
+网络层：在不同的网络中，不同的主机之间
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/04/网络分层模型/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/04/网络基础概念和网络分层模型和数据传输流程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/04/网络基础概念和网络分层模型和数据传输流程/" itemprop="url">网络基础概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-04T15:45:38+08:00">
+                2020-02-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          书籍：《计算机网络》——谢尔希
+​              附上pdf链接：https://pan.baidu.com/s/1QRQVE6gex5UNPJ6NuCjiGg
+​            《Linux高性能服务器编程》
+什么是网络？1.网络：将多个主机连接起来，构成一个集合
+2.线路：双
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/04/网络基础概念和网络分层模型和数据传输流程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -708,7 +1015,7 @@ UDP的服务器端1234561.创建socket套接字 int socket();2.使用bind方法�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
