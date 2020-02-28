@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在输入网址后，浏览器做的事情1、域名解析 2、三次握手建立连接 3、浏览器给web服务器发送请求报头 4、web服务器给浏览器回复应答报头和应答数据（html页面） 长连接：当关闭浏览器后才执行四次挥手 短连接：每发一次数据就三次挥手和四次握手一次 使用Linux来模拟web服务器得使用root用户，因为端口80是属于系统的端口号，0-1023是系统预留端口。 web服务器的C语言实现因为是TCP">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web服务器的C语言实现">
+<meta property="og:url" content="https://sap-pill.github.io/2020/02/28/Web服务器的C语言实现/index.html">
+<meta property="og:site_name" content="onlooker">
+<meta property="og:description" content="在输入网址后，浏览器做的事情1、域名解析 2、三次握手建立连接 3、浏览器给web服务器发送请求报头 4、web服务器给浏览器回复应答报头和应答数据（html页面） 长连接：当关闭浏览器后才执行四次挥手 短连接：每发一次数据就三次挥手和四次握手一次 使用Linux来模拟web服务器得使用root用户，因为端口80是属于系统的端口号，0-1023是系统预留端口。 web服务器的C语言实现因为是TCP">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/28/Web服务器的C语言实现/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/28/Web服务器的C语言实现/2.jpg">
+<meta property="og:updated_time" content="2020-02-28T09:42:35.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Web服务器的C语言实现">
+<meta name="twitter:description" content="在输入网址后，浏览器做的事情1、域名解析 2、三次握手建立连接 3、浏览器给web服务器发送请求报头 4、web服务器给浏览器回复应答报头和应答数据（html页面） 长连接：当关闭浏览器后才执行四次挥手 短连接：每发一次数据就三次挥手和四次握手一次 使用Linux来模拟web服务器得使用root用户，因为端口80是属于系统的端口号，0-1023是系统预留端口。 web服务器的C语言实现因为是TCP">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/02/28/Web服务器的C语言实现/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sap-pill.github.io/2020/02/28/Web服务器的C语言实现/">
+
+
+
+
+
+  <title>Web服务器的C语言实现 | onlooker</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">onlooker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">退役了！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/28/Web服务器的C语言实现/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Web服务器的C语言实现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-28T10:02:42+08:00">
+                2020-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络学习/" itemprop="url" rel="index">
+                    <span itemprop="name">网络学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="在输入网址后，浏览器做的事情"><a href="#在输入网址后，浏览器做的事情" class="headerlink" title="在输入网址后，浏览器做的事情"></a>在输入网址后，浏览器做的事情</h4><p>1、域名解析</p>
+<p>2、三次握手建立连接</p>
+<p>3、浏览器给web服务器发送请求报头</p>
+<p>4、web服务器给浏览器回复应答报头和应答数据（html页面）</p>
+<p>长连接：当关闭浏览器后才执行四次挥手</p>
+<p>短连接：每发一次数据就三次挥手和四次握手一次</p>
+<h4 id="使用Linux来模拟web服务器"><a href="#使用Linux来模拟web服务器" class="headerlink" title="使用Linux来模拟web服务器"></a>使用Linux来模拟web服务器</h4><p>得使用root用户，因为端口80是属于系统的端口号，0-1023是系统预留端口。</p>
+<h1 id="web服务器的C语言实现"><a href="#web服务器的C语言实现" class="headerlink" title="web服务器的C语言实现"></a>web服务器的C语言实现</h1><p>因为是TCP服务器首先得</p>
+<h4 id="初始化socket"><a href="#初始化socket" class="headerlink" title="初始化socket"></a>初始化socket</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">InitSocket</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建套接字</span></span><br><span class="line">	<span class="keyword">int</span> sockfd=socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (sockfd==<span class="number">-1</span>)<span class="comment">//防止失败，不用在子函数里面断言，这三个方法都可能失败，直接在main函数里面断言</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="comment">//对套接字进行命名</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">ser</span>;</span></span><br><span class="line">	<span class="built_in">memset</span>(&amp;ser,<span class="number">0</span>,<span class="keyword">sizeof</span>(ser));</span><br><span class="line">	ser.sin_family=AF_INET;</span><br><span class="line">	ser.sin_por=htons(<span class="number">80</span>);  <span class="comment">// root用户下运行</span></span><br><span class="line">	ser.sin_addr.s_addr=inet_addr(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">	<span class="keyword">int</span> res=bind(sockfd,(struct sockaddr*)&amp;ser, <span class="keyword">sizeof</span>(ser));</span><br><span class="line">	<span class="keyword">if</span> (res==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="comment">//创建监听队列，在内核创建的监听队列，5是可以维护已完成三次握手的队列最大数目。</span></span><br><span class="line">	res=listen(sockfd,<span class="number">5</span>);</span><br><span class="line">	<span class="keyword">if</span> (res==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> sockfd;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="获取连接"><a href="#获取连接" class="headerlink" title="获取连接"></a>获取连接</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">cli</span>;</span></span><br><span class="line"><span class="keyword">socklen_t</span> len=<span class="keyword">sizeof</span>(cli);</span><br><span class="line"><span class="keyword">int</span> c=accept(sockfd,(struct sockaddr*)&amp;cli,&amp;len);</span><br><span class="line"><span class="keyword">if</span>(c&lt;<span class="number">0</span>)<span class="comment">//如果小于0，连接失败</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"accept error"</span>);</span><br><span class="line">	close(c);</span><br><span class="line">	<span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="接受数据（接受请求报文段）"><a href="#接受数据（接受请求报文段）" class="headerlink" title="接受数据（接受请求报文段）"></a>接受数据（接受请求报文段）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RecvData</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">char</span> *file_name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> buff[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> n=recv(c,buff,<span class="number">1023</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (n&lt;=<span class="number">0</span>)<span class="comment">//接受失败</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,buff);<span class="comment">//把接受数据打印一下</span></span><br><span class="line">	<span class="comment">//根据HTTP的请求报头结构，获取index.html</span></span><br><span class="line">    <span class="comment">//报头结构看上个blog</span></span><br><span class="line">	<span class="keyword">char</span> *p=strtok(buff,<span class="string">" "</span>);  <span class="comment">// p指向GET，遇到空格结束切割</span></span><br><span class="line">	p=strtok(<span class="literal">NULL</span>,<span class="string">" "</span>); <span class="comment">// p指向"/index.html"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> path[<span class="number">128</span>]=<span class="string">"/var/www/html"</span>;</span><br><span class="line">	<span class="comment">// 给file_name中填充的是系统上肯定存在的文件</span></span><br><span class="line">	<span class="comment">//path:"/var/www/html/index.html"</span></span><br><span class="line">	<span class="built_in">strcat</span>(path, p); </span><br><span class="line">	<span class="comment">// open只是用于检测文件是否存在</span></span><br><span class="line">	<span class="keyword">int</span> fd=open(path, O_RDONLY);</span><br><span class="line">    <span class="comment">//没找到就返回404这个文件，404表示没找到资源</span></span><br><span class="line">	<span class="keyword">if</span> (fd == <span class="number">-1</span>)</span><br><span class="line">		<span class="built_in">strcpy</span>(file_name, <span class="string">"/var/www/html/404.html"</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">strcpy</span>(file_name, path);</span><br><span class="line">		close(fd);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发送头部信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SendHead</span><span class="params">(<span class="keyword">int</span> c,<span class="keyword">int</span> flag,<span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> buff[<span class="number">1024</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="comment">//http协议版本</span></span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"HTTP/1.0"</span>); </span><br><span class="line">	<span class="comment">// 状态码</span></span><br><span class="line">	<span class="keyword">if</span> (flag) </span><br><span class="line">		<span class="built_in">strcat</span>(buff,<span class="string">"404 Not Found\r\n"</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">strcat</span>(buff,<span class="string">"200 OK\r\n"</span>);</span><br><span class="line">	<span class="comment">// 服务器名称</span></span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"Server: MYWEB/1.0\r\n"</span>); </span><br><span class="line">	<span class="comment">// 数据长度</span></span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"Content-Length: "</span>); </span><br><span class="line">	<span class="built_in">sprintf</span>(buff+<span class="built_in">strlen</span>(buff),<span class="string">"%d"</span>,size);</span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"\r\n"</span>);</span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"Content-Type: text/html; charset=utf-8\r\n"</span>);</span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"\r\n"</span>);</span><br><span class="line"></span><br><span class="line">	send(c,buff,<span class="built_in">strlen</span>(buff),<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SendData</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">char</span> *file_name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 1.给浏览器发送头部结构,头部结构见上个博客</span></span><br><span class="line">	<span class="comment">// 2.给浏览器发送页面数据   file_name文件中的内容</span></span><br><span class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;<span class="comment">//看到底是什么状态，保存状态信息</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">strstr</span>(file_name,<span class="string">"404.html"</span>)!=<span class="literal">NULL</span>)</span><br><span class="line">		flag=<span class="number">1</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">st</span>;</span></span><br><span class="line">	stat(file_name,&amp;st);<span class="comment">//stat获取文件属性信息</span></span><br><span class="line">	SendHead(c,flag,st.st_size); <span class="comment">// sockfd 状态信息 数据长度</span></span><br><span class="line">	<span class="keyword">int</span> fd=open(file_name,O_RDONLY);</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> buff[<span class="number">128</span>]=&#123;<span class="number">0</span>&#125;;<span class="comment">//每次读取128个数据给客户端发送过去</span></span><br><span class="line">		<span class="keyword">int</span> n=read(fd,buff,<span class="number">127</span>);</span><br><span class="line">		<span class="keyword">if</span> (n&lt;=<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		send(c,buff,n,<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span> (n&lt;=<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	close(fd);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="整体代码"><a href="#整体代码" class="headerlink" title="整体代码"></a>整体代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">InitSocket</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//创建套接字</span></span><br><span class="line">	<span class="keyword">int</span> sockfd=socket(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (sockfd==<span class="number">-1</span>)<span class="comment">//防止失败，不用在子函数里面断言，这三个方法都可能失败，直接在main函数里面断言</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="comment">//对套接字进行命名</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">ser</span>;</span></span><br><span class="line">	<span class="built_in">memset</span>(&amp;ser,<span class="number">0</span>,<span class="keyword">sizeof</span>(ser));</span><br><span class="line">	ser.sin_family=AF_INET;</span><br><span class="line">	ser.sin_por=htons(<span class="number">80</span>);  <span class="comment">// root用户下运行</span></span><br><span class="line">	ser.sin_addr.s_addr=inet_addr(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">	<span class="keyword">int</span> res=bind(sockfd,(struct sockaddr*)&amp;ser, <span class="keyword">sizeof</span>(ser));</span><br><span class="line">	<span class="keyword">if</span> (res==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="comment">//创建监听队列，在内核创建的监听队列，5是可以维护已完成三次握手的队列最大数目。</span></span><br><span class="line">	res=listen(sockfd,<span class="number">5</span>);</span><br><span class="line">	<span class="keyword">if</span> (res==<span class="number">-1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">return</span> sockfd;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">RecvData</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">char</span> *file_name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> buff[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> n=recv(c,buff,<span class="number">1023</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (n&lt;=<span class="number">0</span>)<span class="comment">//接受失败</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,buff);<span class="comment">//把接受数据打印一下</span></span><br><span class="line">	<span class="comment">//根据HTTP的请求报头结构，获取index.html</span></span><br><span class="line">    <span class="comment">//报头结构看上个blog</span></span><br><span class="line">	<span class="keyword">char</span> *p=strtok(buff,<span class="string">" "</span>);  <span class="comment">// p指向GET，遇到空格结束切割</span></span><br><span class="line">	p=strtok(<span class="literal">NULL</span>,<span class="string">" "</span>); <span class="comment">// p指向"/index.html"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> path[<span class="number">128</span>]=<span class="string">"/var/www/html"</span>;</span><br><span class="line">	<span class="comment">// 给file_name中填充的是系统上肯定存在的文件</span></span><br><span class="line">	<span class="comment">//path:"/var/www/html/index.html"</span></span><br><span class="line">	<span class="built_in">strcat</span>(path, p); </span><br><span class="line">	<span class="comment">// open只是用于检测文件是否存在</span></span><br><span class="line">	<span class="keyword">int</span> fd=open(path, O_RDONLY);</span><br><span class="line">    <span class="comment">//没找到就返回404这个文件，404表示没找到资源</span></span><br><span class="line">	<span class="keyword">if</span> (fd == <span class="number">-1</span>)</span><br><span class="line">		<span class="built_in">strcpy</span>(file_name, <span class="string">"/var/www/html/404.html"</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">strcpy</span>(file_name, path);</span><br><span class="line">		close(fd);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//发送头部信息</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SendHead</span><span class="params">(<span class="keyword">int</span> c,<span class="keyword">int</span> flag,<span class="keyword">int</span> size)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> buff[<span class="number">1024</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="comment">//http协议版本</span></span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"HTTP/1.0"</span>); </span><br><span class="line">	<span class="comment">// 状态码</span></span><br><span class="line">	<span class="keyword">if</span> (flag) </span><br><span class="line">		<span class="built_in">strcat</span>(buff,<span class="string">"404 Not Found\r\n"</span>);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="built_in">strcat</span>(buff,<span class="string">"200 OK\r\n"</span>);</span><br><span class="line">	<span class="comment">// 服务器名称</span></span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"Server: MYWEB/1.0\r\n"</span>); </span><br><span class="line">	<span class="comment">// 数据长度</span></span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"Content-Length: "</span>); </span><br><span class="line">	<span class="built_in">sprintf</span>(buff+<span class="built_in">strlen</span>(buff),<span class="string">"%d"</span>,size);</span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"\r\n"</span>);</span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"Content-Type: text/html; charset=utf-8\r\n"</span>);</span><br><span class="line">	<span class="built_in">strcat</span>(buff,<span class="string">"\r\n"</span>);</span><br><span class="line"></span><br><span class="line">	send(c,buff,<span class="built_in">strlen</span>(buff),<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">SendData</span><span class="params">(<span class="keyword">int</span> c, <span class="keyword">char</span> *file_name)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 1.给浏览器发送头部结构,头部结构见上个博客</span></span><br><span class="line">	<span class="comment">// 2.给浏览器发送页面数据   file_name文件中的内容</span></span><br><span class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;<span class="comment">//看到底是什么状态，保存状态信息</span></span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">strstr</span>(file_name,<span class="string">"404.html"</span>)!=<span class="literal">NULL</span>)</span><br><span class="line">		flag=<span class="number">1</span>;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">stat</span> <span class="title">st</span>;</span></span><br><span class="line">	stat(file_name,&amp;st);<span class="comment">//stat获取文件属性信息</span></span><br><span class="line">	SendHead(c,flag,st.st_size); <span class="comment">// sockfd 状态信息 数据长度</span></span><br><span class="line">	<span class="keyword">int</span> fd=open(file_name,O_RDONLY);</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> buff[<span class="number">128</span>]=&#123;<span class="number">0</span>&#125;;<span class="comment">//每次读取128个数据给客户端发送过去</span></span><br><span class="line">		<span class="keyword">int</span> n=read(fd,buff,<span class="number">127</span>);</span><br><span class="line">		<span class="keyword">if</span> (n&lt;=<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		send(c,buff,n,<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">if</span> (n&lt;=<span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	close(fd);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sockfd=InitSocket();</span><br><span class="line">	assert(sockfd!=<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">cli</span>;</span></span><br><span class="line">		<span class="keyword">socklen_t</span> len=<span class="keyword">sizeof</span>(cli);</span><br><span class="line">		<span class="keyword">int</span> c=accept(sockfd,(struct sockaddr*)&amp;cli,&amp;len);</span><br><span class="line">		<span class="keyword">if</span> (c&lt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"accept error"</span>);</span><br><span class="line">			close(c);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">char</span> file_name[<span class="number">128</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> num=RecvData(c,file_name);</span><br><span class="line">		<span class="keyword">if</span> (num==<span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			close(c);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		num=SendData(c,file_name);</span><br><span class="line">		<span class="keyword">if</span> (num==<span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			close(c);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		close(c);  <span class="comment">// 短链接方式</span></span><br><span class="line">	&#125;</span><br><span class="line">	close(sockfd);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>首先运行编译后的程序</p>
+<p><img src="/2020/02/28/Web服务器的C语言实现/1.jpg" alt></p>
+<p>然后开个浏览器，输入”127.0.0.1/index.html”</p>
+<p><img src="/2020/02/28/Web服务器的C语言实现/2.jpg" alt></p>
+<p>我这的浏览器是空白是因为我自己的index.html文件里面是空白，没有自己写，如果自己写一点前端的东西，浏览器也会显示，<strong>并且web服务器在收到报头之后打印了收到的报文段</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/27/HTTP协议/" rel="next" title="HTTP协议">
+                <i class="fa fa-chevron-left"></i> HTTP协议
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="王祎豪">
+            
+              <p class="site-author-name" itemprop="name">王祎豪</p>
+              <p class="site-description motion-element" itemprop="description">活的像个旁观者，会轻松很多</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#在输入网址后，浏览器做的事情"><span class="nav-number">1.</span> <span class="nav-text">在输入网址后，浏览器做的事情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Linux来模拟web服务器"><span class="nav-number">2.</span> <span class="nav-text">使用Linux来模拟web服务器</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#web服务器的C语言实现"><span class="nav-number"></span> <span class="nav-text">web服务器的C语言实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化socket"><span class="nav-number">1.</span> <span class="nav-text">初始化socket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取连接"><span class="nav-number">2.</span> <span class="nav-text">获取连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接受数据（接受请求报文段）"><span class="nav-number">3.</span> <span class="nav-text">接受数据（接受请求报文段）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发送数据"><span class="nav-number">4.</span> <span class="nav-text">发送数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整体代码"><span class="nav-number">5.</span> <span class="nav-text">整体代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">6.</span> <span class="nav-text">测试</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王祎豪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
