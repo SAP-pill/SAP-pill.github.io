@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="网络,TCP,">
+  <meta name="keywords" content="C++,">
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="传输层：TCP协议 UDP协议 TCP：面向连接    可靠地    字节流服务 UDP：无连接    不可靠的    数据报服务 在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。 TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：int socket();2.命名创建的socket套接字：int bind();	服务器的地址信息：s">
-<meta name="keywords" content="网络,TCP">
+<meta name="description" content="new和delete是管理堆内存的开辟和释放 如果你想在进程的全局范围内，实现一个内存池的话，你可以通过重载operator new和operator delete做内存的开辟和释放。 new和delete的重载123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TCP编程流程">
-<meta property="og:url" content="https://sap-pill.github.io/2020/02/06/TCP编程流程/index.html">
+<meta property="og:title" content="new和delete的重载">
+<meta property="og:url" content="https://sap-pill.github.io/2020/02/29/new和delete的重载/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="传输层：TCP协议 UDP协议 TCP：面向连接    可靠地    字节流服务 UDP：无连接    不可靠的    数据报服务 在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。 TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：int socket();2.命名创建的socket套接字：int bind();	服务器的地址信息：s">
+<meta property="og:description" content="new和delete是管理堆内存的开辟和释放 如果你想在进程的全局范围内，实现一个内存池的话，你可以通过重载operator new和operator delete做内存的开辟和释放。 new和delete的重载123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-27T09:10:42.930Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/02/29/new和delete的重载/1.jpg">
+<meta property="og:updated_time" content="2020-02-29T05:21:34.575Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TCP编程流程">
-<meta name="twitter:description" content="传输层：TCP协议 UDP协议 TCP：面向连接    可靠地    字节流服务 UDP：无连接    不可靠的    数据报服务 在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。 TCP服务器端的编程流程1234567891.创建用于监听的socket套接字：int socket();2.命名创建的socket套接字：int bind();	服务器的地址信息：s">
+<meta name="twitter:title" content="new和delete的重载">
+<meta name="twitter:description" content="new和delete是管理堆内存的开辟和释放 如果你想在进程的全局范围内，实现一个内存池的话，你可以通过重载operator new和operator delete做内存的开辟和释放。 new和delete的重载123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051#">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/02/29/new和delete的重载/1.jpg">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://sap-pill.github.io/2020/02/06/TCP编程流程/">
+  <link rel="canonical" href="https://sap-pill.github.io/2020/02/29/new和delete的重载/">
 
 
 
 
 
-  <title>TCP编程流程 | onlooker</title>
+  <title>new和delete的重载 | onlooker</title>
   
 
 
@@ -263,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/06/TCP编程流程/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/02/29/new和delete的重载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -280,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">TCP编程流程</h1>
+          <h1 class="post-title" itemprop="name headline">new和delete的重载</h1>
         
 
         <div class="post-meta">
@@ -292,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-06T15:56:07+08:00">
-                2020-02-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T09:54:30+08:00">
+                2020-02-29
               </time>
             
 
@@ -315,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络学习/" itemprop="url" rel="index">
-                    <span itemprop="name">网络学习</span>
+                  <a href="/categories/C-学习/" itemprop="url" rel="index">
+                    <span itemprop="name">C++学习</span>
                   </a>
                 </span>
 
@@ -352,16 +354,21 @@
       
 
       
-        <p>传输层：TCP协议 UDP协议</p>
-<p>TCP：面向连接    可靠地    字节流服务</p>
-<p>UDP：无连接    不可靠的    数据报服务</p>
-<p>在网络编程中都遵循一种C/S结构，有一段程序是作为客户端，一段程序是作为服务器的。</p>
-<h1 id="TCP服务器端的编程流程"><a href="#TCP服务器端的编程流程" class="headerlink" title="TCP服务器端的编程流程"></a>TCP服务器端的编程流程</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建用于监听的socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">2.</span>命名创建的socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">bind</span><span class="params">()</span></span>;</span><br><span class="line">	服务器的地址信息：<span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>;</span></span><br><span class="line">					IP地址+端口号</span><br><span class="line"><span class="number">3.</span>创建监听队列：<span class="function"><span class="keyword">int</span> <span class="title">listen</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">4.</span>获取一个客户端连接，返回连接socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">accept</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">5.</span><span class="function"><span class="keyword">int</span> <span class="title">recv</span><span class="params">()</span></span>;接受数据</span><br><span class="line"><span class="number">6.</span><span class="function"><span class="keyword">int</span> <span class="title">send</span><span class="params">()</span></span>;发送数据</span><br><span class="line"><span class="number">7.</span><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">()</span></span>;关闭连接</span><br></pre></td></tr></table></figure>
+        <p>new和delete是管理堆内存的开辟和释放</p>
+<p>如果你想在进程的全局范围内，实现一个内存池的话，你可以通过重载operator new和operator delete做内存的开辟和释放。</p>
+<h1 id="new和delete的重载"><a href="#new和delete的重载" class="headerlink" title="new和delete的重载"></a>new和delete的重载</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="title">new</span><span class="params">(<span class="keyword">size_t</span> size)</span><span class="comment">//函数完成后，会紧接着调用构造函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> *p=<span class="built_in">malloc</span>(size);</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">nullptr</span>==p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> bad_alloc();<span class="comment">//new开辟内存失败，抛出bad_alloc类型的异常对象</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"operator new size:"</span>&lt;&lt;size&lt;&lt;<span class="string">"  addr:"</span>&lt;&lt;p&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//先调用对象的析构函数，delete释放内存</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="keyword">operator</span> <span class="title">delete</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"operator delete addr"</span>&lt;&lt;ptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">free</span>(ptr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//数组开辟</span></span><br><span class="line"><span class="keyword">void</span> *<span class="keyword">operator</span> <span class="keyword">new</span>[](<span class="keyword">size_t</span> size)<span class="comment">//函数完成后，会紧接着调用构造函数</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">void</span> *p=<span class="built_in">malloc</span>(size);</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">nullptr</span>==p)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">throw</span> bad_alloc();<span class="comment">//new开辟内存失败，抛出bad_alloc类型的异常对象</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"operator new[] size:"</span>&lt;&lt;size&lt;&lt;<span class="string">"  addr:"</span>&lt;&lt;p&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//数组释放</span></span><br><span class="line"><span class="keyword">void</span> <span class="keyword">operator</span> <span class="keyword">delete</span>[](<span class="keyword">void</span> *ptr)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"operator delete[] addr"</span>&lt;&lt;ptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">free</span>(ptr);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    test()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"test()"</span>&lt;&lt;<span class="built_in">endl</span>;&#125;</span><br><span class="line">    ~test()&#123;<span class="built_in">cout</span>&lt;&lt;<span class="string">"~test()"</span>&lt;&lt;<span class="built_in">endl</span>;&#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> ma;    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    test *p=<span class="keyword">new</span> test;</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">    test *p1=<span class="keyword">new</span> test[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">delete</span> []p1;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="TCP客户端的编程流程"><a href="#TCP客户端的编程流程" class="headerlink" title="TCP客户端的编程流程"></a>TCP客户端的编程流程</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>创建用于和服务器通信的socket套接字：<span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">()</span></span>;</span><br><span class="line"><span class="number">2.</span>与服务器连接：<span class="function"><span class="keyword">int</span> <span class="title">connect</span><span class="params">()</span></span>;成功返回<span class="number">0</span>，失败返回<span class="number">-1</span></span><br><span class="line"><span class="number">3.</span>若连接失败，客户端的程序应该退出。</span><br><span class="line"><span class="number">4.</span>若连接成功，<span class="function"><span class="keyword">int</span> <span class="title">send</span><span class="params">()</span></span>;发送数据</span><br><span class="line"><span class="number">5.</span><span class="function"><span class="keyword">int</span> <span class="title">recv</span><span class="params">()</span></span>;接受数据</span><br><span class="line"><span class="number">6.</span><span class="function"><span class="keyword">int</span> <span class="title">close</span><span class="params">()</span></span>;关闭连接</span><br></pre></td></tr></table></figure>
+<p>结果（注意要在Linux环境下编译运行）</p>
+<p><img src="/2020/02/29/new和delete的重载/1.jpg" alt></p>
+<p><strong>从这个结果可以看出new了5个int类型的对象，却发现size是28，这是因为在内存起始地址还会有一个内存存储数组对象的个数，所以size是28（32位系统占4个字节，64位系统占8个字节）</strong></p>
+<p><strong>1、怎么防止内存泄漏</strong></p>
+<p>​        智能指针</p>
+<p><strong>2、为了防止发生内存泄漏，你在代码应该怎么处理</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">void</span> *&gt;vec;</span><br><span class="line"><span class="keyword">operator</span> <span class="keyword">new</span></span><br><span class="line"><span class="keyword">operator</span> <span class="keyword">delete</span></span><br><span class="line">当开辟空间时，把开辟的内存地址addr添加到vec里面然后<span class="keyword">delete</span>。</span><br><span class="line">最后所有的操作完成之后，打印vec，如果vec是空的，则证明没有发生内存泄漏，否则就证明发生了内存泄漏。并且把这些内存地址全部<span class="keyword">delete</span></span><br></pre></td></tr></table></figure>
 
-<p>example：</p>
-<p>如果客户端和服务端程序连接已经完成，进行数据通信。客户端调用send()发送“hello”，send()的功能只是将”hello“放到客户端的TCP发送缓冲区，再根据内核的协议控制，通过网络传输到服务器端的TCP接受缓冲区，服务器端的recv()再从TCP接受缓冲区中读取数据。</p>
+<p><strong>3、new和delete配对使用，new[]和delete[]配对使用，那什么时候可以混用？</strong></p>
+<p>如果是对象类型，而且对象有析构函数，那么开辟对象数组时，会多开辟8个字节存储对象的个数，目的时在delete []p 的时候，知道调用多少次析构函数。</p>
+<p>如果是对象类型，而且对象有析构函数需要调用，那么不能混用，如果是内置类型，自定义类型（但是没有析构函数），可以混用。</p>
 
       
     </div>
@@ -379,9 +386,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/网络/" rel="tag"># 网络</a>
-          
-            <a href="/tags/TCP/" rel="tag"># TCP</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -394,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/06/网络字节序和socket地址结构/" rel="next" title="网络字节序和socket地址结构">
-                <i class="fa fa-chevron-left"></i> 网络字节序和socket地址结构
+              <a href="/2020/02/28/Web服务器的C语言实现/" rel="next" title="Web服务器的C语言实现">
+                <i class="fa fa-chevron-left"></i> Web服务器的C语言实现
               </a>
             
           </div>
@@ -403,10 +408,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/08/vector-and-list/" rel="prev" title="顺序容器（vector and list）">
-                顺序容器（vector and list） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -540,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP服务器端的编程流程"><span class="nav-number">1.</span> <span class="nav-text">TCP服务器端的编程流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP客户端的编程流程"><span class="nav-number">2.</span> <span class="nav-text">TCP客户端的编程流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#new和delete的重载"><span class="nav-number">1.</span> <span class="nav-text">new和delete的重载</span></a></li></ol></div>
             
 
           </div>
