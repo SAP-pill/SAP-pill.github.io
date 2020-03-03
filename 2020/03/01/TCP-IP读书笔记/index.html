@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络,TCP/IP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="OSI参考模型 12345677、应用层：针对特定应用的协议6、表示层：设备固有数据格式和网络标准数据格式的转换5、会话层：通信管理。负责建立和断开通信连接（数据流动的逻辑通路）。管理传输层以下的分层。4、传输层：管理两个节点之间的数据传输。负责可靠传输（确保数据被可靠的传输到目标地址）。3、网络层：地址管理与路由选择。2、数据链路层：互联设备之间传送和识别数据帧。1、物理层：以&apos;0&apos; &apos;1&apos;代表">
+<meta name="keywords" content="网络,TCP&#x2F;IP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解TCP&#x2F;IP读书笔记">
+<meta property="og:url" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/index.html">
+<meta property="og:site_name" content="onlooker">
+<meta property="og:description" content="OSI参考模型 12345677、应用层：针对特定应用的协议6、表示层：设备固有数据格式和网络标准数据格式的转换5、会话层：通信管理。负责建立和断开通信连接（数据流动的逻辑通路）。管理传输层以下的分层。4、传输层：管理两个节点之间的数据传输。负责可靠传输（确保数据被可靠的传输到目标地址）。3、网络层：地址管理与路由选择。2、数据链路层：互联设备之间传送和识别数据帧。1、物理层：以&apos;0&apos; &apos;1&apos;代表">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/2.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/3.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/4.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/5.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/6.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/7.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/8.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/9.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/10.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/11.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/12.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/13.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/14.jpg">
+<meta property="og:updated_time" content="2020-03-03T15:05:14.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图解TCP&#x2F;IP读书笔记">
+<meta name="twitter:description" content="OSI参考模型 12345677、应用层：针对特定应用的协议6、表示层：设备固有数据格式和网络标准数据格式的转换5、会话层：通信管理。负责建立和断开通信连接（数据流动的逻辑通路）。管理传输层以下的分层。4、传输层：管理两个节点之间的数据传输。负责可靠传输（确保数据被可靠的传输到目标地址）。3、网络层：地址管理与路由选择。2、数据链路层：互联设备之间传送和识别数据帧。1、物理层：以&apos;0&apos; &apos;1&apos;代表">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/">
+
+
+
+
+
+  <title>图解TCP/IP读书笔记 | onlooker</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">onlooker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">退役了！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/01/TCP-IP读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">图解TCP/IP读书笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T14:47:55+08:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/图解TCP-IP读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">图解TCP/IP读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>OSI参考模型</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7</span>、应用层：针对特定应用的协议</span><br><span class="line"><span class="number">6</span>、表示层：设备固有数据格式和网络标准数据格式的转换</span><br><span class="line"><span class="number">5</span>、会话层：通信管理。负责建立和断开通信连接（数据流动的逻辑通路）。管理传输层以下的分层。</span><br><span class="line"><span class="number">4</span>、传输层：管理两个节点之间的数据传输。负责可靠传输（确保数据被可靠的传输到目标地址）。</span><br><span class="line"><span class="number">3</span>、网络层：地址管理与路由选择。</span><br><span class="line"><span class="number">2</span>、数据链路层：互联设备之间传送和识别数据帧。</span><br><span class="line"><span class="number">1</span>、物理层：以<span class="string">'0'</span> <span class="string">'1'</span>代表电压的高低、灯光的闪灭。界定连接器和网线的规格。</span><br></pre></td></tr></table></figure>
+
+<p><strong>OSI协议与OSI参考模型</strong></p>
+<p>OSI协议是为了让异构的计算机之间能够相互通信、由ISO和ITU-T推进其标准化的一种网络体系结构。</p>
+<p>OSI将通信功能划分为7个分层，称作OSI参考模型。OSI协议以OSI参考模型为基础界定了每个阶层的协议和每个阶层之间接口相关的标准。遵循OSI协议的产品叫做OSI产品，而他们所遵循的通信被称为OSI通信。</p>
+<p><strong>面向连接</strong></p>
+<p>在发送数据前，需要在收发主机之间连接一条线路。</p>
+<p><strong>面向无连接</strong></p>
+<p>不要建立和断开连接，发送端可于任何时候自由发送数据。接收端不知道何时从哪里接收数据，所以接收端得时常确认是否收到数据。</p>
+<p><strong>分组交换(蓄积交换)</strong></p>
+<p>让连接到通信电路的计算机将要发送的数据分成多个数据包，按照一定的顺序排列之后分别发送。</p>
+<p>大致过程：发送端将数据分组发给路由器，路由器收到这些分组数据以后，缓存到自己的缓冲区，然后转发给目标计算机。路由器顺序收到并缓存，然后顺序发送出去。如果路由器缓存饱和或溢出，可能会发生分组数据丢失。</p>
+<p><strong>单播</strong>：一对一通信</p>
+<p><strong>广播</strong>：一对多通信，不限定对象</p>
+<p><strong>多播</strong>：一对多通信，不过限定了某一组主机作为接收端</p>
+<p><strong>任播</strong>：从目标主机群选择一个最符合网络条件的主机作为目标主机发送消息。被选中的将返回一个单播信号，随后两者开始通信。</p>
+<p><strong>地址</strong></p>
+<p>MAC地址：制造商对网卡进行指定，虽然可以确保唯一性，但是不知道买个网卡被用到了那个地方，对于寻找地址没有起到作用。</p>
+<p>IP地址：由网络号和主机号组成，如果网络号相同，说明他们处于同一个网段。</p>
+<p><strong>网络构成要素</strong></p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/1.jpg" alt></p>
+<p><strong>虚拟化和云</strong></p>
+<p>虚拟化：当一个网站（也可以是其他系统）需要调整运营所使用的资源时，并不增减服务器、存储设备、网络等实际的物理设备，二十利用软件将这些物理设备虚拟化，在有必要增减资源的时候，通过软件按量增减的一种机制。</p>
+<p>云：利用虚拟化技术，根据使用者的情况动态调整必要资源的机制被人们称作“云”。</p>
+<p><strong>TCP/IP协议群</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">应用协议：HTTP SMTP FTP TELNET SNMP</span><br><span class="line">传输协议：TCP UDP</span><br><span class="line">路由控制协议：RIP OSPF BGP</span><br><span class="line">网际协议：IP ICMP ARP</span><br></pre></td></tr></table></figure>
+
+<p><strong>TCP/IP的标准化</strong></p>
+<p>与一般的标准化过程不同，他不是由标准化组织制定为标准后才开始投入使用，而是在其成为标准的那一刻为止，已经被较为充分的实验并得到较广的普及。</p>
+<p><strong>TCP/IP和OSI参考模型</strong></p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/2.jpg" alt></p>
+<p><strong>IP</strong></p>
+<p>跨越网络传送数据包，使整个互联网都能收到数据的协议。这期间使用IP地址作为主机的标识。但不具有重发机制，属于非可靠性传输协议。</p>
+<p><strong>ICMP</strong></p>
+<p>数据包在发送途中发送异常导致无法到达，需要给发送端发送一个发生异常的通知。也被用来检测网络健康状况。</p>
+<p><strong>ARP</strong></p>
+<p>从分组数据包的IP地址中解析出物理地址（MAC地址）的一种协议。</p>
+<p><strong>TCP</strong></p>
+<p>面向连接，可靠性传输，有效利用带宽，缓解网络拥堵。为了建立与断开连接，至少需要7次的发包收包。不利于视频等场合使用。</p>
+<p><strong>UDP</strong></p>
+<p>面向无连接，不可靠。常用于分组数据较少或多播、广播通信及视频等媒体领域。</p>
+<p><strong>WWW</strong></p>
+<p>浏览器与服务器之间通信所用的协议是HTTP，所传输数据的主要格式是HTML。HTTP属于OSI应用层的协议，而HTML属于表示层的协议。</p>
+<p><strong>SMTP</strong></p>
+<p>发送邮件时用到的协议。</p>
+<p><strong>FTP</strong></p>
+<p>其他计算机硬盘和本地硬盘进行文件传输，这个过程用到的协议是FTP。</p>
+<p><strong>TELNET与SSH</strong></p>
+<p>远程登录所需的协议。</p>
+<p><strong>SNMP</strong></p>
+<p>网络管理所需的协议。</p>
+<p><strong>MAC</strong></p>
+<p>地址长48比特，任何一个网卡的MAC地址都是唯一的，在全世界都不会重复。</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/3.jpg" alt></p>
+<p><strong>共享介质型网络</strong></p>
+<p>1.争用方式</p>
+<p>CSMA（载波监听多路访问）：先到先发送</p>
+<p>CSMA/CD：每个站提前检查冲突，一旦发生冲突，则尽早释放信道。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果载波信道上没有数据流动，则任何站都可以发送数据。</span><br><span class="line">检查是否会发生冲突。一旦发生冲突时，放弃发送数据，同时立即释放载波信道。</span><br><span class="line">放弃发送以后，随机延时一段时间，再重新争用介质，重新发送帧。</span><br></pre></td></tr></table></figure>
+
+<p>2.令牌传递</p>
+<p>只有获得令牌的站才能发送数据。</p>
+<p><strong>非共享介质网络</strong></p>
+<p>发送端和接收端并不共享通信介质。</p>
+<h1 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><p><strong>IP地址</strong>属于网络层地址。</p>
+<p>IP地址由网络地址和主机地址组成。网络地址保证相互连接的每个段的地址不重复，相同段内的主机网络地址是相等的。主机地址保证相同段内的地址不重复。</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/4.jpg" alt></p>
+<p><strong>路由控制</strong>：将分组数据发送到最终目标地址的功能。</p>
+<p><strong>为什么IP要面向无连接</strong></p>
+<p>为了简化和提速，面向连接比面向无连接处理相对复杂，甚至管理连接本身就是一个复杂的事情。每次通信都要事先建立连接。</p>
+<p>但是为了提高可靠性，上一层的TCP采用面向有连接型。</p>
+<p><strong>IP地址的分类</strong></p>
+<p>A类地址：0.0.0.0~127.0.0.0    首位以0开头</p>
+<p>B类地址：128.0.0.1~191.255.0.0    前两位是10开头</p>
+<p>C类地址：192.168.0.0~239.255.255.0    前三位是110开头</p>
+<p>D类地址：224.0.0.0~239.255.255.255    前四位是1110开头</p>
+<p>（用比特位表示<strong>主机地址</strong>时，不能全为0或1，全为0是在2对应的网络地址和IP地址不可获知的情况下使用，全为1的主机地址常作为广播地址）</p>
+<p><strong>多播</strong>一般使用D类地址，可以通过路由器转发，但是广播不可以通过路由器转发。</p>
+<p>既定已知的多播地址</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/5.jpg" alt></p>
+<p><strong>子网和子网掩码</strong></p>
+<p>实际是将原来A.B.C类等分类中的主机地址部分用作子网地址，可以将原网络分为多个物理网络的一种机制。</p>
+<p>子网计算：</p>
+<p>1)将子网数目转化为<a href="https://baike.baidu.com/item/二进制" target="_blank" rel="noopener">二进制</a>来表示</p>
+<p>2)取得该<a href="https://baike.baidu.com/item/二进制" target="_blank" rel="noopener">二进制</a>的位数，为 N</p>
+<p>3)取得该IP地址的类子网掩码，将其<a href="https://baike.baidu.com/item/主机地址" target="_blank" rel="noopener">主机地址</a>部分的前N位置1 即得出该IP地址划分子网的子网掩码。</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/6.jpg" alt></p>
+<p><strong>CIDR</strong></p>
+<p>采用任意长度分割IP地址的网络标识和主机标识。</p>
+<p><strong>VLSM</strong></p>
+<p>可以随机修改组织内各个部门的子网掩码长度的机制。</p>
+<p><strong>私有网络的IP地址</strong></p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/7.jpg" alt></p>
+<p><strong>IP地址和路由控制</strong></p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/8.jpg" alt></p>
+<p><strong>路由控制表的聚合</strong></p>
+<p>用来减少路由表的条目。</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/9.jpg" alt></p>
+<p><strong>路径MTU</strong></p>
+<p>为了防止数据在传输途中被分片，路径MTU是指路径中所有数据链路最小的MTU，路由器按照路径MTU进行分片后再进行发送。</p>
+<p>路径MTU发现的步骤</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/10.jpg" alt></p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/11.jpg" alt></p>
+<h2 id="IPV6"><a href="#IPV6" class="headerlink" title="IPV6"></a>IPV6</h2><p>128比特，一般写为8个16位字节。</p>
+<p><img src="/2020/03/01/TCP-IP读书笔记/12.jpg" alt></p>
+<h2 id="IPv4报头"><a href="#IPv4报头" class="headerlink" title="IPv4报头"></a>IPv4报头</h2><p><img src="/2020/03/01/TCP-IP读书笔记/13.jpg" alt></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">版本：标识IP首部的版本号。IPv4即为4。</span><br><span class="line">首部长度：4比特构成，表明IP首部的大小。对于没有可选项的IP包，首部长度为5，也就是20字节。</span><br><span class="line">区分服务：由8比特构成，表明服务质量。目前基本网络都忽略了这个字段。</span><br><span class="line">总长度：表示头部+数据合起来的字节数，因为有16个字节，所以IP包的最大长度为2^16字节</span><br><span class="line">标识：用于分片重组，同一个分片的标识值相同(并且目标地址、源地址和协议相同)。通常每发送一个IP包，他的值也是递增的。</span><br><span class="line">标志：3比特构成	</span><br><span class="line">	第0位：未使用，现在必须是0</span><br><span class="line">	第1位：指示是否可以分片（0可以分片1不可以分片）</span><br><span class="line">	第2位：在被分片的情况下是否为最后一个包（0是最后一个，1不是最后一个）</span><br><span class="line">片偏移：13个比特。标识被分片的每一个分段相对原始数据的位置。因为分片是以8为单位分片的，所以最大可表示8*2^13=65536字节的位置。</span><br><span class="line">生存时间：在实际中，每经过一个路由器就-1，值为0则丢弃。</span><br><span class="line">协议：表示IP首部属于哪个协议。</span><br><span class="line">首部校验和：只校验首部信息，确保数据包不被破坏。</span><br><span class="line">源地址：32比特（4个字节）构成，表示发端IP地址。</span><br><span class="line">目标地址：同源地址。</span><br><span class="line">可选项：通常在实验或诊断时使用。包含安全级别、源路径、路径记录、时间戳。</span><br><span class="line">填充：因为首选项的存在，数据包首部可能不为32比特的整数倍，通过向该字段填充0，调整首部为32比特的整数倍。</span><br><span class="line">数据：存入数据。</span><br></pre></td></tr></table></figure>
+
+<h2 id="IPv6报头"><a href="#IPv6报头" class="headerlink" title="IPv6报头"></a>IPv6报头</h2><p><img src="/2020/03/01/TCP-IP读书笔记/14.jpg" alt></p>
+<p>没写的就是和IPv4一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">通信量类：相当于IPv4的服务质量。</span><br><span class="line">流标号：准备用于服务质量。</span><br><span class="line">有效载荷长度：只包含数据的长度。</span><br><span class="line">下一个首部：相当于IPv4的协议字段。</span><br><span class="line">跳数限制：相当于IPv4的生存时间。</span><br><span class="line">IPv6扩展首部：在对数据报进行分片时，需要使用扩展首部</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+            <a href="/tags/TCP-IP/" rel="tag"># TCP/IP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/01/python进阶/" rel="next" title="python之函数">
+                <i class="fa fa-chevron-left"></i> python之函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/02/IO复用poll/" rel="prev" title="IO复用poll">
+                IO复用poll <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="王祎豪">
+            
+              <p class="site-author-name" itemprop="name">王祎豪</p>
+              <p class="site-description motion-element" itemprop="description">活的像个旁观者，会轻松很多</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IP"><span class="nav-number">1.</span> <span class="nav-text">IP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IPV6"><span class="nav-number">1.1.</span> <span class="nav-text">IPV6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv4报头"><span class="nav-number">1.2.</span> <span class="nav-text">IPv4报头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPv6报头"><span class="nav-number">1.3.</span> <span class="nav-text">IPv6报头</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王祎豪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
