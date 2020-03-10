@@ -436,7 +436,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/08/makefile/" itemprop="url">makefile</a></h1>
+                <a class="post-title-link" href="/2020/03/08/makefile/" itemprop="url">Makefile</a></h1>
         
 
         <div class="post-meta">
@@ -510,8 +510,11 @@
       
         
           
-          
-          
+          在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。
+预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。
+比如有一个项目，项目结构是这样
+12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/08/makefile/#more" rel="contents">

@@ -79,18 +79,30 @@
 
 
 
-<meta name="description" content="活的像个旁观者，会轻松很多">
+<meta name="description" content="在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目录）：网络部分的">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="makefile">
+<meta property="og:title" content="Makefile">
 <meta property="og:url" content="https://sap-pill.github.io/2020/03/08/makefile/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="活的像个旁观者，会轻松很多">
+<meta property="og:description" content="在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目录）：网络部分的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-08T03:25:37.267Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/2.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/3.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/4.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/5.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/6.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/7.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/8.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/9.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/10.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/11.jpg">
+<meta property="og:updated_time" content="2020-03-10T06:08:07.265Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="makefile">
-<meta name="twitter:description" content="活的像个旁观者，会轻松很多">
+<meta name="twitter:title" content="Makefile">
+<meta name="twitter:description" content="在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目录）：网络部分的">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/03/08/makefile/1.jpg">
 
 
 
@@ -126,7 +138,7 @@
 
 
 
-  <title>makefile | onlooker</title>
+  <title>Makefile | onlooker</title>
   
 
 
@@ -280,7 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">makefile</h1>
+          <h1 class="post-title" itemprop="name headline">Makefile</h1>
         
 
         <div class="post-meta">
@@ -352,7 +364,32 @@
       
 
       
-        
+        <p>在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。</p>
+<p>预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。</p>
+<p>比如有一个项目，项目结构是这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object（目录）</span><br><span class="line">	Database（目录）：数据库操作</span><br><span class="line">	Core（目录）：项目核心代码	100个.c文件</span><br><span class="line">	DateData（目录）：基础业务逻辑	1000个.c文件</span><br><span class="line">	Inter（目录）：网络部分的代码</span><br></pre></td></tr></table></figure>
+
+<p>在这个情况下使用gcc是不合理的，这个时候就要使用Makefile文件来编译。</p>
+<p>写几个样例测试下</p>
+<p><img src="/2020/03/08/makefile/1.jpg" alt></p>
+<p><img src="/2020/03/08/makefile/2.jpg" alt></p>
+<p><img src="/2020/03/08/makefile/3.jpg" alt></p>
+<p><img src="/2020/03/08/makefile/4.jpg" alt></p>
+<p><img src="/2020/03/08/makefile/5.jpg" alt></p>
+<p><img src="/2020/03/08/makefile/6.jpg" alt></p>
+<p><img src="/2020/03/08/makefile/7.jpg" alt></p>
+<p>原来使用这个来编译</p>
+<p><img src="/2020/03/08/makefile/8.jpg" alt></p>
+<p>如果修改其中一个文件代码，你就得编译所有的文件。</p>
+<p>这时候写一个Makefile文件</p>
+<p><img src="/2020/03/08/makefile/9.jpg" alt></p>
+<p>可执行文件main需要其他几个.o文件，并通过gcc -o来生成.o文件，这时候这些.o文件得通过.c文件来生成，并通过gcc -c来生成.o文件</p>
+<p>然后在通过make文件就可以一步完成了。</p>
+<p>当你修改其中一个文件后，再make的时候，你会发现只会返回关于你修改的文件的编译。</p>
+<p><img src="/2020/03/08/makefile/10.jpg" alt></p>
+<p>如果想重新编译的话只需要执行一次make clean，然后从新make就可以了</p>
+<p><img src="/2020/03/08/makefile/11.jpg" alt></p>
+
       
     </div>
     
