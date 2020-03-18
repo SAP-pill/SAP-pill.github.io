@@ -79,18 +79,24 @@
 
 
 
-<meta name="description" content="活的像个旁观者，会轻松很多">
+<meta name="description" content="计算机的基本组成冯*诺依曼体系 计算器    控制器    存储器    输入设备    输出设备  总线 PC机32位或者64位表示的是运算器计算能力，ALU的宽度，一次计算能够计算的数据的位数。 数据总线：传递数据。 地址总线：寻址的    根数–&amp;gt;寻址能力。 控制总线：控制传输方向。 存储器的分类 寄存器    高速缓存    内存    硬盘    网络 从右往左，速度越快，从左往右">
 <meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统基础">
 <meta property="og:url" content="https://sap-pill.github.io/2020/03/18/操作系统基础/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="活的像个旁观者，会轻松很多">
+<meta property="og:description" content="计算机的基本组成冯*诺依曼体系 计算器    控制器    存储器    输入设备    输出设备  总线 PC机32位或者64位表示的是运算器计算能力，ALU的宽度，一次计算能够计算的数据的位数。 数据总线：传递数据。 地址总线：寻址的    根数–&amp;gt;寻址能力。 控制总线：控制传输方向。 存储器的分类 寄存器    高速缓存    内存    硬盘    网络 从右往左，速度越快，从左往右">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-18T07:15:50.637Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/18/操作系统基础/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/18/操作系统基础/2.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/18/操作系统基础/3.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/18/操作系统基础/4.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/03/18/操作系统基础/5.jpg">
+<meta property="og:updated_time" content="2020-03-18T15:03:44.259Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统基础">
-<meta name="twitter:description" content="活的像个旁观者，会轻松很多">
+<meta name="twitter:description" content="计算机的基本组成冯*诺依曼体系 计算器    控制器    存储器    输入设备    输出设备  总线 PC机32位或者64位表示的是运算器计算能力，ALU的宽度，一次计算能够计算的数据的位数。 数据总线：传递数据。 地址总线：寻址的    根数–&amp;gt;寻址能力。 控制总线：控制传输方向。 存储器的分类 寄存器    高速缓存    内存    硬盘    网络 从右往左，速度越快，从左往右">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/03/18/操作系统基础/1.jpg">
 
 
 
@@ -352,7 +358,39 @@
       
 
       
-        
+        <h1 id="计算机的基本组成"><a href="#计算机的基本组成" class="headerlink" title="计算机的基本组成"></a>计算机的基本组成</h1><p><strong>冯*诺依曼体系</strong></p>
+<p>计算器    控制器    存储器    输入设备    输出设备</p>
+<p><img src="/2020/03/18/操作系统基础/1.jpg" alt></p>
+<p><strong>总线</strong></p>
+<p>PC机32位或者64位表示的是运算器计算能力，ALU的宽度，一次计算能够计算的数据的位数。</p>
+<p>数据总线：传递数据。</p>
+<p>地址总线：寻址的    根数–&gt;寻址能力。</p>
+<p>控制总线：控制传输方向。</p>
+<p><strong>存储器的分类</strong></p>
+<p>寄存器    高速缓存    内存    硬盘    网络</p>
+<p>从右往左，速度越快，从左往右，存储当量大。</p>
+<h1 id="操作系统对进程的管理"><a href="#操作系统对进程的管理" class="headerlink" title="操作系统对进程的管理"></a>操作系统对进程的管理</h1><p><strong>标示一个进程</strong>：PID</p>
+<p><strong>控制一个进程</strong>：进程控制块 PCB struct task_struct</p>
+<p><img src="/2020/03/18/操作系统基础/2.jpg" alt></p>
+<p><strong>创建一个进程</strong>：先申请一个PCB，然后加载程序，生成进程实体。</p>
+<p><strong>进程结束</strong>：先结束进程实体，再释放PCB结点，需要一定的条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">僵尸进程：进程实体已经被释放，但是PCB结点并没有被释放，退出码（PCB）</span><br><span class="line"></span><br><span class="line">孤儿进程：父进程 子进程（父进程已经结束，但是子进程未结束，那么子进程就是孤儿进程）。将所有的孤儿进程都直接挂载在INIT下。</span><br></pre></td></tr></table></figure>
+
+<p><strong>进程的状态：</strong></p>
+<p><img src="/2020/03/18/操作系统基础/3.jpg" alt></p>
+<p>并行与并发</p>
+<p>并行需要硬件支持。</p>
+<p><img src="/2020/03/18/操作系统基础/4.jpg" alt></p>
+<h1 id="内存（简单分页）以及程序的加载"><a href="#内存（简单分页）以及程序的加载" class="headerlink" title="内存（简单分页）以及程序的加载"></a>内存（简单分页）以及程序的加载</h1><p>简单分页：将内存划分成大小相等的（4K）的块–&gt;页帧。对页帧进行划分。</p>
+<p><img src="/2020/03/18/操作系统基础/5.jpg" alt></p>
+<p>程序在磁盘上也是存储在4K大小的块上—页</p>
+<p>如果运行一个程序，则将程序的页加载到内存的帧上。</p>
+<p>操作系统会为每一个进程维护一个页表，页表中存储的是<strong>进程的页</strong>到<strong>内存的页帧</strong>的映射。</p>
+<p><strong>逻辑地址</strong>：在程序上的偏移。</p>
+<p>在程序中直接访问的是逻辑地址，在CPU访问此逻辑地址时，需要通过地址映射到其物理地址，才能访问此地址上的数据或指令。</p>
+<p>如果在两个进程中打印的变量的地址相等，并不能说明这两个变量是同一个变量。</p>
+<h2 id="C程序的4G虚拟地址空间"><a href="#C程序的4G虚拟地址空间" class="headerlink" title="C程序的4G虚拟地址空间"></a>C程序的4G虚拟地址空间</h2><p>交换分区：在磁盘上开辟一块空间，以内存管理方式进行管理，作为对内存的补充。（一个进程的所有页不一定非得在内存上存储）</p>
+
       
     </div>
     
@@ -446,8 +484,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -509,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机的基本组成"><span class="nav-number">1.</span> <span class="nav-text">计算机的基本组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统对进程的管理"><span class="nav-number">2.</span> <span class="nav-text">操作系统对进程的管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存（简单分页）以及程序的加载"><span class="nav-number">3.</span> <span class="nav-text">内存（简单分页）以及程序的加载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C程序的4G虚拟地址空间"><span class="nav-number">3.1.</span> <span class="nav-text">C程序的4G虚拟地址空间</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
