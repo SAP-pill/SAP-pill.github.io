@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="操作系统,">
+  <meta name="keywords" content="Linux,">
 
 
 
@@ -79,25 +79,18 @@
 
 
 
-<meta name="description" content="进程管理源码文件：.c文件 程序：使用编译器将源码编译为计算机能够识别并执行的二进制文件（exe,.out） ​            存储在磁盘上的可执行二进制文件。 程序—&amp;gt;进程的过程（程序如何加载到内存上称为一个进程） 进程：运行中的程序，将二进制可执行文件加载到内存上，然后由CPU执行其中的一些指令，整个执行的过程，将其称为进程。 结果：进程执行的过程中输出的数据。 操作系统是如何表">
-<meta name="keywords" content="操作系统">
+<meta name="description" content="库文件静态库：在程序链接时，将库中的内容连接到最终的可执行文件中，执行程序时，是不需要静态库的支持。 共享库：在链接时，只是做一个标记，在运行时由操作系统动态加载库文件来执行,如果使用共享库生成的可执行文件，运行时需要依赖共享库。 关于共享库的环境变量：LD_LIBRARY_PATH  在终端上使用export命令设置环境变量的值（库所在的绝对路径）–&amp;gt;只对当前终端有效。 修改家目录下的文件">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程">
-<meta property="og:url" content="https://sap-pill.github.io/2020/03/11/进程/index.html">
+<meta property="og:title" content="文件">
+<meta property="og:url" content="https://sap-pill.github.io/2020/03/18/文件/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="进程管理源码文件：.c文件 程序：使用编译器将源码编译为计算机能够识别并执行的二进制文件（exe,.out） ​            存储在磁盘上的可执行二进制文件。 程序—&amp;gt;进程的过程（程序如何加载到内存上称为一个进程） 进程：运行中的程序，将二进制可执行文件加载到内存上，然后由CPU执行其中的一些指令，整个执行的过程，将其称为进程。 结果：进程执行的过程中输出的数据。 操作系统是如何表">
+<meta property="og:description" content="库文件静态库：在程序链接时，将库中的内容连接到最终的可执行文件中，执行程序时，是不需要静态库的支持。 共享库：在链接时，只是做一个标记，在运行时由操作系统动态加载库文件来执行,如果使用共享库生成的可执行文件，运行时需要依赖共享库。 关于共享库的环境变量：LD_LIBRARY_PATH  在终端上使用export命令设置环境变量的值（库所在的绝对路径）–&amp;gt;只对当前终端有效。 修改家目录下的文件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://sap-pill.github.io/2020/03/11/进程/1.jpg">
-<meta property="og:image" content="https://sap-pill.github.io/2020/03/11/进程/2.jpg">
-<meta property="og:image" content="https://sap-pill.github.io/2020/03/11/进程/3.jpg">
-<meta property="og:image" content="https://sap-pill.github.io/2020/03/11/进程/4.jpg">
-<meta property="og:image" content="https://sap-pill.github.io/2020/03/11/进程/5.jpg">
-<meta property="og:image" content="https://sap-pill.github.io/2020/03/11/进程/6.jpg">
-<meta property="og:updated_time" content="2020-03-18T06:34:41.236Z">
+<meta property="og:updated_time" content="2020-03-18T07:15:26.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程">
-<meta name="twitter:description" content="进程管理源码文件：.c文件 程序：使用编译器将源码编译为计算机能够识别并执行的二进制文件（exe,.out） ​            存储在磁盘上的可执行二进制文件。 程序—&amp;gt;进程的过程（程序如何加载到内存上称为一个进程） 进程：运行中的程序，将二进制可执行文件加载到内存上，然后由CPU执行其中的一些指令，整个执行的过程，将其称为进程。 结果：进程执行的过程中输出的数据。 操作系统是如何表">
-<meta name="twitter:image" content="https://sap-pill.github.io/2020/03/11/进程/1.jpg">
+<meta name="twitter:title" content="文件">
+<meta name="twitter:description" content="库文件静态库：在程序链接时，将库中的内容连接到最终的可执行文件中，执行程序时，是不需要静态库的支持。 共享库：在链接时，只是做一个标记，在运行时由操作系统动态加载库文件来执行,如果使用共享库生成的可执行文件，运行时需要依赖共享库。 关于共享库的环境变量：LD_LIBRARY_PATH  在终端上使用export命令设置环境变量的值（库所在的绝对路径）–&amp;gt;只对当前终端有效。 修改家目录下的文件">
 
 
 
@@ -127,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sap-pill.github.io/2020/03/11/进程/">
+  <link rel="canonical" href="https://sap-pill.github.io/2020/03/18/文件/">
 
 
 
 
 
-  <title>进程 | onlooker</title>
+  <title>文件 | onlooker</title>
   
 
 
@@ -270,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/11/进程/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/18/文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -287,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">进程</h1>
+          <h1 class="post-title" itemprop="name headline">文件</h1>
         
 
         <div class="post-meta">
@@ -299,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-11T19:14:19+08:00">
-                2020-03-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T15:14:40+08:00">
+                2020-03-18
               </time>
             
 
@@ -359,51 +352,25 @@
       
 
       
-        <h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><p>源码文件：.c文件</p>
-<p>程序：使用编译器将源码编译为计算机能够识别并执行的二进制文件（exe,.out）</p>
-<p>​            存储在磁盘上的可执行二进制文件。</p>
-<p><strong>程序—&gt;进程的过程（程序如何加载到内存上称为一个进程）</strong></p>
-<p>进程：运行中的程序，将二进制可执行文件加载到内存上，然后由CPU执行其中的一些指令，整个执行的过程，将其称为进程。</p>
-<p>结果：进程执行的过程中输出的数据。</p>
-<h2 id="操作系统是如何表示以及管理进程"><a href="#操作系统是如何表示以及管理进程" class="headerlink" title="操作系统是如何表示以及管理进程"></a>操作系统是如何表示以及管理进程</h2><p>将进程的相关属性记录下来，通过属性值的变化就能够描述进程正在执行，操作系统为每一个进程（PCB-进程控制块（struct 结构体变量））分配了一个编号-PID。</p>
-<h2 id="如何查看进程"><a href="#如何查看进程" class="headerlink" title="如何查看进程"></a>如何查看进程</h2><h3 id="ps命令"><a href="#ps命令" class="headerlink" title="ps命令"></a>ps命令</h3><p>刚开虚拟机，会发现只有ps这个命令进程和bash这个终端。</p>
-<p><img src="/2020/03/11/进程/1.jpg" alt></p>
-<p>常用的是<strong>ps -aux</strong>,</p>
-<p><img src="/2020/03/11/进程/2.jpg" alt></p>
-<p>-e    显示系统上所有的进程</p>
-<p>-f    显示出父子进程信息</p>
-<p>-L    显示线程信息</p>
-<p>-a    此终端机下运行的所有进程</p>
-<p>-u    显示进程资源占用情况    CPU MEM 虚拟内存 实际内存</p>
-<p>-x    显示没有控制终端的进程</p>
-<h3 id="top命令"><a href="#top命令" class="headerlink" title="top命令"></a>top命令</h3><p><img src="/2020/03/11/进程/3.jpg" alt></p>
-<h3 id="管道和过滤命令"><a href="#管道和过滤命令" class="headerlink" title="管道和过滤命令"></a>管道和过滤命令</h3><p>|    grep</p>
-<p>&amp;    如果执行一个命令或者一个程序时，在其后面加一个&amp;，将该命令或程序放到后台执行。</p>
-<h3 id="kill命令"><a href="#kill命令" class="headerlink" title="kill命令"></a>kill命令</h3><p>kill pid    结束一个进程</p>
-<p>kill -stop pid    挂起进程，将进程暂停</p>
-<p>kill -9 pid     强制结束一个进程</p>
-<p>pkill CMD    结束一组相关的进程</p>
-<h3 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a>jobs</h3><p>jobs    显示挂起的任务</p>
-<p>fg+任务号    放到前台进行</p>
-<p>bg+任务号    将挂起的进程放到后台执行</p>
-<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><p>分组：用户    组</p>
-<h2 id="用户信息存储的文件："><a href="#用户信息存储的文件：" class="headerlink" title="用户信息存储的文件："></a>用户信息存储的文件：</h2><p>/etc/passwd    用vim打开，信息分别是</p>
-<p>用户名    密码的占位符    用户ID    组ID    用户家目录    默认使用的终端程序</p>
-<p><img src="/2020/03/11/进程/4.jpg" alt></p>
-<p>/etc/group    里面的信息分别是</p>
-<p>组名    组ID</p>
-<p><img src="/2020/03/11/进程/5.jpg" alt></p>
-<p>/etc/shadow    用户密码信息</p>
-<p>$加密算法ID$加密秘钥$密文</p>
-<p><img src="/2020/03/11/进程/6.jpg" alt></p>
-<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><p>useradd newusername     如果没有-g选项，除了新建一个用户，还会新建一个组</p>
-<p>-g    执行用户的主组</p>
-<p>-G    指定用户所属附加组</p>
-<p>-d    设置家目录</p>
-<p>-s    设置默认终端</p>
-<p>userdel username     只会删除用户信息，不会删除/home下的同名目录</p>
-<p>userdel -r username     同步删除家目录</p>
-<p>passwd    username    修改用户密码</p>
+        <h1 id="库文件"><a href="#库文件" class="headerlink" title="库文件"></a>库文件</h1><p><strong>静态库</strong>：在程序链接时，将库中的内容连接到最终的可执行文件中，执行程序时，是不需要静态库的支持。</p>
+<p><strong>共享库</strong>：在链接时，只是做一个标记，在运行时由操作系统动态加载库文件来执行,如果使用共享库生成的可执行文件，运行时需要依赖共享库。</p>
+<p>关于共享库的环境变量：LD_LIBRARY_PATH</p>
+<ul>
+<li>在终端上使用export命令设置环境变量的值（库所在的绝对路径）–&gt;只对当前终端有效。</li>
+<li>修改家目录下的文件：.bashrc        —&gt;对此用户创建的所有终端有效。</li>
+</ul>
+<p>将共享库直接拷贝到默认加载路径下：/lib       /usr/lib</p>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><p>Linux文件系统—&gt;EXT4文件系统    索引式的文件系统</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EXT	Linux</span><br><span class="line">NTFS	windows</span><br><span class="line">FAT32	U盘（移动数据时，大于4G的移动不了，只能使用移动硬盘）</span><br></pre></td></tr></table></figure>
+
+<p>EXT4文件系统分为三个区域</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">superblock:记录此文件系统的整体信息，包括inode/block的总量、使用量、以及文件系统的格式与相关信息等。</span><br><span class="line">inode:记录文件的属性，一个文件占用一个inode，同时记录此文件的数据所在的block号码。</span><br><span class="line">block:实际记录文件的内容，若档案太大时，会占用多个block。(一个block大概4K大小)</span><br></pre></td></tr></table></figure>
+
+<h1 id="链接文件"><a href="#链接文件" class="headerlink" title="链接文件"></a>链接文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">软链接（符号链接）：ln -s 源文件 链接文件</span><br><span class="line">	链接文件和源文件使用不同的inode节点，但是链接文件指向的是源文件。只要源文件不动，链接文件就能找到源文件。相当于Windows的快捷方式。</span><br><span class="line">硬链接：ln 源文件 链接文件</span><br><span class="line">	链接文件和源文件使用相同的inode节点，链接文件相当于源文件的别名。对目录文件不能使用硬链接。</span><br></pre></td></tr></table></figure>
+
+<h1 id="系统命令"><a href="#系统命令" class="headerlink" title="系统命令"></a>系统命令</h1><p>运行级别的查看命令：runleve</p>
+<p>常用关机命令：init 0    halt    shutdown</p>
+<p>重启命令：init 6    reboot</p>
 
       
     </div>
@@ -421,7 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
           
         </div>
       
@@ -434,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/09/数据库/" rel="next" title="数据库">
-                <i class="fa fa-chevron-left"></i> 数据库
+              <a href="/2020/03/18/操作系统基础/" rel="next" title="操作系统基础">
+                <i class="fa fa-chevron-left"></i> 操作系统基础
               </a>
             
           </div>
@@ -443,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/18/进程创建/" rel="prev" title="进程创建">
-                进程创建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -580,7 +543,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程管理"><span class="nav-number">1.</span> <span class="nav-text">进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统是如何表示以及管理进程"><span class="nav-number">1.1.</span> <span class="nav-text">操作系统是如何表示以及管理进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何查看进程"><span class="nav-number">1.2.</span> <span class="nav-text">如何查看进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ps命令"><span class="nav-number">1.2.1.</span> <span class="nav-text">ps命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#top命令"><span class="nav-number">1.2.2.</span> <span class="nav-text">top命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管道和过滤命令"><span class="nav-number">1.2.3.</span> <span class="nav-text">管道和过滤命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kill命令"><span class="nav-number">1.2.4.</span> <span class="nav-text">kill命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jobs"><span class="nav-number">1.2.5.</span> <span class="nav-text">jobs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户管理"><span class="nav-number">2.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户信息存储的文件："><span class="nav-number">2.1.</span> <span class="nav-text">用户信息存储的文件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加用户"><span class="nav-number">2.2.</span> <span class="nav-text">添加用户</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#库文件"><span class="nav-number">1.</span> <span class="nav-text">库文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件系统"><span class="nav-number">2.</span> <span class="nav-text">文件系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#链接文件"><span class="nav-number">3.</span> <span class="nav-text">链接文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统命令"><span class="nav-number">4.</span> <span class="nav-text">系统命令</span></a></li></ol></div>
             
 
           </div>
