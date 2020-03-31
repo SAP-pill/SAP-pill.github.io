@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 //删除注释  2.编译生成.s文件 1234gcc -S main.i -o main.s//词法语法解">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-04T03:54:58.052Z">
+<meta property="og:updated_time" content="2020-03-28T09:56:39.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gcc的使用和编译链接原理">
 <meta name="twitter:description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 //删除注释  2.编译生成.s文件 1234gcc -S main.i -o main.s//词法语法解">
@@ -367,7 +367,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc main.s -o main</span><br><span class="line"><span class="comment">//合并各个段，调整段大小及段的起始位置</span></span><br></pre></td></tr></table></figure>
 
 <p>一次性完成</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c -o main</span><br><span class="line"><span class="comment">//一般生成.o文件，可以让别人使用</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -o main main.c</span><br><span class="line"><span class="comment">//一般生成.o文件，可以让别人使用</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="gcc常用选项"><a href="#gcc常用选项" class="headerlink" title="gcc常用选项"></a>gcc常用选项</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">o	<span class="comment">//生成目标	</span></span><br><span class="line">c	<span class="comment">//取消链接步骤，编译源码并最后生成目标文件</span></span><br><span class="line">E	<span class="comment">//只运行C预编译器（头文件，宏等展开）</span></span><br><span class="line">S	<span class="comment">//生成汇编语言文件后停止编译（.s文件）</span></span><br><span class="line">Wall	<span class="comment">//打开编译告警（所有）</span></span><br><span class="line">g	<span class="comment">//嵌入调试信息，方便gdb调试</span></span><br><span class="line">llib	<span class="comment">//链接 lib 库 </span></span><br><span class="line">Idir	<span class="comment">//增加 include 目录头文件路径</span></span><br><span class="line">LDir	<span class="comment">//增加 lib 目录</span></span><br></pre></td></tr></table></figure>
 
@@ -492,7 +492,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -503,7 +503,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
