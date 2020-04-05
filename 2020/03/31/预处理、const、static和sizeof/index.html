@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C++,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="预处理、const、static和sizeof使用#define宏定义时需要注意的地方1234567#include&amp;lt;stdio.h&amp;gt;#define SQR(x) (x*x)int main()&amp;#123;    int a,b=3;    a=SQR(b+2);&amp;#125;  如果是上面这个方式，由于宏定义展开是在预处理时期，也就是编译之前，此时b并没有被赋值，这是b只是一个符号，则">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="预处理、const、static和sizeof">
+<meta property="og:url" content="https://sap-pill.github.io/2020/03/31/预处理、const、static和sizeof/index.html">
+<meta property="og:site_name" content="onlooker">
+<meta property="og:description" content="预处理、const、static和sizeof使用#define宏定义时需要注意的地方1234567#include&amp;lt;stdio.h&amp;gt;#define SQR(x) (x*x)int main()&amp;#123;    int a,b=3;    a=SQR(b+2);&amp;#125;  如果是上面这个方式，由于宏定义展开是在预处理时期，也就是编译之前，此时b并没有被赋值，这是b只是一个符号，则">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-01T13:56:31.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="预处理、const、static和sizeof">
+<meta name="twitter:description" content="预处理、const、static和sizeof使用#define宏定义时需要注意的地方1234567#include&amp;lt;stdio.h&amp;gt;#define SQR(x) (x*x)int main()&amp;#123;    int a,b=3;    a=SQR(b+2);&amp;#125;  如果是上面这个方式，由于宏定义展开是在预处理时期，也就是编译之前，此时b并没有被赋值，这是b只是一个符号，则">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sap-pill.github.io/2020/03/31/预处理、const、static和sizeof/">
+
+
+
+
+
+  <title>预处理、const、static和sizeof | onlooker</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">onlooker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to onlooker's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/31/预处理、const、static和sizeof/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">预处理、const、static和sizeof</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-31T13:03:02+08:00">
+                2020-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="预处理、const、static和sizeof"><a href="#预处理、const、static和sizeof" class="headerlink" title="预处理、const、static和sizeof"></a>预处理、const、static和sizeof</h1><h2 id="使用-define宏定义时需要注意的地方"><a href="#使用-define宏定义时需要注意的地方" class="headerlink" title="使用#define宏定义时需要注意的地方"></a>使用#define宏定义时需要注意的地方</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SQR(x) (x*x)</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a,b=<span class="number">3</span>;</span><br><span class="line">    a=SQR(b+<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是上面这个方式，由于<strong>宏定义展开是在预处理时期，也就是编译之前，此时b并没有被赋值，这是b只是一个符号</strong>，则a=(b+2*b+2)，所以应该将define的内容改为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SQR(x) ((x)*(x))</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="宏参数的连接"><a href="#宏参数的连接" class="headerlink" title="宏参数的连接"></a>宏参数的连接</h2><p>使用#把宏参数变为一个字符串，用##把两个宏参数贴合在一起。</p>
+<h2 id="const的作用"><a href="#const的作用" class="headerlink" title="const的作用"></a>const的作用</h2><p>1、用于定义常量，编译器可以对其进行数据静态类型安全检查</p>
+<p>2、修饰函数形式参数，将“值传递”改为“const &amp;传递”可以提高效率</p>
+<p>3、修饰函数的返回值，返回值不能被直接修改</p>
+<p>4、修饰类的成员函数，任何不会修改数据成员的函数都应该用const来修饰</p>
+<h2 id="常量和指针常量"><a href="#常量和指针常量" class="headerlink" title="常量和指针常量"></a>常量和指针常量</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> i=<span class="number">0</span>; <span class="comment">//i是常量，i的值不会被修改</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p1=&amp;i; <span class="comment">//指针p1所指内容是常量，可以不初始化</span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p2=&amp;j <span class="comment">//指针p2是常量，所指内容可修改</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * <span class="keyword">const</span> p3=&amp;i; <span class="comment">//指针p3是常量，所指内容也是常量</span></span><br><span class="line">p1=&amp;j <span class="comment">//合法</span></span><br><span class="line">*p2=<span class="number">100</span>; <span class="comment">//合法</span></span><br><span class="line"><span class="number">1</span>、<span class="keyword">const</span>声明的变量只能被读</span><br><span class="line"><span class="number">2</span>、必须初始化</span><br></pre></td></tr></table></figure>
+
+<h2 id="const与define区别"><a href="#const与define区别" class="headerlink" title="const与define区别"></a>const与define区别</h2><p>define只是用来做文本替换的。</p>
+<p>在编译的时候，就将define的所有内容进行替换了，它的生命周期止于编译期，它存在于程序的代码段，在实际程序中，它只是一个命令中的参数或者是常数， 并没有实际的存在。</p>
+<p>const存在于程序的数据段，并且在堆栈分配了空间，他在程序中可以被调用、传递，const常量有数据类型，而宏常量没有数据类型，编译器可以对const常量进行检查。</p>
+<h2 id="程序的内存分配"><a href="#程序的内存分配" class="headerlink" title="程序的内存分配"></a>程序的内存分配</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>; <span class="comment">//全局初始化区 </span></span><br><span class="line"><span class="keyword">char</span> *p1;<span class="comment">//全局未初始化区 </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> b; <span class="comment">//栈 </span></span><br><span class="line">  <span class="keyword">char</span> s[] = <span class="string">"abc"</span>; <span class="comment">//栈 </span></span><br><span class="line">  <span class="keyword">char</span> *p2; <span class="comment">//栈 </span></span><br><span class="line">  <span class="keyword">char</span> *p3 = <span class="string">"123456"</span>; <span class="comment">//123456\0在常量区，p3在栈上</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">int</span> c =<span class="number">0</span>; <span class="comment">//全局（静态）初始化区 </span></span><br><span class="line">  p1 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">10</span>); <span class="comment">//堆 </span></span><br><span class="line">  p2 = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="number">20</span>); <span class="comment">//堆 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>栈区（stack）</strong>— 由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。 （编译器自动分配释放，连续，高地址向低地址，空间限制，分配速度快，函数调用中先入下一条语句位置，从右到左的参数，局部变量）</p>
+<p><strong>堆区（heap）</strong> — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收 。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。 （不连续空间，速度慢，有碎片，向高地址扩展，比较灵活，大）</p>
+<p><strong>全局区（静态区</strong>）（static）—，全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域， 未初始化的全局变量、未初始化的静态变量在相邻的另一块区域。 - 程序结束后有系统释放 </p>
+<p><strong>文字常量区</strong>—常量字符串就是放在这里的。程序结束后由系统释放 </p>
+<p><strong>程序代码区</strong>—存放函数体的二进制代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">程序段(Text):程序代码在内存中的映射，存放函数体的二进制代码。</span><br><span class="line">初始化过的数据(Data):在程序运行初已经对变量进行初始化的数据。</span><br><span class="line">未初始化过的数据(BSS):在程序运行初未对变量进行初始化的数据。</span><br><span class="line">栈 (Stack):存储局部、临时变量，函数调用时，存储函数的返回指针，用于控制函数的调用和返回。在程序块开始时自动分配内存,结束时自动释放内存，其操作方式类似于数据结构中的栈。</span><br><span class="line">堆 (Heap):存储动态内存分配,需要程序员手工分配,手工释放.注意它与数据结构中的堆是两回事，分配方式类似于链表。</span><br><span class="line">注：1.Text, BSS, Data段在编译时已经决定了进程将占用多少VM,可以通过size，知道这些信息：</span><br><span class="line">2. 正常情况下，Linux进程不能对用来存放程序代码的内存区域执行写操作，即程序代码是以只读的方式加载到内存中，但它可以被多个进程安全的共享。</span><br></pre></td></tr></table></figure>
+
+<h2 id="static有什么作用"><a href="#static有什么作用" class="headerlink" title="static有什么作用"></a>static有什么作用</h2><p>1、在函数体，一个被声明为静态的变量在这一函数被调用的过程中维持其值不变。</p>
+<p>2、在模块内（但在函数体外），一个被声明为静态的变量可以被模块内所有函数访问，但不能被模块外其他函数访问。他是一个本地的全局变量。</p>
+<p>3、在模块内，一个被声明为静态的函数只可被这一模块内的其他函数调用。那就是这个函数被限制在声明他的模块的本地范围内使用。</p>
+<h2 id="static全局变量和普通全局变量的区别"><a href="#static全局变量和普通全局变量的区别" class="headerlink" title="static全局变量和普通全局变量的区别"></a>static全局变量和普通全局变量的区别</h2><p>1、static全局变量与普通全局变量的区别，static全局变量只初始化一次，防止在其他文件单元被引用。</p>
+<p>2、static局部变量和普通局部变量的区别，static局部变量只被初始化一次，下一次依据上一次结果值。</p>
+<p>3、static函数与普通函数的区别是，static函数在内存中只有一份，普通函数在每个被调用中维持一份复制品。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/30/C-面试积累/" rel="next" title="C/C++程序基础">
+                <i class="fa fa-chevron-left"></i> C/C++程序基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="王祎豪">
+            
+              <p class="site-author-name" itemprop="name">王祎豪</p>
+              <p class="site-description motion-element" itemprop="description">梧高凤必至，花香蝶自来</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预处理、const、static和sizeof"><span class="nav-number">1.</span> <span class="nav-text">预处理、const、static和sizeof</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-define宏定义时需要注意的地方"><span class="nav-number">1.1.</span> <span class="nav-text">使用#define宏定义时需要注意的地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宏参数的连接"><span class="nav-number">1.2.</span> <span class="nav-text">宏参数的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const的作用"><span class="nav-number">1.3.</span> <span class="nav-text">const的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量和指针常量"><span class="nav-number">1.4.</span> <span class="nav-text">常量和指针常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const与define区别"><span class="nav-number">1.5.</span> <span class="nav-text">const与define区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的内存分配"><span class="nav-number">1.6.</span> <span class="nav-text">程序的内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static有什么作用"><span class="nav-number">1.7.</span> <span class="nav-text">static有什么作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static全局变量和普通全局变量的区别"><span class="nav-number">1.8.</span> <span class="nav-text">static全局变量和普通全局变量的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王祎豪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
