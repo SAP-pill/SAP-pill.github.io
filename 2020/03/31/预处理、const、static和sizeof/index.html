@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="预处理、const、static和sizeof使用#define宏定义时需要注意的地方1234567#include&amp;lt;stdio.h&amp;gt;#define SQR(x) (x*x)int main()&amp;#123;    int a,b=3;    a=SQR(b+2);&amp;#125;  如果是上面这个方式，由于宏定义展开是在预处理时期，也就是编译之前，此时b并没有被赋值，这是b只是一个符号，则">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-01T13:56:31.795Z">
+<meta property="og:updated_time" content="2020-04-06T01:55:33.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="预处理、const、static和sizeof">
 <meta name="twitter:description" content="预处理、const、static和sizeof使用#define宏定义时需要注意的地方1234567#include&amp;lt;stdio.h&amp;gt;#define SQR(x) (x*x)int main()&amp;#123;    int a,b=3;    a=SQR(b+2);&amp;#125;  如果是上面这个方式，由于宏定义展开是在预处理时期，也就是编译之前，此时b并没有被赋值，这是b只是一个符号，则">
@@ -382,6 +382,22 @@
 <h2 id="static全局变量和普通全局变量的区别"><a href="#static全局变量和普通全局变量的区别" class="headerlink" title="static全局变量和普通全局变量的区别"></a>static全局变量和普通全局变量的区别</h2><p>1、static全局变量与普通全局变量的区别，static全局变量只初始化一次，防止在其他文件单元被引用。</p>
 <p>2、static局部变量和普通局部变量的区别，static局部变量只被初始化一次，下一次依据上一次结果值。</p>
 <p>3、static函数与普通函数的区别是，static函数在内存中只有一份，普通函数在每个被调用中维持一份复制品。</p>
+<h2 id="sizeof计算函数类的空间大小"><a href="#sizeof计算函数类的空间大小" class="headerlink" title="sizeof计算函数类的空间大小"></a>sizeof计算函数类的空间大小</h2><p>普通函数不占内存，只要有虚函数，就会占用一个指针大小的内存，系统多用了一个指针维护这个类的虚函数表，无论这个类里面有多少个虚函数，都不会再影响类的大小。</p>
+<p>空类占一个字节，编译器会插一个char给空类，用来标记它的每一个对象</p>
+<h2 id="sizeof和strlen的区别"><a href="#sizeof和strlen的区别" class="headerlink" title="sizeof和strlen的区别"></a>sizeof和strlen的区别</h2><p>1、sizeof是操作符，strlen是函数。</p>
+<p>2、sizeof操作符的结果类型是size_t，sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以“\0”结尾。</p>
+<h2 id="pragma-pack的作用"><a href="#pragma-pack的作用" class="headerlink" title="#pragma pack的作用"></a>#pragma pack的作用</h2><p>可以设置对齐为其他数字，会导致sizeof结果变化。</p>
+<h2 id="inline函数的好处"><a href="#inline函数的好处" class="headerlink" title="inline函数的好处"></a>inline函数的好处</h2><p>1、inline定义的函数，函数的代码被放入符号表中，在使用的时候进行替换，没有了调用的开销，效率也很高。</p>
+<p>2、类的内联函数是一个真正的函数，在调用的过程中，编译器会检查他的参数类型，保证调用正确。</p>
+<p>3、inline可以作为某个类的成员函数，当然就可以在其中使用所在类的保护成员及私有成员。</p>
+<h2 id="inline函数的缺点"><a href="#inline函数的缺点" class="headerlink" title="inline函数的缺点"></a>inline函数的缺点</h2><p>inline是以代码膨胀作为代价的。</p>
+<p>1、如果函数体内的代码比较长，会导致内存消耗代价比较高。</p>
+<p>2、如果函数体内出现循环，那么执行函数体内的代码的时间要比函数调用的开销大。</p>
+<h2 id="inline函数和宏的区别"><a href="#inline函数和宏的区别" class="headerlink" title="inline函数和宏的区别"></a>inline函数和宏的区别</h2><p>1、inline函数在编译的时候展开，宏在预编译的时候展开。</p>
+<p>2、在编译的时候，inline可以直接被镶嵌到目标代码里面，而宏只是一个简单的文本替换。</p>
+<p>3、内联函数可以完成比如类型检测、语句是否正确等编译功能，宏就不具有这样的功能。</p>
+<p>4、宏不是函数，inline函数是函数</p>
+<p>5、宏在使用的时候要注意二义性，而inline则不会出现二义性。</p>
 
       
     </div>
@@ -554,7 +570,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预处理、const、static和sizeof"><span class="nav-number">1.</span> <span class="nav-text">预处理、const、static和sizeof</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-define宏定义时需要注意的地方"><span class="nav-number">1.1.</span> <span class="nav-text">使用#define宏定义时需要注意的地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宏参数的连接"><span class="nav-number">1.2.</span> <span class="nav-text">宏参数的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const的作用"><span class="nav-number">1.3.</span> <span class="nav-text">const的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量和指针常量"><span class="nav-number">1.4.</span> <span class="nav-text">常量和指针常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const与define区别"><span class="nav-number">1.5.</span> <span class="nav-text">const与define区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的内存分配"><span class="nav-number">1.6.</span> <span class="nav-text">程序的内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static有什么作用"><span class="nav-number">1.7.</span> <span class="nav-text">static有什么作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static全局变量和普通全局变量的区别"><span class="nav-number">1.8.</span> <span class="nav-text">static全局变量和普通全局变量的区别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预处理、const、static和sizeof"><span class="nav-number">1.</span> <span class="nav-text">预处理、const、static和sizeof</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-define宏定义时需要注意的地方"><span class="nav-number">1.1.</span> <span class="nav-text">使用#define宏定义时需要注意的地方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#宏参数的连接"><span class="nav-number">1.2.</span> <span class="nav-text">宏参数的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const的作用"><span class="nav-number">1.3.</span> <span class="nav-text">const的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量和指针常量"><span class="nav-number">1.4.</span> <span class="nav-text">常量和指针常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const与define区别"><span class="nav-number">1.5.</span> <span class="nav-text">const与define区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序的内存分配"><span class="nav-number">1.6.</span> <span class="nav-text">程序的内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static有什么作用"><span class="nav-number">1.7.</span> <span class="nav-text">static有什么作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#static全局变量和普通全局变量的区别"><span class="nav-number">1.8.</span> <span class="nav-text">static全局变量和普通全局变量的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sizeof计算函数类的空间大小"><span class="nav-number">1.9.</span> <span class="nav-text">sizeof计算函数类的空间大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sizeof和strlen的区别"><span class="nav-number">1.10.</span> <span class="nav-text">sizeof和strlen的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pragma-pack的作用"><span class="nav-number">1.11.</span> <span class="nav-text">#pragma pack的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline函数的好处"><span class="nav-number">1.12.</span> <span class="nav-text">inline函数的好处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline函数的缺点"><span class="nav-number">1.13.</span> <span class="nav-text">inline函数的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#inline函数和宏的区别"><span class="nav-number">1.14.</span> <span class="nav-text">inline函数和宏的区别</span></a></li></ol></li></ol></div>
             
 
           </div>
