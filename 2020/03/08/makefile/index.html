@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目录）：网络部分的">
+<meta name="description" content="Makefile在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Makefile">
+<meta property="og:title" content="Makefile and 库文件">
 <meta property="og:url" content="https://sap-pill.github.io/2020/03/08/makefile/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目录）：网络部分的">
+<meta property="og:description" content="Makefile在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/1.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/2.jpg">
@@ -99,10 +99,10 @@
 <meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/10.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/11.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/03/08/makefile/12.jpg">
-<meta property="og:updated_time" content="2020-03-10T06:36:19.221Z">
+<meta property="og:updated_time" content="2020-04-18T09:46:37.175Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Makefile">
-<meta name="twitter:description" content="在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目录）：网络部分的">
+<meta name="twitter:title" content="Makefile and 库文件">
+<meta name="twitter:description" content="Makefile在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。 预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。 比如有一个项目，项目结构是这样 12345Object（目录）	Database（目录）：数据库操作	Core（目录）：项目核心代码	100个.c文件	DateData（目录）：基础业务逻辑	1000个.c文件	Inter（目">
 <meta name="twitter:image" content="https://sap-pill.github.io/2020/03/08/makefile/1.jpg">
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>Makefile | onlooker</title>
+  <title>Makefile and 库文件 | onlooker</title>
   
 
 
@@ -293,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Makefile</h1>
+          <h1 class="post-title" itemprop="name headline">Makefile and 库文件</h1>
         
 
         <div class="post-meta">
@@ -365,7 +365,7 @@
       
 
       
-        <p>在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。</p>
+        <h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><p>在多文件编译时，如果少了某些文件，则可能会出现错误提示：未定义符号。</p>
 <p>预编译时，会将include替换掉，将指定的.h文件的内容全部复制到当前的.c文件中。</p>
 <p>比如有一个项目，项目结构是这样</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object（目录）</span><br><span class="line">	Database（目录）：数据库操作</span><br><span class="line">	Core（目录）：项目核心代码	100个.c文件</span><br><span class="line">	DateData（目录）：基础业务逻辑	1000个.c文件</span><br><span class="line">	Inter（目录）：网络部分的代码</span><br></pre></td></tr></table></figure>
@@ -393,6 +393,21 @@
 <p>这些只是最基本的写法</p>
 <p>下面贴上普通的写法</p>
 <p><img src="/2020/03/08/makefile/12.jpg" alt></p>
+<h1 id="库文件"><a href="#库文件" class="headerlink" title="库文件"></a>库文件</h1><p>将用户写好的程序打包成一个整体，当其他模块或者其他用户使用时，只需要这个库文件就ok。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">libc.so-&gt;stdio.h <span class="built_in">string</span>.h math.h rand.h time.h</span><br><span class="line">libstdc++.so---&gt;STL</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态库"><a href="#静态库" class="headerlink" title="静态库"></a>静态库</h2><p>Windows：.lib</p>
+<p>Linux：.a</p>
+<p>生成：1、将所有的源代码文件（不能有带main方法的源文件）编译生                  成中间文件（.o）</p>
+<p>​            2、使用命令     ar crv libxxxx.a  所有的中间文件</p>
+<p>使用：gcc -o main main.c -L库的路径 -l库的名称（xxxx）</p>
+<p>如果没有给库的路径，则会去默认路径下查找：/lib    /usr/lib</p>
+<h2 id="动态库-共享库"><a href="#动态库-共享库" class="headerlink" title="动态库(共享库)"></a>动态库(共享库)</h2><p>共享库是在程序运行时，由操作系统单独加载执行。共享库是一个可执行文件（不能单独执行）</p>
+<p>用过环境变量来设置系统加载动态库的搜索路径：LD_LIBRARY_PATH</p>
+<p>Windows：.dll</p>
+<p>Linux：.so</p>
+<p>生成：gcc -shared -fPIC -o libxxxx.so 所有功能代码的源文件</p>
+<p>使用：和静态库一样。</p>
 
       
     </div>
@@ -487,8 +502,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -505,7 +529,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">63</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -550,6 +574,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Makefile"><span class="nav-number">1.</span> <span class="nav-text">Makefile</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#库文件"><span class="nav-number">2.</span> <span class="nav-text">库文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#静态库"><span class="nav-number">2.1.</span> <span class="nav-text">静态库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态库-共享库"><span class="nav-number">2.2.</span> <span class="nav-text">动态库(共享库)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
