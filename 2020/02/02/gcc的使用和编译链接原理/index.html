@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 //删除注释  2.编译生成.s文件 1234gcc -S main.i -o main.s//词法语法解">
+<meta name="description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 #开头的命令，除了#pragma lib这个命令，这是链接阶段的，链接用的//删除注释  2.编译生成.s">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gcc的使用和编译链接原理">
 <meta property="og:url" content="https://sap-pill.github.io/2020/02/02/gcc的使用和编译链接原理/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 //删除注释  2.编译生成.s文件 1234gcc -S main.i -o main.s//词法语法解">
+<meta property="og:description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 #开头的命令，除了#pragma lib这个命令，这是链接阶段的，链接用的//删除注释  2.编译生成.s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-28T09:56:39.323Z">
+<meta property="og:updated_time" content="2020-05-18T01:52:15.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="gcc的使用和编译链接原理">
-<meta name="twitter:description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 //删除注释  2.编译生成.s文件 1234gcc -S main.i -o main.s//词法语法解">
+<meta name="twitter:description" content="gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等 gcc的编译过程首先建一个main.c源程序文件 1.预编译生成main.i文件         123gcc -E main.c -o main.i//处理预编译指令 #开头的命令，除了#pragma lib这个命令，这是链接阶段的，链接用的//删除注释  2.编译生成.s">
 
 
 
@@ -371,16 +371,16 @@
         <p>gcc全称是GNU Compiler Collection，可以支持多种语言编译，比如C,C++,Java,pascal等</p>
 <h1 id="gcc的编译过程"><a href="#gcc的编译过程" class="headerlink" title="gcc的编译过程"></a>gcc的编译过程</h1><p>首先建一个main.c源程序文件</p>
 <p>1.预编译生成main.i文件        </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -E main.c -o main.i</span><br><span class="line"><span class="comment">//处理预编译指令 </span></span><br><span class="line"><span class="comment">//删除注释</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc -E main.c -o main.i</span><br><span class="line"><span class="comment">//处理预编译指令 #开头的命令，除了#pragma lib这个命令，这是链接阶段的，链接用的</span></span><br><span class="line"><span class="comment">//删除注释</span></span><br></pre></td></tr></table></figure>
 
 <p>2.编译生成.s文件</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -S main.i -o main.s</span><br><span class="line"><span class="comment">//词法语法解析</span></span><br><span class="line"><span class="comment">//代码优化</span></span><br><span class="line"><span class="comment">//生成符号</span></span><br></pre></td></tr></table></figure>
 
 <p>3.汇编生成.o文件(生成可重定位的二进制目标文件)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -c main.s -o main.o</span><br><span class="line"><span class="comment">//将汇编指令翻译成二进制文件</span></span><br><span class="line"><span class="comment">//生成符号表</span></span><br><span class="line"><span class="comment">//生成各个sections</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gcc -c main.s -o main.o</span><br><span class="line"><span class="comment">//将汇编指令翻译成二进制文件</span></span><br><span class="line"><span class="comment">//生成符号表</span></span><br><span class="line"><span class="comment">//生成各个sections</span></span><br><span class="line"><span class="comment">//可重定位：</span></span><br></pre></td></tr></table></figure>
 
 <p>4.链接生成可执行文件</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc main.s -o main</span><br><span class="line"><span class="comment">//合并各个段，调整段大小及段的起始位置</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc main.s -o main</span><br><span class="line"><span class="comment">//编译完成的所有.o文件+静态库文件，生成.exe或者.out文件</span></span><br><span class="line"><span class="comment">//1、所有.o文件段的合并，符号表合并后，进行符号解析</span></span><br><span class="line"><span class="comment">//2、符号的重定位（重定向）</span></span><br></pre></td></tr></table></figure>
 
 <p>一次性完成</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -o main main.c</span><br><span class="line"><span class="comment">//一般生成.o文件，可以让别人使用</span></span><br></pre></td></tr></table></figure>
@@ -508,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
