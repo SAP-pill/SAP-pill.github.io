@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="进程虚拟地址空间内存划分和布局对于任何的编程语言，产生的两种东西无非就是指令和数据。 比如在Windows上的xxx.exe文件，这个文件在磁盘上放着，运行的时候要加载到内存上去，当然不可能直接加载到物理内存上的。在x86体系32位的Linux系统上，系统会给当前进程分配一个2^32（4G）大小的一块空间,叫做进程的虚拟地址空间。 什么叫做虚拟地址空间？ 有这么四句话很有名 1234它存在，你能看">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-05T10:52:58.964Z">
+<meta property="og:updated_time" content="2020-07-26T02:26:27.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进程虚拟地址空间内存划分和布局">
 <meta name="twitter:description" content="进程虚拟地址空间内存划分和布局对于任何的编程语言，产生的两种东西无非就是指令和数据。 比如在Windows上的xxx.exe文件，这个文件在磁盘上放着，运行的时候要加载到内存上去，当然不可能直接加载到物理内存上的。在x86体系32位的Linux系统上，系统会给当前进程分配一个2^32（4G）大小的一块空间,叫做进程的虚拟地址空间。 什么叫做虚拟地址空间？ 有这么四句话很有名 1234它存在，你能看">
@@ -374,16 +374,16 @@
 <p>有这么四句话很有名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">它存在，你能看得见，它是物理的</span><br><span class="line">它存在，你看不见，它是透明的</span><br><span class="line">它不存在，你却看得见，它是虚拟的</span><br><span class="line">它不存在，你也看不见，它被删除了</span><br></pre></td></tr></table></figure>
 
-<h2 id="进程虚拟地址空间"><a href="#进程虚拟地址空间" class="headerlink" title="进程虚拟地址空间"></a>进程虚拟地址空间</h2><p>从地址$0x00000000$开始到$0x08048000$这块区域是不能访问的</p>
+<h2 id="进程虚拟地址空间"><a href="#进程虚拟地址空间" class="headerlink" title="进程虚拟地址空间"></a>进程虚拟地址空间</h2><p>从地址<strong>0x00000000​</strong>开始到<strong>0x08048000</strong>​这块区域是不能访问的</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *p=<span class="literal">nullptr</span>;</span><br><span class="line"><span class="built_in">strlen</span>(p);</span><br><span class="line"><span class="keyword">char</span> *src=<span class="literal">nullptr</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(dest,src);<span class="comment">//这两行代码程序直接崩溃</span></span><br></pre></td></tr></table></figure>
 
-<p>接下来从$0x08048000$开始，存放的是$.text$段（指令存放的位置）。$.rodata$段（只读数据段）例如$char *p=”hello world”; *p=’a’$，这个是不允许的。这两个段都是只能读不能写的。</p>
-<p>接下来是$.data$段和$.bss$段，$.data$段存放的是初始化的并且初始化不为0的，$.bss$段存放的是未初始化和初始化为0的数据。</p>
-<p>接下来是$.heap$堆区。刚开始是空的，只有调用$new$或者$malloc$才会有空间。</p>
-<p>接下来是加载共享库，$*.dll *so$。</p>
-<p>接下来是$stack$区，不过栈区从下往上进行增长的。而堆是从高地址到低地址进行的。</p>
+<p>接下来从<strong>0x08048000</strong>开始，存放的是​<strong>.text</strong>段（指令存放的位置）。<strong>.rodata​</strong>段（只读数据段）例如​<strong>char *p=”hello world”</strong>; <strong>*p=’a</strong>‘​，这个是不允许的。这两个段都是只能读不能写的。</p>
+<p>接下来是<strong>.data</strong>段和<strong>​.bss​</strong>段，<strong>​.data</strong>段存放的是初始化的并且初始化不为0的，<strong>​.bss</strong>​段存放的是未初始化和初始化为0的数据。</p>
+<p>接下来是<strong>.heap</strong>​堆区。刚开始是空的，只有调用<strong>​new</strong>​或者​<strong>malloc</strong>才会有空间。</p>
+<p>接下来是加载共享库，<strong>*.dll *so</strong>​。</p>
+<p>接下来是<strong>stack</strong>​区，不过栈区从下往上进行增长的。而堆是从高地址到低地址进行的。</p>
 <p>接下来是命令行参数和环境变量。</p>
-<p>上述存在于$0x08048000$到$0xc0000000$这3G的用户空间中。</p>
+<p>上述存在于<strong>0x08048000</strong>​到​<strong>0xc0000000</strong>​这3G的用户空间中。</p>
 <p>下面还有1G的空间是内核空间，主要是这几种</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZONE_DMA</span><br><span class="line">ZONE_NORMAL</span><br><span class="line">ZONE_HIGHMEN</span><br></pre></td></tr></table></figure>
 
