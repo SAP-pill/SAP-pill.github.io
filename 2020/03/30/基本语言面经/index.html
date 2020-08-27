@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="进程虚拟地址空间内存划分和布局对于任何的编程语言，产生的两种东西无非就是指令和数据。 比如在Windows上的xxx.exe文件，这个文件在磁盘上放着，运行的时候要加载到内存上去，当然不可能直接加载到物理内存上的。在x86体系32位的Linux系统上，系统会给当前进程分配一个2^32（4G）大小的一块空间,叫做进程的虚拟地址空间。 什么叫做虚拟地址空间？ 有这么四句话很有名 1234它存在，你能看">
+<meta name="description" content="static关键字的作用 全局静态变量，自动初始化为0。 局部静态变量，自动初始化为0。 静态函数，这个函数只可在本cpp内使用。 类的静态成员，实现多个对象之间数据的共享（智能指针的引用计数）。 类的静态函数，多个对象之间函数共享，引用的时候不需要带对象，&amp;lt;类名&amp;gt;::&amp;lt;静态成员函数名&amp;gt;(&amp;lt;参数表&amp;gt;)  C/C++的区别思想上：C++是面向对象的语言，C是面向过">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程虚拟地址空间内存划分和布局">
-<meta property="og:url" content="https://sap-pill.github.io/2020/04/15/进程虚拟地址空间区域的划分/index.html">
+<meta property="og:title" content="C&#x2F;C++程序基础">
+<meta property="og:url" content="https://sap-pill.github.io/2020/03/30/基本语言面经/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="进程虚拟地址空间内存划分和布局对于任何的编程语言，产生的两种东西无非就是指令和数据。 比如在Windows上的xxx.exe文件，这个文件在磁盘上放着，运行的时候要加载到内存上去，当然不可能直接加载到物理内存上的。在x86体系32位的Linux系统上，系统会给当前进程分配一个2^32（4G）大小的一块空间,叫做进程的虚拟地址空间。 什么叫做虚拟地址空间？ 有这么四句话很有名 1234它存在，你能看">
+<meta property="og:description" content="static关键字的作用 全局静态变量，自动初始化为0。 局部静态变量，自动初始化为0。 静态函数，这个函数只可在本cpp内使用。 类的静态成员，实现多个对象之间数据的共享（智能指针的引用计数）。 类的静态函数，多个对象之间函数共享，引用的时候不需要带对象，&amp;lt;类名&amp;gt;::&amp;lt;静态成员函数名&amp;gt;(&amp;lt;参数表&amp;gt;)  C/C++的区别思想上：C++是面向对象的语言，C是面向过">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-26T02:42:29.382Z">
+<meta property="og:updated_time" content="2020-08-27T09:34:04.094Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程虚拟地址空间内存划分和布局">
-<meta name="twitter:description" content="进程虚拟地址空间内存划分和布局对于任何的编程语言，产生的两种东西无非就是指令和数据。 比如在Windows上的xxx.exe文件，这个文件在磁盘上放着，运行的时候要加载到内存上去，当然不可能直接加载到物理内存上的。在x86体系32位的Linux系统上，系统会给当前进程分配一个2^32（4G）大小的一块空间,叫做进程的虚拟地址空间。 什么叫做虚拟地址空间？ 有这么四句话很有名 1234它存在，你能看">
+<meta name="twitter:title" content="C&#x2F;C++程序基础">
+<meta name="twitter:description" content="static关键字的作用 全局静态变量，自动初始化为0。 局部静态变量，自动初始化为0。 静态函数，这个函数只可在本cpp内使用。 类的静态成员，实现多个对象之间数据的共享（智能指针的引用计数）。 类的静态函数，多个对象之间函数共享，引用的时候不需要带对象，&amp;lt;类名&amp;gt;::&amp;lt;静态成员函数名&amp;gt;(&amp;lt;参数表&amp;gt;)  C/C++的区别思想上：C++是面向对象的语言，C是面向过">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sap-pill.github.io/2020/04/15/进程虚拟地址空间区域的划分/">
+  <link rel="canonical" href="https://sap-pill.github.io/2020/03/30/基本语言面经/">
 
 
 
 
 
-  <title>进程虚拟地址空间内存划分和布局 | onlooker</title>
+  <title>C/C++程序基础 | onlooker</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/04/15/进程虚拟地址空间区域的划分/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/30/基本语言面经/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">进程虚拟地址空间内存划分和布局</h1>
+          <h1 class="post-title" itemprop="name headline">C/C++程序基础</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-15T18:38:14+08:00">
-                2020-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T11:44:42+08:00">
+                2020-03-30
               </time>
             
 
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-学习/" itemprop="url" rel="index">
-                    <span itemprop="name">C++学习</span>
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
                   </a>
                 </span>
 
@@ -332,7 +332,7 @@
 
           
           
-             <span id="/2020/04/15/进程虚拟地址空间区域的划分/" class="leancloud_visitors" data-flag-title="进程虚拟地址空间内存划分和布局">
+             <span id="/2020/03/30/基本语言面经/" class="leancloud_visitors" data-flag-title="C/C++程序基础">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,29 +368,72 @@
       
 
       
-        <h1 id="进程虚拟地址空间内存划分和布局"><a href="#进程虚拟地址空间内存划分和布局" class="headerlink" title="进程虚拟地址空间内存划分和布局"></a>进程虚拟地址空间内存划分和布局</h1><p>对于任何的编程语言，产生的两种东西无非就是指令和数据。</p>
-<p>比如在Windows上的xxx.exe文件，这个文件在磁盘上放着，运行的时候要加载到内存上去，当然不可能直接加载到物理内存上的。在x86体系32位的Linux系统上，系统会给当前进程分配一个2^32（4G）大小的一块空间,叫做进程的虚拟地址空间。</p>
-<p><strong>什么叫做虚拟地址空间？</strong></p>
-<p>有这么四句话很有名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">它存在，你能看得见，它是物理的</span><br><span class="line">它存在，你看不见，它是透明的</span><br><span class="line">它不存在，你却看得见，它是虚拟的</span><br><span class="line">它不存在，你也看不见，它被删除了</span><br></pre></td></tr></table></figure>
+        <h2 id="static关键字的作用"><a href="#static关键字的作用" class="headerlink" title="static关键字的作用"></a>static关键字的作用</h2><ol>
+<li>全局静态变量，自动初始化为0。</li>
+<li>局部静态变量，自动初始化为0。</li>
+<li>静态函数，这个函数只可在本cpp内使用。</li>
+<li>类的静态成员，实现多个对象之间数据的共享（智能指针的引用计数）。</li>
+<li>类的静态函数，多个对象之间函数共享，引用的时候不需要带对象，&lt;类名&gt;::&lt;静态成员函数名&gt;(&lt;参数表&gt;)</li>
+</ol>
+<h2 id="C-C-的区别"><a href="#C-C-的区别" class="headerlink" title="C/C++的区别"></a>C/C++的区别</h2><p>思想上：C++是面向对象的语言，C是面向过程的结构化编程语言。</p>
+<p>语法上：</p>
+<p>1.C++具有封装、继承和多态三种特性；</p>
+<p>2.C++相比于C，增加了许多类型安全的功能，比如强制类型转换；</p>
+<p>3.C++支持范式编程，比如模板类、函数模板等。</p>
+<h2 id="C-中四种cast转换"><a href="#C-中四种cast转换" class="headerlink" title="C++中四种cast转换"></a>C++中四种cast转换</h2><ol>
+<li>const_cast：讲const变量转为非const。</li>
+<li>static_cast：用于各种隐式转换，比如非const转const，void*转指针等。 </li>
+<li>dynamic_cast：用于动态类型转换。只能用于含有虚函数的类。</li>
+<li>reinterpret_cast：几乎什么都可以转，比如int转指针。</li>
+</ol>
+<h2 id="指针和引用的区别"><a href="#指针和引用的区别" class="headerlink" title="指针和引用的区别"></a>指针和引用的区别</h2><ol>
+<li>指针有一块自己的空间，引用只是一个别名；</li>
+<li>使用sizeof看指针的大小是4，而引用是被引用对象的大小；</li>
+<li>指针可以初始化为NULL，而引用必须被初始化且必须是一个已有对象的引用；</li>
+<li>作为参数传递时，指针需要被解引用才可以对对象进行操作，而直接对引用的修改都会改变引用所指向的对象；</li>
+<li>可以由const指针，但是没有const引用；</li>
+<li>指针在使用中可以指向其他对象，但是引用只能死一个对象的引用，不能被修改；</li>
+<li>指针可以有多级指针（**p），但是引用只有一级；</li>
+<li>指针和引用使用++运算符的意义不一样；</li>
+<li>如果返回动态内存分配的对象或者内存，必须使用指针，引用可能引起内存泄露。</li>
+</ol>
+<h2 id="C-中的智能指针"><a href="#C-中的智能指针" class="headerlink" title="C++中的智能指针"></a>C++中的智能指针</h2><p>四个智能指针：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">auto_ptr</span>	<span class="comment">//已经被C++11弃用	</span></span><br><span class="line"><span class="built_in">shared_ptr</span></span><br><span class="line">weak_ptr</span><br><span class="line"><span class="built_in">unique_ptr</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="进程虚拟地址空间"><a href="#进程虚拟地址空间" class="headerlink" title="进程虚拟地址空间"></a>进程虚拟地址空间</h2><p>从地址<strong>0x00000000​</strong>开始到<strong>0x08048000</strong>​这块区域是不能访问的</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *p=<span class="literal">nullptr</span>;</span><br><span class="line"><span class="built_in">strlen</span>(p);</span><br><span class="line"><span class="keyword">char</span> *src=<span class="literal">nullptr</span>;</span><br><span class="line"><span class="built_in">strcpy</span>(dest,src);<span class="comment">//这两行代码程序直接崩溃</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-auto-ptr"><a href="#1-auto-ptr" class="headerlink" title="1.auto_ptr"></a>1.auto_ptr</h3><p>采用所有权模式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">auto_ptr</span>&lt;<span class="built_in">string</span>&gt;p1(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">"hello world"</span>));</span><br><span class="line"><span class="built_in">auto_ptr</span>&lt;<span class="built_in">string</span>&gt;p2;</span><br><span class="line">p2=p1;</span><br></pre></td></tr></table></figure>
 
-<p>接下来从<strong>0x08048000</strong>开始，存放的是​<strong>.text</strong>段（指令存放的位置）。<strong>.rodata​</strong>段（只读数据段）例如​<strong>char *p=”hello world”</strong>; <strong>*p=’a</strong>‘​，这个是不允许的。这两个段都是只能读不能写的。</p>
-<p>接下来是<strong>.data</strong>段和<strong>​.bss​</strong>段，<strong>​.data</strong>段存放的是初始化的并且初始化不为0的，<strong>​.bss</strong>​段存放的是未初始化和初始化为0的数据。</p>
-<p>接下来是<strong>.heap</strong>​堆区。刚开始是空的，只有调用<strong>​new</strong>​或者​<strong>malloc</strong>才会有空间。</p>
-<p>接下来是加载共享库，<strong>*.dll *so</strong>​。</p>
-<p>接下来是<strong>stack</strong>​区，存放局部变量，不过栈区从下往上进行增长的。而堆是从高地址到低地址进行的。</p>
-<p>接下来是命令行参数和环境变量。</p>
-<p>上述存在于<strong>0x08048000</strong>​到​<strong>0xc0000000</strong>​这3G的用户空间中。</p>
-<p>下面还有1G的空间是内核空间，主要是这几种</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ZONE_DMA</span><br><span class="line">ZONE_NORMAL</span><br><span class="line">ZONE_HIGHMEN</span><br></pre></td></tr></table></figure>
+<p>这段代码不会报错，但是p2剥夺了p1的所有权，所以放访问p1时会报错。所以他的缺点是存在潜在的内存崩溃问题。</p>
+<h3 id="2-unique-ptr-替换auto-ptr"><a href="#2-unique-ptr-替换auto-ptr" class="headerlink" title="2.unique_ptr(替换auto_ptr)"></a>2.unique_ptr(替换auto_ptr)</h3><p>unique_ptr实现独占式拥有或严格拥有概念，保证同一时间内只有</p>
+<p>一个智能指针可以指向该对象。主要还是避免资源泄露。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="built_in">string</span>&gt;p1(<span class="keyword">new</span> <span class="built_in">string</span>(<span class="string">"hello world"</span>));</span><br><span class="line"><span class="built_in">unique_ptr</span>&lt;<span class="built_in">string</span>&gt;p2;</span><br><span class="line">p2=p1;</span><br></pre></td></tr></table></figure>
 
-<p>看看下面这些代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> gdata1=<span class="number">10</span>;<span class="comment">//data段</span></span><br><span class="line"><span class="keyword">int</span> gdata2=<span class="number">0</span>;<span class="comment">//bss段</span></span><br><span class="line"><span class="keyword">int</span> gdata3;<span class="comment">//bss段</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> gdata4=<span class="number">1</span>;<span class="comment">//data段</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> gatda5=<span class="number">0</span>;<span class="comment">//bss段</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> gdata6;<span class="comment">//bss段</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">12</span>;<span class="comment">//这三个不生成符号，对应的是指令，在.text段</span></span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">0</span>;  <span class="comment">//运行时，指令在栈上开辟4字节的空间，不是存在栈上</span></span><br><span class="line">    <span class="keyword">int</span> c;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> e=<span class="number">13</span>;<span class="comment">//data段</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> f=<span class="number">0</span>;<span class="comment">//bss段</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> g;<span class="comment">//bss段</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;c&lt;&lt;g&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个时候会报错，编译器认为p2=p1是非法的，避免了跑不再指向有效数据的问题。所以他比aotu_ptr安全。</p>
+<p>而且当程序试图讲一个unique_ptr赋值给另一个时，如果源unique_ptr是个临时右值，编译器允许这样做，如果源unique_ptr将存在一段时间，编译器将禁止这么做。</p>
+<h3 id="3-shared-ptr"><a href="#3-shared-ptr" class="headerlink" title="3.shared_ptr"></a>3.shared_ptr</h3><p>shared_ptr实现共享式拥有概念。多个智能指针可以指向相同对象，该对象和其他相关资源会在最后一个引用被销毁的时候释放。他有个计数机制表明资源被几个指针共享。可以通过成员函数use_count()来查看资源的所有者个数。</p>
+<h3 id="4-weak-ptr"><a href="#4-weak-ptr" class="headerlink" title="4.weak_ptr"></a>4.weak_ptr</h3><p>weak_ptr是一种不控制对象生命周期的智能指针，他指向一个shared_ptr管理的对象，进行该对象的内存管理的是哪个强引用的shared_ptr。weak_ptr是用来解决shared_ptr相互引用时造成的死锁问题，如果两个shared_ptr相互引用，那么这两个指针的引用计数永远不可能降为0，资源永远不可能释放。它是对对象的弱引用，不会增加对象的引用计数，和shared_ptr之间可以相互转化，shared_ptr可以直接赋值给它，它可以通过调用lock函数来获得shared_ptr。</p>
+<h2 id="说一说C-中析构函数的作用"><a href="#说一说C-中析构函数的作用" class="headerlink" title="说一说C++中析构函数的作用"></a>说一说C++中析构函数的作用</h2><p>析构函数和构造函数相互对应，当对象结束其生命周期，系统会自动执行析构函数。</p>
+<p>析构函数名和类名相同，只是在函数名前加一个位取反符~，以区别于构造函数。他不能带任何参数，也没有返回值（包括void类型）。只能有一个析构函数，不能重载。</p>
+<p>如果用户没有编写析构函数，编译系统会自动生成一个缺省的析构函数（即使自定义了析构函数，编译器也总是为我们合成一个析构函数，并且如果自定义了析构函数，编译器在执行时会先调用自定义的析构函数再调用合成的析构函数），他不进行任何操作。所以许多简单的类中没有用显示的析构函数。</p>
+<p>如果一个类中有指针，且在使用的过程中动态的申请了内存，那么最好显示构造析构函数在销毁类之前，释放掉申请的内存空间，避免了内存泄露。</p>
+<p>类析构的顺序：</p>
+<p>1）派生类本身的析构函数</p>
+<p>2）对象成员析构函数</p>
+<p>3）基类析构函数</p>
+<h2 id="析构函数为什么必须是虚函数？为什么C-默认的析构函数不是虚函数？"><a href="#析构函数为什么必须是虚函数？为什么C-默认的析构函数不是虚函数？" class="headerlink" title="析构函数为什么必须是虚函数？为什么C++默认的析构函数不是虚函数？"></a>析构函数为什么必须是虚函数？为什么C++默认的析构函数不是虚函数？</h2><p>将可能会被继承的父类的析构函数设置为虚函数，可以保证当我们new一个子类，然后使用基类指针指向子类对象，释放基类指针时可以释放掉子类的空间，防止内存泄露。</p>
+<p>C++默认的析构函数不是虚函数是因为虚函数需要额外的虚函数表和虚表指针，占用额外的内存。而对于不会被继承的类来说，其析构函数如果是虚函数，就会浪费内存。因此C++默认的析构函数不是虚函数，而是只有当需要当做父类的时候，设置为虚函数。</p>
+<h2 id="说一说函数指针"><a href="#说一说函数指针" class="headerlink" title="说一说函数指针"></a>说一说函数指针</h2><p>1.定义</p>
+<p>函数指针是指向函数的指针变量。</p>
+<p>函数指针本身首先是一个指针变量，该指针变量指向一个具体的函数。</p>
+<p>C在编译的时候，每个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数，就如同用指针变量可引用其他变量一样。</p>
+<p>2.用途</p>
+<p>调用函数和做函数的参数，比如回调函数。</p>
+<h2 id="说一说fork函数"><a href="#说一说fork函数" class="headerlink" title="说一说fork函数"></a>说一说fork函数</h2><p>创建一个和当前进程映像一样的进程可以通过fork()系统调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="keyword">pid_t</span> fork(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure>
 
-<p>每一个进程的用户空间的私有的，内核空间是共有的。</p>
+<p>成功调用fork()会创建一个新的进程，他几乎与调用fork()的进程一模一样，这两个进程都会继续运行。在子进程中，成功的fork()会返回0。在父进程中fork()返回子进程的pid。如果出现错误，fork()会返回一个负值。</p>
+<p>最常见的fork()用法是创建一个新的进程，然后使用exec载入二进制映像，替换当前进程的映像。这种情况下，派生了新的进程，而这个子进程会执行一个新的二进制可执行文件的映像。</p>
+<p>早起的Unix系统创建进程时，会把所有的内部数据结构复制一份，复制进程的页表项，然后把父进程的地址空间中的内容逐页的复制到进程。这种方式是十分耗时的。现在的Linux采用写时拷贝的方法，而不是对父进程空间进程整体复制。</p>
 
       
     </div>
@@ -421,8 +464,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/线程安全/" rel="next" title="线程安全">
-                <i class="fa fa-chevron-left"></i> 线程安全
+              <a href="/2020/03/28/进程间通信/" rel="next" title="进程间通信">
+                <i class="fa fa-chevron-left"></i> 进程间通信
               </a>
             
           </div>
@@ -431,8 +474,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/05/06/函数调用栈/" rel="prev" title="函数调用栈">
-                函数调用栈 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/30/C-面试积累/" rel="prev" title="C/C++程序基础">
+                C/C++程序基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -567,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#进程虚拟地址空间内存划分和布局"><span class="nav-number">1.</span> <span class="nav-text">进程虚拟地址空间内存划分和布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程虚拟地址空间"><span class="nav-number">1.1.</span> <span class="nav-text">进程虚拟地址空间</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#static关键字的作用"><span class="nav-number">1.</span> <span class="nav-text">static关键字的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-C-的区别"><span class="nav-number">2.</span> <span class="nav-text">C/C++的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中四种cast转换"><span class="nav-number">3.</span> <span class="nav-text">C++中四种cast转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指针和引用的区别"><span class="nav-number">4.</span> <span class="nav-text">指针和引用的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-中的智能指针"><span class="nav-number">5.</span> <span class="nav-text">C++中的智能指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-auto-ptr"><span class="nav-number">5.1.</span> <span class="nav-text">1.auto_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-unique-ptr-替换auto-ptr"><span class="nav-number">5.2.</span> <span class="nav-text">2.unique_ptr(替换auto_ptr)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-shared-ptr"><span class="nav-number">5.3.</span> <span class="nav-text">3.shared_ptr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-weak-ptr"><span class="nav-number">5.4.</span> <span class="nav-text">4.weak_ptr</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说C-中析构函数的作用"><span class="nav-number">6.</span> <span class="nav-text">说一说C++中析构函数的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#析构函数为什么必须是虚函数？为什么C-默认的析构函数不是虚函数？"><span class="nav-number">7.</span> <span class="nav-text">析构函数为什么必须是虚函数？为什么C++默认的析构函数不是虚函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说函数指针"><span class="nav-number">8.</span> <span class="nav-text">说一说函数指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说fork函数"><span class="nav-number">9.</span> <span class="nav-text">说一说fork函数</span></a></li></ol></div>
             
 
           </div>

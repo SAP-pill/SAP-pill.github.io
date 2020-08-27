@@ -912,7 +912,7 @@ main函数：进程执行的入口。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/28/进程间通信/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/30/基本语言面经/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -931,7 +931,7 @@ main函数：进程执行的入口。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/28/进程间通信/" itemprop="url">进程间通信</a></h1>
+                <a class="post-title-link" href="/2020/03/30/基本语言面经/" itemprop="url">C/C++程序基础</a></h1>
         
 
         <div class="post-meta">
@@ -943,8 +943,8 @@ main函数：进程执行的入口。
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-28T10:05:09+08:00">
-                2020-03-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-30T11:44:42+08:00">
+                2020-03-30
               </time>
             
 
@@ -966,8 +966,8 @@ main函数：进程执行的入口。
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux学习</span>
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
                   </a>
                 </span>
 
@@ -983,7 +983,7 @@ main函数：进程执行的入口。
 
           
           
-             <span id="/2020/03/28/进程间通信/" class="leancloud_visitors" data-flag-title="进程间通信">
+             <span id="/2020/03/30/基本语言面经/" class="leancloud_visitors" data-flag-title="C/C++程序基础">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1016,18 +1016,16 @@ main函数：进程执行的入口。
       
         
           
-          进程间通信进程都是独立的个体，每个进程之间的数据是不共享的。
-文件操作缺陷：
-
-没办法保证写入数据在读取数据之前
-文件的存储空间是在磁盘上，写入数据时，要执行一次I/O操作，读取数据时执行一次I/O操作。
-只能做到有关系的进程之间数据的传递，而且没办法实现任意两个进程之间。
-
-进程间通信的机制：管道
+          static关键字的作用
+全局静态变量，自动初始化为0。
+局部静态变量，自动初始化为0。
+静态函数，这个函数只可在本cpp内使用。
+类的静态成员，实现多个对象之间数据的共享（智能指针的引用计数）。
+类的静态函数，多个对象之间函数共享，引用的时候不需要带对象，&lt;类名&gt;::&lt;静态成员函
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/28/进程间通信/#more" rel="contents">
+            <a class="btn" href="/2020/03/30/基本语言面经/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1117,7 +1115,7 @@ main函数：进程执行的入口。
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
