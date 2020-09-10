@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="ACM,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="我戴上所有的面具承受这个世界，只将内心的纯真幼稚留给你">
-<meta name="keywords" content="ACM,C++,Linux">
+<meta name="description" content="KMP板子1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859/* * @Author: onlooker * @Date: 2020-03-07 11:28:45 * @LastEditTime: 2020-09-06 10:42:">
+<meta name="keywords" content="ACM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KMP算法">
 <meta property="og:url" content="https://sap-pill.github.io/2020/09/06/KMP算法/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="我戴上所有的面具承受这个世界，只将内心的纯真幼稚留给你">
+<meta property="og:description" content="KMP板子1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859/* * @Author: onlooker * @Date: 2020-03-07 11:28:45 * @LastEditTime: 2020-09-06 10:42:">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-06T01:49:21.252Z">
+<meta property="og:updated_time" content="2020-09-06T02:44:14.069Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KMP算法">
-<meta name="twitter:description" content="我戴上所有的面具承受这个世界，只将内心的纯真幼稚留给你">
+<meta name="twitter:description" content="KMP板子1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859/* * @Author: onlooker * @Date: 2020-03-07 11:28:45 * @LastEditTime: 2020-09-06 10:42:">
 
 
 
@@ -303,6 +303,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ACM题目合计/" itemprop="url" rel="index">
+                    <span itemprop="name">ACM题目合计</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -346,7 +368,9 @@
       
 
       
-        
+        <h1 id="KMP板子"><a href="#KMP板子" class="headerlink" title="KMP板子"></a>KMP板子</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * @Author: onlooker</span></span><br><span class="line"><span class="comment"> * @Date: 2020-03-07 11:28:45</span></span><br><span class="line"><span class="comment"> * @LastEditTime: 2020-09-06 10:42:32</span></span><br><span class="line"><span class="comment"> * @FilePath: \code\test.cpp</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn 15</span></span><br><span class="line"><span class="keyword">int</span> nextt[maxn]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getnext</span><span class="params">(<span class="built_in">string</span> b)</span></span>&#123;</span><br><span class="line">    nextt[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> m=b.size();</span><br><span class="line">    <span class="keyword">while</span>(i&lt;m)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j==<span class="number">-1</span>||b[i]==b[j])&#123;</span><br><span class="line">            i++;j++;</span><br><span class="line">            nextt[i]=j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            j=nextt[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp</span><span class="params">(<span class="built_in">string</span> a,<span class="built_in">string</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> n=a.size(),m=b.size();</span><br><span class="line">    <span class="keyword">while</span>(i&lt;n&amp;&amp;j&lt;m)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==b[j]||j==<span class="number">-1</span>)&#123;</span><br><span class="line">            i++;j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            j=nextt[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j==m)&#123;</span><br><span class="line">        <span class="keyword">return</span> i-j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> a,b;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    getnext(b);</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">-1</span>;</span><br><span class="line">    ans=kmp(a,b);</span><br><span class="line">    <span class="keyword">if</span>(ans!=<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"find from "</span>&lt;&lt;ans&lt;&lt;<span class="string">" to "</span>&lt;&lt;ans+b.size()<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"not found"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -360,6 +384,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ACM/" rel="tag"># ACM</a>
+          
+        </div>
       
 
       
@@ -379,6 +409,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/06/左值和右值/" rel="prev" title="左值和右值">
+                左值和右值 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -430,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -448,7 +491,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-count">71</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -493,6 +536,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#KMP板子"><span class="nav-number">1.</span> <span class="nav-text">KMP板子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

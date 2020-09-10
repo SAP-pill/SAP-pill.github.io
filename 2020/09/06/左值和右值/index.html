@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="进程,服务器,">
+  <meta name="keywords" content="C++,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="池：进程池、线程池 在程序启动之初，就创建多个（3-10）进程或者线程，当一个客户端连接以后，就在池中调配一个进程或线程为此客户端服务。 1、pthread_create()    —&amp;gt;5个线程 12a.创建时需要指定线程的入口地址，一旦创建成功，线程就自行启动运行（线程必须阻塞在某一个条件，等待主线程接收到客户端连接时唤醒）。b.怎么样将主线程获取到客户端连接文件描述符传递给函数线程。">
-<meta name="keywords" content="进程,服务器">
+<meta name="description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程池和线程池">
-<meta property="og:url" content="https://sap-pill.github.io/2020/03/06/进程池和线程池/index.html">
+<meta property="og:title" content="左值和右值">
+<meta property="og:url" content="https://sap-pill.github.io/2020/09/06/左值和右值/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="池：进程池、线程池 在程序启动之初，就创建多个（3-10）进程或者线程，当一个客户端连接以后，就在池中调配一个进程或线程为此客户端服务。 1、pthread_create()    —&amp;gt;5个线程 12a.创建时需要指定线程的入口地址，一旦创建成功，线程就自行启动运行（线程必须阻塞在某一个条件，等待主线程接收到客户端连接时唤醒）。b.怎么样将主线程获取到客户端连接文件描述符传递给函数线程。">
+<meta property="og:description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-23T13:44:46.240Z">
+<meta property="og:updated_time" content="2020-09-09T01:07:09.362Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程池和线程池">
-<meta name="twitter:description" content="池：进程池、线程池 在程序启动之初，就创建多个（3-10）进程或者线程，当一个客户端连接以后，就在池中调配一个进程或线程为此客户端服务。 1、pthread_create()    —&amp;gt;5个线程 12a.创建时需要指定线程的入口地址，一旦创建成功，线程就自行启动运行（线程必须阻塞在某一个条件，等待主线程接收到客户端连接时唤醒）。b.怎么样将主线程获取到客户端连接文件描述符传递给函数线程。">
+<meta name="twitter:title" content="左值和右值">
+<meta name="twitter:description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://sap-pill.github.io/2020/03/06/进程池和线程池/">
+  <link rel="canonical" href="https://sap-pill.github.io/2020/09/06/左值和右值/">
 
 
 
 
 
-  <title>进程池和线程池 | onlooker</title>
+  <title>左值和右值 | onlooker</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/03/06/进程池和线程池/">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/09/06/左值和右值/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王祎豪">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">进程池和线程池</h1>
+          <h1 class="post-title" itemprop="name headline">左值和右值</h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-06T18:58:39+08:00">
-                2020-03-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-06T11:08:21+08:00">
+                2020-09-06
               </time>
             
 
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux学习</span>
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
                   </a>
                 </span>
 
@@ -332,7 +332,7 @@
 
           
           
-             <span id="/2020/03/06/进程池和线程池/" class="leancloud_visitors" data-flag-title="进程池和线程池">
+             <span id="/2020/09/06/左值和右值/" class="leancloud_visitors" data-flag-title="左值和右值">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,14 +368,38 @@
       
 
       
-        <p>池：进程池、线程池</p>
-<p>在程序启动之初，就创建多个（3-10）进程或者线程，当一个客户端连接以后，就在池中调配一个进程或线程为此客户端服务。</p>
-<p>1、pthread_create()    —&gt;5个线程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.创建时需要指定线程的入口地址，一旦创建成功，线程就自行启动运行（线程必须阻塞在某一个条件，等待主线程接收到客户端连接时唤醒）。</span><br><span class="line">b.怎么样将主线程获取到客户端连接文件描述符传递给函数线程。</span><br></pre></td></tr></table></figure>
+        <h2 id="什么是右值引用"><a href="#什么是右值引用" class="headerlink" title="什么是右值引用"></a>什么是右值引用</h2><p>右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面：</p>
+<p>1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。</p>
+<p>2.能够更简洁明确地定义泛型函数。</p>
+<h2 id="左值和右值的概念"><a href="#左值和右值的概念" class="headerlink" title="左值和右值的概念"></a>左值和右值的概念</h2><p>左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。</p>
+<p>右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象</p>
+<h2 id="左值和右值之间的转换"><a href="#左值和右值之间的转换" class="headerlink" title="左值和右值之间的转换"></a>左值和右值之间的转换</h2><p>一般上来讲，对象之间的运算，对象是以右值的形式参与的。比如二元运算符+两边的参数以右值传入，返回结果也是右值。</p>
+<h2 id="左值引用"><a href="#左值引用" class="headerlink" title="左值引用"></a>左值引用</h2><p>C++中可以使用&amp;定义引用，如果一个左值同时是引用，就称为“左值引用”，</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="built_in">string</span> &amp;a=s;</span><br></pre></td></tr></table></figure>
 
-<p>2、主线程执行accept等待客户端连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果有连接，则接受连接以后，将此连接传递给函数线程，唤醒一个池中的线程来处理此连接（在全局空间定义一个数组来作为主线程到函数线程文件描述符传递的机制）</span><br></pre></td></tr></table></figure>
+<p><strong>非const</strong>左值引用不能使用右值对其赋值；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> &amp;r=<span class="built_in">string</span>();</span><br></pre></td></tr></table></figure>
 
+<p>如果假设可以的话，就会遇到一个问题：如何修改右值的值？因为引用是可以后续被赋值的。根据上面的定义，右值连可被获取的内存地址都没有，也就谈不上对其进行赋值。</p>
+<p>但是<strong>const左值</strong>引用不一样，因为常量不能被修改，也就不存在上述问题。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> &amp;s = <span class="built_in">string</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="右值引用（C-11）"><a href="#右值引用（C-11）" class="headerlink" title="右值引用（C++11）"></a>右值引用（C++11）</h2><p>右值引用及其相关的move语义是C++11新引入的最强大的特性之一。</p>
+<p>他主要用来解决C++98/03中的两个问题，第一个问题是临时对象非必要的养龟的拷贝操作，第二个问题是在模板函数中如何按照参数的实际类型进行转发。</p>
+<h3 id="4行代码的故事"><a href="#4行代码的故事" class="headerlink" title="4行代码的故事"></a>4行代码的故事</h3><h4 id="第一行代码的故事"><a href="#第一行代码的故事" class="headerlink" title="第一行代码的故事"></a>第一行代码的故事</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = getval();</span><br></pre></td></tr></table></figure>
+
+<p>这行代码会产生两种类型的值，一种是函数返回的临时对象，一种是左值i。这个临时对象在表达式结束后就销毁了，而i在表达式之后仍然存在，这个临时值就是右值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>i是左值，0是字面量，就是右值。</p>
+<p>在C++11中所有的值都属于左值，将亡值，纯右值三者之一。</p>
+<p>非引用返回的临时对象、运算表达式产生的临时变量、原始字面量和lambda表达式都是纯右值。</p>
+<p>将要被移动的对象，T&amp;&amp;函数返回值、std::move返回值和转换为T&amp;&amp;的类型的转换函数的返回值都属于将亡值。</p>
+<h4 id="第二行代码的故事"><a href="#第二行代码的故事" class="headerlink" title="第二行代码的故事"></a>第二行代码的故事</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T&amp;&amp; k = getval();</span><br></pre></td></tr></table></figure>
+
+<p>这行代码就是右值引用，getval()产生的临时值不会像第一行代码一样，在表达式结束之后就销毁，而是会被续命，他的生命周期将会通过右值引用得以延续，和变量k的声明周期一样长。</p>
+<p>右值引用的第一个特点</p>
+<p>通过右值引用的声明，右值又“重获新生”，其生命周期与右值引用类型变量的生命周期一样长，只要该变量还活着，该右值临时量将会一直存活下去。</p>
 
       
     </div>
@@ -393,9 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/进程/" rel="tag"># 进程</a>
-          
-            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+            <a href="/tags/C/" rel="tag"># C++</a>
           
         </div>
       
@@ -408,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/06/并发服务器/" rel="next" title="并发服务器">
-                <i class="fa fa-chevron-left"></i> 并发服务器
+              <a href="/2020/09/06/KMP算法/" rel="next" title="KMP算法">
+                <i class="fa fa-chevron-left"></i> KMP算法
               </a>
             
           </div>
@@ -417,10 +439,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/07/gdb的使用/" rel="prev" title="gdb的使用">
-                gdb的使用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,8 +490,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -535,6 +562,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是右值引用"><span class="nav-number">1.</span> <span class="nav-text">什么是右值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值和右值的概念"><span class="nav-number">2.</span> <span class="nav-text">左值和右值的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值和右值之间的转换"><span class="nav-number">3.</span> <span class="nav-text">左值和右值之间的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值引用"><span class="nav-number">4.</span> <span class="nav-text">左值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右值引用（C-11）"><span class="nav-number">5.</span> <span class="nav-text">右值引用（C++11）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4行代码的故事"><span class="nav-number">5.1.</span> <span class="nav-text">4行代码的故事</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一行代码的故事"><span class="nav-number">5.1.1.</span> <span class="nav-text">第一行代码的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二行代码的故事"><span class="nav-number">5.1.2.</span> <span class="nav-text">第二行代码的故事</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
