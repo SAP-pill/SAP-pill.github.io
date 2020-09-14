@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-09T01:07:09.362Z">
+<meta property="og:updated_time" content="2020-09-13T01:19:10.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="左值和右值">
 <meta name="twitter:description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
@@ -400,6 +400,15 @@
 <p>这行代码就是右值引用，getval()产生的临时值不会像第一行代码一样，在表达式结束之后就销毁，而是会被续命，他的生命周期将会通过右值引用得以延续，和变量k的声明周期一样长。</p>
 <p>右值引用的第一个特点</p>
 <p>通过右值引用的声明，右值又“重获新生”，其生命周期与右值引用类型变量的生命周期一样长，只要该变量还活着，该右值临时量将会一直存活下去。</p>
+<h4 id="第三行代码的故事"><a href="#第三行代码的故事" class="headerlink" title="第三行代码的故事"></a>第三行代码的故事</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(T&amp;&amp; a):m_val(val)&#123;a.m_val=<span class="literal">nullptr</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这行代码实际上来自于一个类的构造函数，构造函数的一个参数是一个右值引用。</p>
+<p>一个带有堆内存的类，必须提供一个深拷贝构造函数，因为默认的拷贝构造函数是浅拷贝，会发生“指针悬挂”的问题。如果不提供深拷贝构造函数，上面的测试代码将会发生错误，内部的m_val会被删除两次，一次是临时右值析构的时候删除一次，第二次外面构造的a对象释放时删除一次，而这两个对象的m_ptr是同一个指针，这就是所谓的指针悬挂问题。提供深拷贝构造函数虽然可以保证正确，但是在有些时候会造成额外的性能损耗。</p>
+<p>实际上为了解决这个问题，C++11提供了std::move方法将左值转换成右值，为了方面应用移动语义。move是将对象资源的所有权从一个对象转移到另一个对象，只有转移，没有内存的拷贝。move实际上他并不能移动任何东西，他唯一的功能是将一个左值强制转换为一个右值引用。如果是一些基本类型比如int和char[10]定长数组等类型，使用move仍然会发生拷贝（因为没有对应的移动构造函数）。</p>
+<h4 id="第4行代码的故事"><a href="#第4行代码的故事" class="headerlink" title="第4行代码的故事"></a>第4行代码的故事</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T&amp;&amp; val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    foo(<span class="built_in">std</span>::forward&lt;T&gt;(val));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C++11之前调用模板函数时，存在一个比较头疼的问题，如何正确的传递参数。</p>
+<p>C++11引入了完美转发，在函数模板中，完全依照模板的参数的类型（既保持参数的左右值特征），将参数传递给函数模板中调用的另一个函数。C++11的std::forward正是做这个事情的，他会按照参数的实际类型进行转发。</p>
 
       
     </div>
@@ -439,6 +448,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/09/13/mysql/" rel="prev" title="mysql">
+                mysql <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -517,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +552,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -572,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是右值引用"><span class="nav-number">1.</span> <span class="nav-text">什么是右值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值和右值的概念"><span class="nav-number">2.</span> <span class="nav-text">左值和右值的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值和右值之间的转换"><span class="nav-number">3.</span> <span class="nav-text">左值和右值之间的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值引用"><span class="nav-number">4.</span> <span class="nav-text">左值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右值引用（C-11）"><span class="nav-number">5.</span> <span class="nav-text">右值引用（C++11）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4行代码的故事"><span class="nav-number">5.1.</span> <span class="nav-text">4行代码的故事</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一行代码的故事"><span class="nav-number">5.1.1.</span> <span class="nav-text">第一行代码的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二行代码的故事"><span class="nav-number">5.1.2.</span> <span class="nav-text">第二行代码的故事</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是右值引用"><span class="nav-number">1.</span> <span class="nav-text">什么是右值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值和右值的概念"><span class="nav-number">2.</span> <span class="nav-text">左值和右值的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值和右值之间的转换"><span class="nav-number">3.</span> <span class="nav-text">左值和右值之间的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左值引用"><span class="nav-number">4.</span> <span class="nav-text">左值引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右值引用（C-11）"><span class="nav-number">5.</span> <span class="nav-text">右值引用（C++11）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4行代码的故事"><span class="nav-number">5.1.</span> <span class="nav-text">4行代码的故事</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一行代码的故事"><span class="nav-number">5.1.1.</span> <span class="nav-text">第一行代码的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二行代码的故事"><span class="nav-number">5.1.2.</span> <span class="nav-text">第二行代码的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三行代码的故事"><span class="nav-number">5.1.3.</span> <span class="nav-text">第三行代码的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第4行代码的故事"><span class="nav-number">5.1.4.</span> <span class="nav-text">第4行代码的故事</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
