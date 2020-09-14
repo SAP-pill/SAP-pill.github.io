@@ -79,23 +79,30 @@
 
 
 
-<meta name="description" content="mysql客户端连接服务端通信类型：同步，（客户端操作简单） 连接方式：长连接（使用完放回连接池） 客户端的一个会话就是服务端的一个线程。 服务端默认的最大连接数：151，可修改的最大的：100000 参数有两个级别：global（全局的）    session 通信方式：半双工通信，在一个连接里面不能同时发送和接受， 默认的数据包大小：max_allowed_packet   4m大小 查询的时">
+<meta name="description" content="MySQL架构mysql客户端连接服务端通信类型：同步，（客户端操作简单） 连接方式：长连接（使用完放回连接池） 客户端的一个会话就是服务端的一个线程。 服务端默认的最大连接数：151，可修改的最大的：100000 参数有两个级别：global（全局的）    session 通信方式：半双工通信，在一个连接里面不能同时发送和接受， 默认的数据包大小：max_allowed_packet   4m">
 <meta name="keywords" content="MySQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql">
 <meta property="og:url" content="https://sap-pill.github.io/2020/09/13/mysql/index.html">
 <meta property="og:site_name" content="onlooker">
-<meta property="og:description" content="mysql客户端连接服务端通信类型：同步，（客户端操作简单） 连接方式：长连接（使用完放回连接池） 客户端的一个会话就是服务端的一个线程。 服务端默认的最大连接数：151，可修改的最大的：100000 参数有两个级别：global（全局的）    session 通信方式：半双工通信，在一个连接里面不能同时发送和接受， 默认的数据包大小：max_allowed_packet   4m大小 查询的时">
+<meta property="og:description" content="MySQL架构mysql客户端连接服务端通信类型：同步，（客户端操作简单） 连接方式：长连接（使用完放回连接池） 客户端的一个会话就是服务端的一个线程。 服务端默认的最大连接数：151，可修改的最大的：100000 参数有两个级别：global（全局的）    session 通信方式：半双工通信，在一个连接里面不能同时发送和接受， 默认的数据包大小：max_allowed_packet   4m">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/1.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/2.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/3.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/4.jpg">
 <meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/5.jpg">
-<meta property="og:updated_time" content="2020-09-14T03:24:50.006Z">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/6.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/7.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/8.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/9.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/10.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/11.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/09/13/mysql/12.jpg">
+<meta property="og:updated_time" content="2020-09-14T13:10:34.334Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql">
-<meta name="twitter:description" content="mysql客户端连接服务端通信类型：同步，（客户端操作简单） 连接方式：长连接（使用完放回连接池） 客户端的一个会话就是服务端的一个线程。 服务端默认的最大连接数：151，可修改的最大的：100000 参数有两个级别：global（全局的）    session 通信方式：半双工通信，在一个连接里面不能同时发送和接受， 默认的数据包大小：max_allowed_packet   4m大小 查询的时">
+<meta name="twitter:description" content="MySQL架构mysql客户端连接服务端通信类型：同步，（客户端操作简单） 连接方式：长连接（使用完放回连接池） 客户端的一个会话就是服务端的一个线程。 服务端默认的最大连接数：151，可修改的最大的：100000 参数有两个级别：global（全局的）    session 通信方式：半双工通信，在一个连接里面不能同时发送和接受， 默认的数据包大小：max_allowed_packet   4m">
 <meta name="twitter:image" content="https://sap-pill.github.io/2020/09/13/mysql/1.jpg">
 
 
@@ -374,7 +381,7 @@
       
 
       
-        <h2 id="mysql客户端连接服务端"><a href="#mysql客户端连接服务端" class="headerlink" title="mysql客户端连接服务端"></a>mysql客户端连接服务端</h2><p>通信类型：同步，（客户端操作简单）</p>
+        <h1 id="MySQL架构"><a href="#MySQL架构" class="headerlink" title="MySQL架构"></a>MySQL架构</h1><h2 id="mysql客户端连接服务端"><a href="#mysql客户端连接服务端" class="headerlink" title="mysql客户端连接服务端"></a>mysql客户端连接服务端</h2><p>通信类型：同步，（客户端操作简单）</p>
 <p>连接方式：长连接（使用完放回连接池）</p>
 <p>客户端的一个会话就是服务端的一个线程。</p>
 <p>服务端默认的最大连接数：151，可修改的最大的：100000</p>
@@ -406,6 +413,40 @@
 <h2 id="server层binary-log文件的作用"><a href="#server层binary-log文件的作用" class="headerlink" title="server层binary log文件的作用"></a>server层binary log文件的作用</h2><p>主从复制</p>
 <p><img src="/2020/09/13/mysql/4.jpg" alt></p>
 <h2 id="更新语句的执行流程"><a href="#更新语句的执行流程" class="headerlink" title="更新语句的执行流程"></a>更新语句的执行流程</h2><p><img src="/2020/09/13/mysql/5.jpg" alt></p>
+<h1 id="MySQL索引原理"><a href="#MySQL索引原理" class="headerlink" title="MySQL索引原理"></a>MySQL索引原理</h1><p>数据库索引：是数据库管理系统中一个排序的数据结构，以协助快速查询、更新数据库表中的数据。</p>
+<h2 id="AVL树解决了什么问题"><a href="#AVL树解决了什么问题" class="headerlink" title="AVL树解决了什么问题"></a>AVL树解决了什么问题</h2><p>解决了平衡二叉树在插入有序数据的时候，导致左右树的深度差过于大。左旋，右旋操作</p>
+<p><img src="/2020/09/13/mysql/6.jpg" alt></p>
+<p>每读取一个节点，就要对磁盘io进行一次操作，读取16kb的数据。而且每个节点的数据可能是很小的，这是一个很大的浪费。</p>
+<p>如果用节点把每一页的16kb填满，从一个瘦高的树变成一个矮胖的树，这就是优化后的多路平衡查找树。</p>
+<h2 id="多路平衡查找树-Balanced-Tree-B树"><a href="#多路平衡查找树-Balanced-Tree-B树" class="headerlink" title="多路平衡查找树(Balanced Tree B树)"></a>多路平衡查找树(Balanced Tree B树)</h2><p><img src="/2020/09/13/mysql/7.jpg" alt></p>
+<p>通过分裂和合并操作来构造B Tree</p>
+<p>每个节点存放的关键字个数为n，则它的度最大为n+1</p>
+<h2 id="B-树-加强版多路平衡查找树"><a href="#B-树-加强版多路平衡查找树" class="headerlink" title="B+树   加强版多路平衡查找树"></a>B+树   加强版多路平衡查找树</h2><p><img src="/2020/09/13/mysql/8.jpg" alt></p>
+<p>特性：</p>
+<p>只把数据存放在叶子节点，这样上面就可以存放更多的键值和更多的度，树的高度就变低了。</p>
+<p>并且给所有的叶子节点加了双向指针，这样查询的值在相邻的几个叶子节点上的时候，就不需要多次从根节点开始进行遍历，只需要从其中一个叶子节点开始遍历相邻的叶子节点就好了。</p>
+<p>优势：</p>
+<ol>
+<li>B Tree能解决的问题，B+ Tree都能解决</li>
+<li>扫库、扫表能力更强</li>
+<li>磁盘读写能力更强</li>
+<li>排序能力更强</li>
+<li>效率更加稳定</li>
+</ol>
+<h2 id="哈希索引"><a href="#哈希索引" class="headerlink" title="哈希索引"></a>哈希索引</h2><p><img src="/2020/09/13/mysql/9.jpg" alt></p>
+<p>缺点：无序的，如果key值重复，就要解决哈希冲突的问题。</p>
+<p>只适合一些特殊的场合。</p>
+<h2 id="索引在不同的存储引擎中的实现"><a href="#索引在不同的存储引擎中的实现" class="headerlink" title="索引在不同的存储引擎中的实现"></a>索引在不同的存储引擎中的实现</h2><h3 id="MyISAM-主键索引"><a href="#MyISAM-主键索引" class="headerlink" title="MyISAM-主键索引"></a>MyISAM-主键索引</h3><p><img src="/2020/09/13/mysql/10.jpg" alt></p>
+<h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><p>数据和索引都存储在叶子节点上</p>
+<p>索引组织表，索引就是数据，数据就是索引</p>
+<p>聚簇索引：索引的逻辑顺序和完整数据行的物理顺序是一致的</p>
+<p>主键索引一定是聚簇索引，其他的索引都是非聚簇索引</p>
+<p><img src="/2020/09/13/mysql/11.jpg" alt></p>
+<h3 id="一张表可以没有主键吗？"><a href="#一张表可以没有主键吗？" class="headerlink" title="一张表可以没有主键吗？"></a>一张表可以没有主键吗？</h3><p>1、有主键</p>
+<p>2、no null unique key</p>
+<p>3、roe_id</p>
+<h3 id="辅助索引"><a href="#辅助索引" class="headerlink" title="辅助索引"></a>辅助索引</h3><p><img src="/2020/09/13/mysql/12.jpg" alt></p>
+<h2 id="联合索引的最左匹配原则"><a href="#联合索引的最左匹配原则" class="headerlink" title="联合索引的最左匹配原则"></a>联合索引的最左匹配原则</h2><p>是按照最左边的关键字进行排序的</p>
 
       
     </div>
@@ -578,7 +619,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql客户端连接服务端"><span class="nav-number">1.</span> <span class="nav-text">mysql客户端连接服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询缓存"><span class="nav-number">2.</span> <span class="nav-text">查询缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paser解析器"><span class="nav-number">3.</span> <span class="nav-text">paser解析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#preprocessor-预处理"><span class="nav-number">4.</span> <span class="nav-text">preprocessor 预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#optimizer-优化器"><span class="nav-number">5.</span> <span class="nav-text">optimizer 优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#execution-plans-执行计划"><span class="nav-number">6.</span> <span class="nav-text">execution plans 执行计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储引擎"><span class="nav-number">7.</span> <span class="nav-text">存储引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写redo日志比写数据库文件快？这样效率是不是变低了"><span class="nav-number">8.</span> <span class="nav-text">写redo日志比写数据库文件快？这样效率是不是变低了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储引擎把数据加载到内存之后要干什么？"><span class="nav-number">9.</span> <span class="nav-text">存储引擎把数据加载到内存之后要干什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server层binary-log文件的作用"><span class="nav-number">10.</span> <span class="nav-text">server层binary log文件的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新语句的执行流程"><span class="nav-number">11.</span> <span class="nav-text">更新语句的执行流程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL架构"><span class="nav-number">1.</span> <span class="nav-text">MySQL架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql客户端连接服务端"><span class="nav-number">1.1.</span> <span class="nav-text">mysql客户端连接服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询缓存"><span class="nav-number">1.2.</span> <span class="nav-text">查询缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#paser解析器"><span class="nav-number">1.3.</span> <span class="nav-text">paser解析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#preprocessor-预处理"><span class="nav-number">1.4.</span> <span class="nav-text">preprocessor 预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#optimizer-优化器"><span class="nav-number">1.5.</span> <span class="nav-text">optimizer 优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#execution-plans-执行计划"><span class="nav-number">1.6.</span> <span class="nav-text">execution plans 执行计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储引擎"><span class="nav-number">1.7.</span> <span class="nav-text">存储引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写redo日志比写数据库文件快？这样效率是不是变低了"><span class="nav-number">1.8.</span> <span class="nav-text">写redo日志比写数据库文件快？这样效率是不是变低了</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储引擎把数据加载到内存之后要干什么？"><span class="nav-number">1.9.</span> <span class="nav-text">存储引擎把数据加载到内存之后要干什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#server层binary-log文件的作用"><span class="nav-number">1.10.</span> <span class="nav-text">server层binary log文件的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新语句的执行流程"><span class="nav-number">1.11.</span> <span class="nav-text">更新语句的执行流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MySQL索引原理"><span class="nav-number">2.</span> <span class="nav-text">MySQL索引原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AVL树解决了什么问题"><span class="nav-number">2.1.</span> <span class="nav-text">AVL树解决了什么问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多路平衡查找树-Balanced-Tree-B树"><span class="nav-number">2.2.</span> <span class="nav-text">多路平衡查找树(Balanced Tree B树)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树-加强版多路平衡查找树"><span class="nav-number">2.3.</span> <span class="nav-text">B+树   加强版多路平衡查找树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哈希索引"><span class="nav-number">2.4.</span> <span class="nav-text">哈希索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引在不同的存储引擎中的实现"><span class="nav-number">2.5.</span> <span class="nav-text">索引在不同的存储引擎中的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM-主键索引"><span class="nav-number">2.5.1.</span> <span class="nav-text">MyISAM-主键索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InnoDB"><span class="nav-number">2.5.2.</span> <span class="nav-text">InnoDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一张表可以没有主键吗？"><span class="nav-number">2.5.3.</span> <span class="nav-text">一张表可以没有主键吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助索引"><span class="nav-number">2.5.4.</span> <span class="nav-text">辅助索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联合索引的最左匹配原则"><span class="nav-number">2.6.</span> <span class="nav-text">联合索引的最左匹配原则</span></a></li></ol></li></ol></div>
             
 
           </div>
