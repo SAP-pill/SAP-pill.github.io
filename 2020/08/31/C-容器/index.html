@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="map和set的区别map和set都是C++的关联容器，其底层实现都是红黑树（RB-Tree）。由于map和set所开放的各种操作接口，RB-Tree也都提供了，所以几乎所有的map和set的操作行为，都只是转调RB-Tree的操作行为。 map和set区别在于  map中的元素是key-value对：关键字起到索引的作用，值则表示与索引相关联的数据；set与之相对就是关键字的简单集合，set中每">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-05T03:17:38.407Z">
+<meta property="og:updated_time" content="2020-09-16T02:18:02.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++容器">
 <meta name="twitter:description" content="map和set的区别map和set都是C++的关联容器，其底层实现都是红黑树（RB-Tree）。由于map和set所开放的各种操作接口，RB-Tree也都提供了，所以几乎所有的map和set的操作行为，都只是转调RB-Tree的操作行为。 map和set区别在于  map中的元素是key-value对：关键字起到索引的作用，值则表示与索引相关联的数据；set与之相对就是关键字的简单集合，set中每">
@@ -375,6 +375,19 @@
 <li>set的迭代器是const的，不允许修改元素的值；map允许修改value，但不允许修改key。其原因是因为map和set是根据关键字排序来保证其有序性的，如果允许修改key的话，那么首先需要删除该键，然后调节平衡，再插入修改后的键值，调节平衡，如此一来，严重破坏了map和set的结构，导致iterator失效，不知道应该指向改变前的位置，还是指向改变后的位置。所以STL中将set的迭代器设置成const，不允许修改迭代器的值；而map的迭代器则不允许修改key值，允许修改value值。</li>
 <li>map支持下标操作，set不支持下标操作。map可以用key做下标，map的下标运算符[]将关键码作为下标去执行查找，如果关键码不存在，则插入一个具有该关键码和mapped_type类型默认值得元素至map中，因此下标运算符[]在map引用中需要慎用，const_map不能用，只希望确定某一个关键值是否存在而不希望插入元素时也不应该使用，mapped_type类型没有默认值也不应该使用。如果find能解决需要，尽可能用find。</li>
 </ol>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><h3 id="性质："><a href="#性质：" class="headerlink" title="性质："></a>性质：</h3><ol>
+<li><p>每个节点要么是黑色，要么是红色。</p>
+</li>
+<li><p>根节点是黑色</p>
+</li>
+<li><p>每个叶子节点也是黑色</p>
+</li>
+<li><p>每个红色节点的两个子节点一定都是黑色</p>
+</li>
+<li><p>任意一节点到每个叶子节点的路径都包含数目相同的黑节点。</p>
+<p>​    如果一个节点存在黑子节点，那么该节点肯定有两个子节点。</p>
+</li>
+</ol>
 <h2 id="说一说STL的allocator"><a href="#说一说STL的allocator" class="headerlink" title="说一说STL的allocator"></a>说一说STL的allocator</h2><p>STL的分配器用于封装STL容器在内存管理上的底层细节。在C++中，其内存配置和释放如下：</p>
 <p>new运算分为两个阶段：</p>
 <ol>
@@ -538,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -560,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -593,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#map和set的区别"><span class="nav-number">1.</span> <span class="nav-text">map和set的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说STL的allocator"><span class="nav-number">2.</span> <span class="nav-text">说一说STL的allocator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL迭代器删除元素"><span class="nav-number">3.</span> <span class="nav-text">STL迭代器删除元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL由什么组成"><span class="nav-number">4.</span> <span class="nav-text">STL由什么组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL里面的resize和reserve的区别"><span class="nav-number">5.</span> <span class="nav-text">STL里面的resize和reserve的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#resize-："><span class="nav-number">5.1.</span> <span class="nav-text">resize()：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reserve"><span class="nav-number">5.2.</span> <span class="nav-text">reserve():</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说STL中迭代器的作用，有了指针为何还要迭代器"><span class="nav-number">6.</span> <span class="nav-text">说一说STL中迭代器的作用，有了指针为何还要迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器和指针的区别"><span class="nav-number">6.1.</span> <span class="nav-text">迭代器和指针的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器产生原因"><span class="nav-number">6.2.</span> <span class="nav-text">迭代器产生原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说epoll原理"><span class="nav-number">7.</span> <span class="nav-text">说一说epoll原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n个无序的数组，求每个元素后面比他大的第一个数，要求复杂度为O-n"><span class="nav-number">8.</span> <span class="nav-text">n个无序的数组，求每个元素后面比他大的第一个数，要求复杂度为O(n)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#map和set的区别"><span class="nav-number">1.</span> <span class="nav-text">map和set的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">2.</span> <span class="nav-text">红黑树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性质："><span class="nav-number">2.1.</span> <span class="nav-text">性质：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说STL的allocator"><span class="nav-number">3.</span> <span class="nav-text">说一说STL的allocator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL迭代器删除元素"><span class="nav-number">4.</span> <span class="nav-text">STL迭代器删除元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL由什么组成"><span class="nav-number">5.</span> <span class="nav-text">STL由什么组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STL里面的resize和reserve的区别"><span class="nav-number">6.</span> <span class="nav-text">STL里面的resize和reserve的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#resize-："><span class="nav-number">6.1.</span> <span class="nav-text">resize()：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reserve"><span class="nav-number">6.2.</span> <span class="nav-text">reserve():</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说STL中迭代器的作用，有了指针为何还要迭代器"><span class="nav-number">7.</span> <span class="nav-text">说一说STL中迭代器的作用，有了指针为何还要迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器和指针的区别"><span class="nav-number">7.1.</span> <span class="nav-text">迭代器和指针的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器产生原因"><span class="nav-number">7.2.</span> <span class="nav-text">迭代器产生原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说一说epoll原理"><span class="nav-number">8.</span> <span class="nav-text">说一说epoll原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n个无序的数组，求每个元素后面比他大的第一个数，要求复杂度为O-n"><span class="nav-number">9.</span> <span class="nav-text">n个无序的数组，求每个元素后面比他大的第一个数，要求复杂度为O(n)</span></a></li></ol></div>
             
 
           </div>
