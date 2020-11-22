@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="移动通信,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、填空题LTE上行方案采用单载波频分多址接入（SC-FDMA）技术； 下行方案采用正交频分多址接入（OFDMA）技术。 AUC QPSK和OQPSKQPSK（正交相移键控）：  OQPSK（偏移四相移键控）：QPSK的一种改进型是OQPSK，OQPSK对边瓣和频宽等有害现象不敏感，可以得到高效率的放大。 多普勒 多径时散 远近效应 呼吸效应多普勒： 当移动台（MS）具有一定速度V的时候，基站（B">
+<meta name="keywords" content="移动通信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动通信">
+<meta property="og:url" content="https://sap-pill.github.io/2020/11/22/移动通信/index.html">
+<meta property="og:site_name" content="onlooker">
+<meta property="og:description" content="一、填空题LTE上行方案采用单载波频分多址接入（SC-FDMA）技术； 下行方案采用正交频分多址接入（OFDMA）技术。 AUC QPSK和OQPSKQPSK（正交相移键控）：  OQPSK（偏移四相移键控）：QPSK的一种改进型是OQPSK，OQPSK对边瓣和频宽等有害现象不敏感，可以得到高效率的放大。 多普勒 多径时散 远近效应 呼吸效应多普勒： 当移动台（MS）具有一定速度V的时候，基站（B">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/1.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/2.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/3.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/4.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/5.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/6.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/7.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/8.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/9.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/10.jpg">
+<meta property="og:image" content="https://sap-pill.github.io/2020/11/22/移动通信/11.jpg">
+<meta property="og:updated_time" content="2020-11-22T05:00:43.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="移动通信">
+<meta name="twitter:description" content="一、填空题LTE上行方案采用单载波频分多址接入（SC-FDMA）技术； 下行方案采用正交频分多址接入（OFDMA）技术。 AUC QPSK和OQPSKQPSK（正交相移键控）：  OQPSK（偏移四相移键控）：QPSK的一种改进型是OQPSK，OQPSK对边瓣和频宽等有害现象不敏感，可以得到高效率的放大。 多普勒 多径时散 远近效应 呼吸效应多普勒： 当移动台（MS）具有一定速度V的时候，基站（B">
+<meta name="twitter:image" content="https://sap-pill.github.io/2020/11/22/移动通信/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sap-pill.github.io/2020/11/22/移动通信/">
+
+
+
+
+
+  <title>移动通信 | onlooker</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">onlooker</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Welcome to onlooker's blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://sap-pill.github.io/2020/11/22/移动通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="王祎豪">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="onlooker">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">移动通信</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-22T11:42:25+08:00">
+                2020-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/专业课/" itemprop="url" rel="index">
+                    <span itemprop="name">专业课</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/11/22/移动通信/" class="leancloud_visitors" data-flag-title="移动通信">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、填空题"><a href="#一、填空题" class="headerlink" title="一、填空题"></a>一、填空题</h1><h2 id="LTE"><a href="#LTE" class="headerlink" title="LTE"></a>LTE</h2><p>上行方案采用单载波频分多址接入（SC-FDMA）技术；</p>
+<p>下行方案采用正交频分多址接入（OFDMA）技术。</p>
+<h2 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h2><p><img src="/2020/11/22/移动通信/1.jpg" alt></p>
+<h2 id="QPSK和OQPSK"><a href="#QPSK和OQPSK" class="headerlink" title="QPSK和OQPSK"></a>QPSK和OQPSK</h2><p><strong>QPSK</strong>（正交相移键控）：</p>
+<p><img src="/2020/11/22/移动通信/2.jpg" alt></p>
+<p><strong>OQPSK</strong>（偏移四相移键控）：QPSK的一种改进型是OQPSK，OQPSK对边瓣和频宽等有害现象不敏感，可以得到高效率的放大。</p>
+<h2 id="多普勒-多径时散-远近效应-呼吸效应"><a href="#多普勒-多径时散-远近效应-呼吸效应" class="headerlink" title="多普勒 多径时散 远近效应 呼吸效应"></a>多普勒 多径时散 远近效应 呼吸效应</h2><p><strong>多普勒</strong>： 当移动台（MS）具有一定速度V的时候，基站（BS）接收到移动台的载波频率将随V的不同，产生不同的频移。</p>
+<p><strong>多径时散</strong>：因多径传播造成的信号时间扩散的现象。</p>
+<p><strong>远近效应</strong>：指大功率的信号（近端的电台）抑制小功率信号（远端的电台）的现象。</p>
+<p><strong>呼吸效应</strong>：覆盖半径随用户数目的增加而收缩的现象叫做呼吸效应。</p>
+<h2 id="互调干扰-同频干扰-阻塞干扰-邻近干扰"><a href="#互调干扰-同频干扰-阻塞干扰-邻近干扰" class="headerlink" title="互调干扰 同频干扰 阻塞干扰 邻近干扰"></a>互调干扰 同频干扰 阻塞干扰 邻近干扰</h2><p><strong>互调干扰</strong>：</p>
+<p><img src="/2020/11/22/移动通信/3.jpg" alt></p>
+<p><strong>同频干扰</strong>：所有落在收信机通带内的与有用信号频率相同或相近的干扰信号（非有用信号）称为同频道干扰。</p>
+<p><strong>阻塞干扰</strong>：</p>
+<p><img src="/2020/11/22/移动通信/4.jpg" alt></p>
+<p><strong>邻近干扰</strong>：</p>
+<p><img src="/2020/11/22/移动通信/5.jpg" alt></p>
+<h2 id="VLR-HLR-MSC-OFDM-GPRS"><a href="#VLR-HLR-MSC-OFDM-GPRS" class="headerlink" title="VLR HLR MSC OFDM GPRS"></a>VLR HLR MSC OFDM GPRS</h2><p><strong>VLR（访问者位置寄存器）</strong>：VLR包含所有当前在服务器MSC中的移动用户的有关数据。通常每一个移动交换区有一个VLR。</p>
+<p>作用：</p>
+<ol>
+<li>用户数据的存储：VLR必须存储其归属用户的有关数据。</li>
+<li>用户数据的检索：当呼叫建立时，根据MSC的要求，VLR能够依据TMSI（移动台呼叫）、MSRN（移动台被叫）向MSC提供用户的信息。</li>
+<li>登记：当移动用户出现在一个新的位置区域，VLR应能完成登记、取消登记的功能。</li>
+<li>移动台去话：收到MSC发送的去话通知后，VLR应能删除此用户的信息并通知HLR。</li>
+<li>鉴权：VLR应能向鉴权中心（AUC）索取并存储鉴权参数。</li>
+<li>提供MSRN：支持每次MS被呼叫时进行MSRN分配（MS位置更新时需要求MSC分配MSRN）。</li>
+<li>VLR的恢复：当VLR发生数据错误时，VLR应能通知相应的HLR，删除与其相应的数据。</li>
+</ol>
+<p><strong>HLR（归属位置寄存器）</strong>：</p>
+<p><img src="/2020/11/22/移动通信/6.jpg" alt></p>
+<p>作用：</p>
+<ol>
+<li>用户数据的存储</li>
+<li>用户数据的检索</li>
+<li>提供移动用户漫游号</li>
+<li>鉴权</li>
+<li>登记</li>
+<li>移动台去话</li>
+<li>HLR的恢复</li>
+</ol>
+<p><strong>MSC（移动业务交换中心）</strong></p>
+<p><img src="/2020/11/22/移动通信/7.jpg" alt></p>
+<p><strong>OFDM（正交频分复用技术）</strong></p>
+<p>关键技术：</p>
+<ol>
+<li>时域和频域同步</li>
+<li>信道估计</li>
+<li>信道编码和交织</li>
+<li>降低峰值平均功率比</li>
+</ol>
+<p>优缺点：</p>
+<p><img src="/2020/11/22/移动通信/8.jpg" alt></p>
+<p><img src="/2020/11/22/移动通信/9.jpg" alt></p>
+<p><strong>GPRS（通用分组无线业务）</strong></p>
+<p><img src="/2020/11/22/移动通信/10.jpg" alt></p>
+<h2 id="CDMA-扩频类型"><a href="#CDMA-扩频类型" class="headerlink" title="CDMA 扩频类型"></a>CDMA 扩频类型</h2><p><strong>CDMA（码分多址）</strong></p>
+<p><img src="/2020/11/22/移动通信/11.jpg" alt></p>
+<p><strong>扩频类型</strong></p>
+<p>直序扩频、跳频扩频、跳时扩频以及线性调制</p>
+<h2 id="分集接收"><a href="#分集接收" class="headerlink" title="分集接收"></a>分集接收</h2><p>分集接收是利用信号和信道的性质，将接收到的多径信号分离成互不相关（独立的）多径信号，然后将多径衰落信道分散的能量更有效的接收起来处理之后判决，从而达到抗衰落的目的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/移动通信/" rel="tag"># 移动通信</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/09/23/操作系统/" rel="next" title="操作系统">
+                <i class="fa fa-chevron-left"></i> 操作系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/touxiang.png" alt="王祎豪">
+            
+              <p class="site-author-name" itemprop="name">王祎豪</p>
+              <p class="site-description motion-element" itemprop="description">花有重开日，人无再少年</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、填空题"><span class="nav-number">1.</span> <span class="nav-text">一、填空题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LTE"><span class="nav-number">1.1.</span> <span class="nav-text">LTE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUC"><span class="nav-number">1.2.</span> <span class="nav-text">AUC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QPSK和OQPSK"><span class="nav-number">1.3.</span> <span class="nav-text">QPSK和OQPSK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多普勒-多径时散-远近效应-呼吸效应"><span class="nav-number">1.4.</span> <span class="nav-text">多普勒 多径时散 远近效应 呼吸效应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互调干扰-同频干扰-阻塞干扰-邻近干扰"><span class="nav-number">1.5.</span> <span class="nav-text">互调干扰 同频干扰 阻塞干扰 邻近干扰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VLR-HLR-MSC-OFDM-GPRS"><span class="nav-number">1.6.</span> <span class="nav-text">VLR HLR MSC OFDM GPRS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDMA-扩频类型"><span class="nav-number">1.7.</span> <span class="nav-text">CDMA 扩频类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分集接收"><span class="nav-number">1.8.</span> <span class="nav-text">分集接收</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王祎豪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("rGe1QQExvFPMuoliF74W1VaE-gzGzoHsz", "MkxhCHPpyCuJQpB2C3LHXCSK");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
