@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-09-13T01:19:10.131Z">
+<meta property="og:updated_time" content="2021-03-31T12:42:06.347Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="左值和右值">
 <meta name="twitter:description" content="什么是右值引用右值引用是C++11中引入的新特性，它实现了转移语义和精确传递。他的两个主要目的有两个方面： 1.消除两个对象交互时不必要的对象拷贝，节省运算存储资源，提高效率。 2.能够更简洁明确地定义泛型函数。 左值和右值的概念左值：能对表达式取地址、或具名对象、变量。一般表达式结束后依然存在的持久对象。 右值：不能对表达式取地址，或匿名对象。一般指表达式结束就不再存在的临时对象 左值和右值之间">
@@ -385,7 +385,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> &amp;s = <span class="built_in">string</span>();</span><br></pre></td></tr></table></figure>
 
 <h2 id="右值引用（C-11）"><a href="#右值引用（C-11）" class="headerlink" title="右值引用（C++11）"></a>右值引用（C++11）</h2><p>右值引用及其相关的move语义是C++11新引入的最强大的特性之一。</p>
-<p>他主要用来解决C++98/03中的两个问题，第一个问题是临时对象非必要的养龟的拷贝操作，第二个问题是在模板函数中如何按照参数的实际类型进行转发。</p>
+<p>他主要用来解决C++98/03中的两个问题，第一个问题是临时对象非必要的常规的拷贝操作，第二个问题是在模板函数中如何按照参数的实际类型进行转发。</p>
 <h3 id="4行代码的故事"><a href="#4行代码的故事" class="headerlink" title="4行代码的故事"></a>4行代码的故事</h3><h4 id="第一行代码的故事"><a href="#第一行代码的故事" class="headerlink" title="第一行代码的故事"></a>第一行代码的故事</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = getval();</span><br></pre></td></tr></table></figure>
 
 <p>这行代码会产生两种类型的值，一种是函数返回的临时对象，一种是左值i。这个临时对象在表达式结束后就销毁了，而i在表达式之后仍然存在，这个临时值就是右值。</p>
@@ -530,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -541,7 +541,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -552,7 +552,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -605,7 +605,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
