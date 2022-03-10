@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="onlooker" type="application/atom+xml">
+
 
 
 
@@ -87,7 +89,7 @@
 <meta property="og:site_name" content="onlooker">
 <meta property="og:description" content="编译1go build xxx.go  清理1go clean xxx.go  检测代码的常见错误 Printf类函数调用时，类型匹配错误的参数 定义常用的方法时，方法签名的错误 错误的结构标签 没有指定字段名的结构字面量  1go vet  Go代码格式化1go fmt  Go语言的文档1go doc 包名  包每个Go程序都是由包构成的。 程序是从main包开始运行，下面这个程序通过导入路径’">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-04-08T08:11:53.504Z">
+<meta property="og:updated_time" content="2021-07-08T01:36:41.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go语言">
 <meta name="twitter:description" content="编译1go build xxx.go  清理1go clean xxx.go  检测代码的常见错误 Printf类函数调用时，类型匹配错误的参数 定义常用的方法时，方法签名的错误 错误的结构标签 没有指定字段名的结构字面量  1go vet  Go代码格式化1go fmt  Go语言的文档1go doc 包名  包每个Go程序都是由包构成的。 程序是从main包开始运行，下面这个程序通过导入路径’">
@@ -504,7 +506,7 @@
 
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>类型<code>[n]T</code>便是拥有<code>n</code>个<code>T</code>类型的值的数组。</p>
 <p>表达式 ，将变量<code>a</code>声明为拥有10个整数的数组。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a [<span class="number">10</span>]<span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a [<span class="number">10</span>]<span class="keyword">int</span></span><br><span class="line"><span class="comment">//声明一个包含5个元素的整形数组</span></span><br><span class="line"><span class="comment">//用具体值初始化每个元素</span></span><br><span class="line">a := [<span class="number">5</span>]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line"><span class="comment">//声明一个整形数组</span></span><br><span class="line"><span class="comment">//用具体值初始化每个元素</span></span><br><span class="line"><span class="comment">//容量由初始化值得数量决定</span></span><br><span class="line">a := [...]<span class="keyword">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line"><span class="comment">//声明一个整形数组</span></span><br><span class="line"><span class="comment">//用具体值初始化索引为1和2的元素</span></span><br><span class="line"><span class="comment">//其余元素保持零值</span></span><br><span class="line">a := [<span class="number">5</span>]<span class="keyword">int</span>&#123;<span class="number">1</span>: <span class="number">10</span>, <span class="number">2</span>: <span class="number">20</span>&#125;</span><br><span class="line"><span class="comment">//声明包含5个元素的指向整数的数组</span></span><br><span class="line"><span class="comment">//用整形指针初始化索引为0和1的数组元素</span></span><br><span class="line">a := [<span class="number">5</span>]*<span class="keyword">int</span>&#123;<span class="number">0</span>: <span class="built_in">new</span>(<span class="keyword">int</span>), <span class="number">1</span>: <span class="built_in">new</span>(<span class="keyword">int</span>)&#125;</span><br><span class="line">*a[<span class="number">0</span>] = <span class="number">10</span></span><br><span class="line">*a[<span class="number">1</span>] = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//声明一个包含5个元素的字符串数组</span></span><br><span class="line"><span class="keyword">var</span> a1 [<span class="number">5</span>]<span class="keyword">string</span></span><br><span class="line"><span class="comment">//声明第二个包含5个元素的字符串</span></span><br><span class="line"><span class="comment">//初始化数组</span></span><br><span class="line">a2 := [<span class="number">5</span>]<span class="keyword">string</span>&#123;<span class="string">"aaa"</span>, <span class="string">"bbb"</span>, <span class="string">"ccc"</span>, <span class="string">"ddd"</span>, <span class="string">"eee"</span>&#125;</span><br><span class="line"><span class="comment">//把a2的值赋给a1</span></span><br><span class="line">a1 = a2 <span class="comment">//只有数组长度和元素类型相同的数组才可以相互赋值</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="keyword">var</span> a [<span class="number">2</span>]<span class="keyword">string</span></span><br><span class="line">  a[<span class="number">0</span>] = <span class="string">"hello"</span></span><br><span class="line">  a[<span class="number">1</span>] = <span class="string">"world"</span></span><br><span class="line">  fmt.Println(a[<span class="number">0</span>], a[<span class="number">1</span>])</span><br><span class="line">  fmt.Println(a)</span><br><span class="line">  </span><br><span class="line">  primes := [<span class="number">6</span>]<span class="keyword">int</span>&#123;<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>&#125;</span><br><span class="line">  fmt.Println(primes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -953,7 +955,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">79</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -964,7 +966,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -975,7 +977,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -983,6 +985,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -1028,7 +1037,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
